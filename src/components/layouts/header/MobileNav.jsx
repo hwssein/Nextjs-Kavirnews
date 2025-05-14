@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 import { Menu } from "lucide-react";
 import { CircleX } from "lucide-react";
-import Image from "next/image";
 
 function MobileNav() {
   const [isNavShow, setIsNavShow] = useState(false);
@@ -47,22 +48,26 @@ function MobileNav() {
             <ul className="w-full flex flex-col items-start justify-start gap-4 p-2">
               <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
                 <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
-                <span>ثبت‌ نام</span>
+                <Link href="/signup" className="w-full">
+                  ثبت‌ نام
+                </Link>
               </li>
 
               <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
                 <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
-                <span>ورود</span>
+                <Link href="/signin" className="w-full">
+                  ورود
+                </Link>
               </li>
 
               <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
                 <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
-                <span>تماس با ما</span>
+                <span className="w-full">تماس با ما</span>
               </li>
 
               <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
                 <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
-                <span>درباره ما</span>
+                <span className="w-full">درباره ما</span>
               </li>
             </ul>
           </div>

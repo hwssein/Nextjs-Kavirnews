@@ -1,10 +1,19 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import MobileNav from "./MobileNav";
 import PrimaryButton from "@/components/elements/PrimaryButton";
 import SecondaryButton from "@/components/elements/SecondaryButton";
 import SearchInput from "@/components/elements/SearchInput";
 
 function Header() {
+  const pathname = usePathname();
+
+  if (pathname === "/signin" || pathname === "/signup") return null;
+
   return (
     <>
       <div className="w-full flex items-center justify-between gap-4 p-2 relative">
@@ -25,8 +34,13 @@ function Header() {
             <SearchInput />
           </span>
 
-          <PrimaryButton text="ثبت نام" />
-          <SecondaryButton text="ورود" />
+          <Link href="/signup" className="w-fit">
+            <PrimaryButton text="ثبت نام" />
+          </Link>
+
+          <Link href="/signin" className="w-fit">
+            <SecondaryButton text="ورود" />
+          </Link>
         </div>
       </div>
     </>
