@@ -1,0 +1,67 @@
+body {
+  width: 100%;
+  overflow-x: hidden;
+  max-width: 1440px;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 0 auto;
+}
+
+.loader {
+  height: 16px;
+  border-radius: 20px;
+  position: relative;
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  margin: 2px;
+  inset: 0 100% 0 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: l6 2s infinite;
+}
+@keyframes l6 {
+  100% {
+    inset: 0;
+  }
+}
+
+@import "tailwindcss";
+
+@theme {
+  --color-background: #fff;
+  --color-surface: #f5f5f5;
+  --color-primary: #f81539;
+  --color-secondary: #fc4308;
+  --color-icon: #3e3232;
+  --color-stroke: #e6e6e6;
+  --color-danger: #ef4444;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-text: #000;
+}
+
+@layer base {
+  * {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style-type: none;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+  }
+
+  a:focus,
+  a:hover,
+  a:visited {
+    color: inherit;
+  }
+}
+
+@layer utilities {
+  .custom-transition {
+    @apply transition-all duration-100 ease-in;
+  }
+}
