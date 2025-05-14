@@ -10,10 +10,8 @@ function SearchInput() {
 
   return (
     <>
-      <div className="w-full h-12 bg-surface rounded-xl flex items-center justify-start gap-5 px-4 py-3.5">
-        <span className="w-5 h-5 flex items-center justify-center">
-          <EllipsisVertical />
-        </span>
+      <div className="w-full bg-surface rounded-lg flex items-center justify-start gap-5 px-4 py-1.5 sm:py-2">
+        <EllipsisVertical className="text-icon" />
 
         <input
           type="text"
@@ -24,9 +22,7 @@ function SearchInput() {
           className="w-full text-right "
         />
 
-        <span className="w-5 h-5 flex items-center justify-center">
-          <Search className="text-icon" />
-        </span>
+        <Search className="text-icon" />
       </div>
     </>
   );
