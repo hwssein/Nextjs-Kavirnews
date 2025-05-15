@@ -1,15 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import SigninForm from "../module/SigninForm";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import SigninForm from "../module/SigninForm";
+
+import { ArrowLeft } from "lucide-react";
 
 function SignupPage() {
+  const router = useRouter();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const [signupMessage, setSignupMessage] = useState("");
 
   const handleChangeValue = (event) => {
     const { name, value } = event.target;
@@ -20,9 +27,39 @@ function SignupPage() {
     });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const res = await fetch("/api/auth/signup", {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+
+    if (data.error) {
+      setSignupMessage(data.error);
+      return;
+    }
+
+    if (data.message) router.push("/");
+  };
+
+  console.log(signupMessage);
+
   return (
     <>
-      <div className="w-full max-w-2xl flex flex-col items-center justify-start gap-8 mt-10 mx-auto">
+      <div className="w-full max-w-2xl flex flex-col items-center justify-start gap-8 mt-10 mx-auto p-2">
+        <div className="w-full flex items-center justify-end">
+          <span
+            onClick={() => router.back()}
+            className="p-2 text-icon bg-surface rounded-lg cursor-pointer"
+          >
+            <ArrowLeft />
+          </span>
+        </div>
         <p className="w-full text-center text-primary font-medium">
           ثبت نام در کویرنیوز
         </p>
@@ -40,6 +77,7 @@ function SignupPage() {
           handleChangeValue={handleChangeValue}
           isShowPassword={isShowPassword}
           setIsShowPassword={setIsShowPassword}
+          handleSubmit={handleSubmit}
         />
       </div>
     </>
