@@ -1,3 +1,5 @@
+"use server";
+
 const findExistUser = async (email) => {
   const API_URI = process.env.API_URI;
   const API_KEY = process.env.API_KEY;
@@ -19,6 +21,7 @@ const findExistUser = async (email) => {
   return {
     id: data[0].id,
     name: data[0].name,
+    role: data[0].roles[0],
   };
 };
 

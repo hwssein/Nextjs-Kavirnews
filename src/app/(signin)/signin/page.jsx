@@ -1,5 +1,11 @@
+import SigninPage from "@/components/templates/SigninPage";
+
 function Signin() {
-  return <div>Signin</div>;
+  return (
+    <>
+      <SigninPage />
+    </>
+  );
 }
 
 export default Signin;

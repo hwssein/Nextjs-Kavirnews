@@ -20,7 +20,7 @@ export async function POST(req) {
 
     if (password.length < 4)
       return NextResponse.json(
-        { error: "رمز وارد شده باید بیشتر از ۴ رقمم باشد." },
+        { error: "رمز وارد شده باید بیشتر از ۴ رقم باشد." },
         { status: 422 }
       );
 

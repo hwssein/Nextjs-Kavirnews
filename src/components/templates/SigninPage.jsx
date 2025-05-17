@@ -1,14 +1,12 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { useState } from "react";
 import SigninForm from "../module/SigninForm";
 
-import { ArrowRight } from "lucide-react";
-
-function SignupPage() {
+function SigninPage() {
   const router = useRouter();
 
   const [form, setForm] = useState({
@@ -16,7 +14,7 @@ function SignupPage() {
     password: "",
   });
   const [isShowPassword, setIsShowPassword] = useState(false);
-  const [signupMessage, setSignupMessage] = useState("");
+  const [signinMessage, setSigninMessage] = useState("");
 
   const handleChangeValue = (event) => {
     const { name, value } = event.target;
@@ -27,10 +25,10 @@ function SignupPage() {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
-    const res = await fetch("/api/auth/signup", {
+    const res = await fetch("/api/auth/signin", {
       method: "POST",
       body: JSON.stringify(form),
       headers: {
@@ -40,7 +38,7 @@ function SignupPage() {
     const data = await res.json();
 
     if (data.error) {
-      setSignupMessage(data.error);
+      setSigninMessage(data.error);
       return;
     }
 
@@ -58,21 +56,22 @@ function SignupPage() {
             <ArrowRight />
           </span>
         </div>
+
         <p className="w-full text-center text-primary font-medium">
-          ثبت نام در کویرنیوز
+          ورود به حساب
         </p>
 
         <Image
-          src="/images/signup.png"
+          src="/images/signin.png"
           width={300}
           height={300}
           alt="signup image"
           priority={true}
         />
 
-        {signupMessage && (
+        {signinMessage && (
           <p className="w-full flex items-center justify-center text-danger animate-pulse">
-            {signupMessage}
+            {signinMessage}
           </p>
         )}
 
@@ -81,11 +80,11 @@ function SignupPage() {
           handleChangeValue={handleChangeValue}
           isShowPassword={isShowPassword}
           setIsShowPassword={setIsShowPassword}
-          handleSubmit={handleSubmit}
+          handleSubmit={handleLogin}
         />
       </div>
     </>
   );
 }
 
-export default SignupPage;
+export default SigninPage;
