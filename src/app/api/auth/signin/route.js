@@ -28,14 +28,11 @@ export async function POST(req) {
         { status: 422 }
       );
 
-    const verifyUserRes = await fetch(
-      `${process.env.BASE_URL}/wp-json/jwt-auth/v1/token`,
-      {
-        method: "POST",
-        body: JSON.stringify({ username: email, password }),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const verifyUserRes = await fetch(process.env.GET_TOKEN_API, {
+      method: "POST",
+      body: JSON.stringify({ username: email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
     const verifyUserData = await verifyUserRes.json();
     if (!verifyUserData.token)
       return NextResponse.json(
@@ -43,7 +40,9 @@ export async function POST(req) {
         { status: 422 }
       );
 
-    cookies().set({
+    const cookie = await cookies();
+
+    cookie.set({
       name: "token",
       value: verifyUserData.token,
       path: "/",

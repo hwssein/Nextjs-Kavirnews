@@ -1,12 +1,12 @@
 "use server";
 
-const findExistUser = async (email) => {
+const findExistUserById = async (id) => {
   try {
     const API_URI = process.env.API_URI;
     const API_KEY = process.env.API_KEY;
     const API_USER = process.env.API_USER;
 
-    const res = await fetch(`${API_URI}/users?search=${email}`, {
+    const res = await fetch(`${API_URI}/users?search=${id}`, {
       headers: {
         authorization: `Basic ${Buffer.from(`${API_USER}:${API_KEY}`).toString(
           "base64"
@@ -28,4 +28,4 @@ const findExistUser = async (email) => {
   }
 };
 
-export default findExistUser;
+export default findExistUserById;
