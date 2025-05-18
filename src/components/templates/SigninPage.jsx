@@ -15,6 +15,7 @@ function SigninPage() {
   });
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [signinMessage, setSigninMessage] = useState("");
+  const [isPending, setIsPending] = useState(false);
 
   const handleChangeValue = (event) => {
     const { name, value } = event.target;
@@ -27,22 +28,29 @@ function SigninPage() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    setIsPending(true);
 
-    const res = await fetch("/api/auth/signin", {
-      method: "POST",
-      body: JSON.stringify(form),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await res.json();
+    try {
+      const res = await fetch("/api/auth/signin", {
+        method: "POST",
+        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
 
-    if (data.error) {
-      setSigninMessage(data.error);
-      return;
+      if (data.error) {
+        setSigninMessage(data.error);
+        setIsPending(false);
+        return;
+      }
+
+      if (data.message) location.replace("/");
+    } catch (error) {
+      console.log(error);
+      setIsPending(false);
     }
-
-    if (data.message) location.replace("/");
   };
 
   return (
@@ -81,6 +89,7 @@ function SigninPage() {
           isShowPassword={isShowPassword}
           setIsShowPassword={setIsShowPassword}
           handleSubmit={handleLogin}
+          isPending={isPending}
         />
       </div>
     </>

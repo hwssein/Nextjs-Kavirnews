@@ -1,4 +1,4 @@
-import { Mail } from "lucide-react";
+import { Loader, Mail } from "lucide-react";
 import { Lock } from "lucide-react";
 import { Eye } from "lucide-react";
 import { EyeOff } from "lucide-react";
@@ -9,6 +9,7 @@ function SigninForm({
   isShowPassword,
   setIsShowPassword,
   handleSubmit,
+  isPending,
 }) {
   return (
     <>
@@ -64,9 +65,10 @@ function SigninForm({
 
         <button
           type="submit"
-          className="w-3/6 text-nowrap border border-primary bg-primary px-4 py-1.5 sm:py-2 rounded-lg text-white hover:brightness-90 custom-transition cursor-pointer"
+          disabled={isPending}
+          className="w-3/6 flex items-center justify-center text-nowrap border border-primary bg-primary px-4 py-1.5 sm:py-2 rounded-lg text-white hover:brightness-90 custom-transition cursor-pointer"
         >
-          ورود
+          {isPending ? <Loader /> : "ورود"}
         </button>
       </form>
     </>

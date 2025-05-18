@@ -1,6 +1,8 @@
+import Loader from "@/components/elements/Loader";
 import SigninPage from "@/components/templates/SigninPage";
 import getSession from "@/utils/getSession";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 async function Signin() {
   const session = await getSession();
@@ -8,7 +10,9 @@ async function Signin() {
 
   return (
     <>
-      <SigninPage />
+      <Suspense fallback={<Loader />}>
+        <SigninPage />
+      </Suspense>
     </>
   );
 }

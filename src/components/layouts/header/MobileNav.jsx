@@ -15,7 +15,7 @@ function MobileNav({ session }) {
       <div className="w-fit">
         <button
           onClick={() => setIsNavShow(true)}
-          className="p-2 bg-surface rounded-lg cursor-pointer text-icon"
+          className="p-2 bg-surface rounded-lg cursor-pointer text-icon md:hidden"
         >
           <Menu />
         </button>

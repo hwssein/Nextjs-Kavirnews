@@ -1,6 +1,8 @@
+import Loader from "@/components/elements/Loader";
 import SignupPage from "@/components/templates/SignupPage";
 import getSession from "@/utils/getSession";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 async function Signup() {
   const session = await getSession();
@@ -8,7 +10,9 @@ async function Signup() {
 
   return (
     <>
-      <SignupPage />
+      <Suspense fallback={<Loader />}>
+        <SignupPage />
+      </Suspense>
     </>
   );
 }

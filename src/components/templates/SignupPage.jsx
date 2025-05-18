@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 
 import SigninForm from "../module/SigninForm";
@@ -17,6 +17,7 @@ function SignupPage() {
   });
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [signupMessage, setSignupMessage] = useState("");
+  const [isPending, setIsPending] = useState(false);
 
   const handleChangeValue = (event) => {
     const { name, value } = event.target;
@@ -29,22 +30,29 @@ function SignupPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsPending(true);
 
-    const res = await fetch("/api/auth/signup", {
-      method: "POST",
-      body: JSON.stringify(form),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await res.json();
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
 
-    if (data.error) {
-      setSignupMessage(data.error);
-      return;
+      if (data.error) {
+        setSignupMessage(data.error);
+        setIsPending(false);
+        return;
+      }
+
+      if (data.message) router.replace("/");
+    } catch (error) {
+      console.log(error);
+      setIsPending(false);
     }
-
-    if (data.message) router.replace("/");
   };
 
   return (
@@ -82,6 +90,7 @@ function SignupPage() {
           isShowPassword={isShowPassword}
           setIsShowPassword={setIsShowPassword}
           handleSubmit={handleSubmit}
+          isPending={isPending}
         />
       </div>
     </>
