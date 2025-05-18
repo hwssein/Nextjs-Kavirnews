@@ -44,7 +44,7 @@ function SignupPage() {
       return;
     }
 
-    if (data.message) router.push("/");
+    if (data.message) router.replace("/");
   };
 
   return (

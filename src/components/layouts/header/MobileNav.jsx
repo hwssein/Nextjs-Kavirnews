@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 import { CircleX } from "lucide-react";
 
-function MobileNav() {
+function MobileNav({ session }) {
   const [isNavShow, setIsNavShow] = useState(false);
 
   return (
@@ -21,7 +21,7 @@ function MobileNav() {
         </button>
 
         {isNavShow && (
-          <div className="w-full h-screen bg-background absolute top-0 right-0 p-2 flex flex-col items-start justify-start gap-8">
+          <div className="w-full h-screen z-20 bg-background absolute top-0 right-0 p-2 flex flex-col items-start justify-start gap-8">
             <div className="w-full flex items-center justify-between gap-4">
               <button
                 onClick={() => setIsNavShow(false)}
@@ -46,19 +46,36 @@ function MobileNav() {
             </div>
 
             <ul className="w-full flex flex-col items-start justify-start gap-4 p-2">
-              <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
-                <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
-                <Link href="/signup" className="w-full">
-                  ثبت‌ نام
-                </Link>
-              </li>
+              {session ? (
+                <>
+                  <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
+                    <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
+                    <Link
+                      onClick={() => setIsNavShow(false)}
+                      href="/dashboard"
+                      className="w-full"
+                    >
+                      داشبورد
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
+                    <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
+                    <Link href="/signup" className="w-full">
+                      ثبت‌ نام
+                    </Link>
+                  </li>
 
-              <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
-                <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
-                <Link href="/signin" className="w-full">
-                  ورود
-                </Link>
-              </li>
+                  <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
+                    <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
+                    <Link href="/signin" className="w-full">
+                      ورود
+                    </Link>
+                  </li>
+                </>
+              )}
 
               <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
                 <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>

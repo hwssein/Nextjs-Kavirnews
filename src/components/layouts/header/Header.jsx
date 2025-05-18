@@ -8,8 +8,9 @@ import MobileNav from "./MobileNav";
 import PrimaryButton from "@/components/elements/PrimaryButton";
 import SecondaryButton from "@/components/elements/SecondaryButton";
 import SearchInput from "@/components/elements/SearchInput";
+import ProfileDropDown from "@/components/module/ProfileDropDown";
 
-function Header() {
+function Header({ session }) {
   const pathname = usePathname();
 
   if (pathname === "/signin" || pathname === "/signup") return null;
@@ -18,7 +19,7 @@ function Header() {
     <>
       <div className="w-full flex items-center justify-between gap-4 p-2 relative">
         <div className="w-fit flex items-center justify-start gap-2">
-          <MobileNav />
+          <MobileNav session={session} />
 
           <Image
             src="/images/logo.png"
@@ -34,13 +35,21 @@ function Header() {
             <SearchInput />
           </span>
 
-          <Link href="/signup" className="w-fit">
-            <PrimaryButton text="ثبت نام" />
-          </Link>
+          {session ? (
+            <>
+              <ProfileDropDown session={session} />
+            </>
+          ) : (
+            <>
+              <Link href="/signup" className="w-fit">
+                <PrimaryButton text="ثبت نام" />
+              </Link>
 
-          <Link href="/signin" className="w-fit">
-            <SecondaryButton text="ورود" />
-          </Link>
+              <Link href="/signin" className="w-fit">
+                <SecondaryButton text="ورود" />
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </>

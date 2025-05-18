@@ -45,10 +45,9 @@ export async function POST(req) {
     cookie.set({
       name: "token",
       value: verifyUserData.token,
+      httpOnly: true,
       path: "/",
       secure: true,
-      httpOnly: true,
-      sameSite: "strict",
       maxAge: 60 * 60 * 72,
     });
 

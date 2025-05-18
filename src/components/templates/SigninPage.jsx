@@ -42,7 +42,7 @@ function SigninPage() {
       return;
     }
 
-    if (data.message) router.push("/");
+    if (data.message) location.replace("/");
   };
 
   return (
