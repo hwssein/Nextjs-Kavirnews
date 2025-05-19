@@ -21,6 +21,7 @@ const findExistUser = async (email) => {
       id: data[0].id,
       name: data[0].name,
       role: data[0].roles[0],
+      email: data[0].email,
     };
   } catch (error) {
     console.log(error);

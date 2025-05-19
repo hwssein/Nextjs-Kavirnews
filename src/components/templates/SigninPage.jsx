@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import SigninForm from "../module/SigninForm";
+import Toast from "../module/Toast";
 
 function SigninPage() {
   const router = useRouter();
@@ -14,7 +15,7 @@ function SigninPage() {
     password: "",
   });
   const [isShowPassword, setIsShowPassword] = useState(false);
-  const [signinMessage, setSigninMessage] = useState("");
+  const [toastMessage, setToastMessage] = useState("");
   const [isPending, setIsPending] = useState(false);
 
   const handleChangeValue = (event) => {
@@ -41,7 +42,7 @@ function SigninPage() {
       const data = await res.json();
 
       if (data.error) {
-        setSigninMessage(data.error);
+        setToastMessage(data.error);
         setIsPending(false);
         return;
       }
@@ -77,12 +78,6 @@ function SigninPage() {
           priority={true}
         />
 
-        {signinMessage && (
-          <p className="w-full flex items-center justify-center text-danger animate-pulse">
-            {signinMessage}
-          </p>
-        )}
-
         <SigninForm
           form={form}
           handleChangeValue={handleChangeValue}
@@ -92,6 +87,8 @@ function SigninPage() {
           isPending={isPending}
         />
       </div>
+
+      <Toast message={toastMessage} onClose={() => setToastMessage("")} />
     </>
   );
 }

@@ -18,7 +18,7 @@ function ProfileDropDown({ session }) {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [wrapperRef]);
 
   return (
     <div
@@ -40,8 +40,8 @@ function ProfileDropDown({ session }) {
       </div>
 
       {isShowProfileDropdown && (
-        <div className="w-40 md:w-56 z-10 absolute left-0 top-10 sm:top-11 border border-stroke rounded-lg flex flex-col items-start justify-start bg-white shadow-md">
-          <div className="w-full flex items-center justify-between gap-1 bg-secondary rounded-t-lg p-2 text-background">
+        <div className="w-48 md:w-64 z-10 absolute left-0 top-10 sm:top-11 border border-stroke rounded-lg flex flex-col items-start justify-start bg-white shadow-md">
+          <div className="w-full flex items-center justify-between gap-1 bg-primary rounded-t-lg p-2 text-background">
             <span>سلام 👋</span>
             <span>{session.name}</span>
           </div>

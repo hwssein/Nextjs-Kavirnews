@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import SigninForm from "../module/SigninForm";
 
 import { ArrowRight } from "lucide-react";
+import Toast from "../module/Toast";
 
 function SignupPage() {
   const router = useRouter();
@@ -15,8 +16,8 @@ function SignupPage() {
     email: "",
     password: "",
   });
+  const [toastMessage, setToastMessage] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(false);
-  const [signupMessage, setSignupMessage] = useState("");
   const [isPending, setIsPending] = useState(false);
 
   const handleChangeValue = (event) => {
@@ -43,7 +44,7 @@ function SignupPage() {
       const data = await res.json();
 
       if (data.error) {
-        setSignupMessage(data.error);
+        setToastMessage(data.error);
         setIsPending(false);
         return;
       }
@@ -78,12 +79,6 @@ function SignupPage() {
           priority={true}
         />
 
-        {signupMessage && (
-          <p className="w-full flex items-center justify-center text-danger animate-pulse">
-            {signupMessage}
-          </p>
-        )}
-
         <SigninForm
           form={form}
           handleChangeValue={handleChangeValue}
@@ -93,6 +88,8 @@ function SignupPage() {
           isPending={isPending}
         />
       </div>
+
+      <Toast message={toastMessage} onClose={() => setToastMessage("")} />
     </>
   );
 }
