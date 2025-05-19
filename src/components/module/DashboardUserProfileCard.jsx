@@ -44,7 +44,7 @@ function DashboardUserProfileCard({ session }) {
     <>
       <div
         ref={dropdownRef}
-        className="w-full flex flex-col items-start justify-start bg-surface rounded-lg p-2"
+        className="w-full md:w-1/2 flex flex-col items-start justify-start bg-surface rounded-lg p-2"
       >
         <div className="w-full flex items-center justify-start gap-2">
           <div className="w-fit p-4 border border-stroke rounded-lg bg-primary text-background">
