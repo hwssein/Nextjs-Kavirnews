@@ -1,13 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 
 import { Image as ImageIcon, Minus, Plus } from "lucide-react";
 
 function DashboardImageForm({ form, setForm, setToastMessage }) {
-  const [imageUrl, setImageUrl] = useState("");
-
   const imageRef = useRef(null);
 
   const handleFormImageChange = (event) => {
@@ -25,22 +23,20 @@ function DashboardImageForm({ form, setForm, setToastMessage }) {
       return;
     }
 
-    if (imageUrl) {
-      URL.revokeObjectURL(imageUrl);
+    if (form.imageBlobUrl) {
+      URL.revokeObjectURL(form.imageBlobUrl);
     }
 
     const imageObjectUrl = URL.createObjectURL(files[0]);
-    setImageUrl(imageObjectUrl);
 
-    setForm({ ...form, image: files[0] });
+    setForm({ ...form, image: files[0], imageBlobUrl: imageObjectUrl });
   };
 
   const handleDeleteImageUrl = (event) => {
     event.stopPropagation();
 
-    URL.revokeObjectURL(imageUrl);
-    setImageUrl("");
-    setForm({ ...form, image: "" });
+    URL.revokeObjectURL(form.imageBlobUrl);
+    setForm({ ...form, image: "", imageBlobUrl: "" });
 
     if (imageRef.current) {
       imageRef.current.value = null;
@@ -51,13 +47,13 @@ function DashboardImageForm({ form, setForm, setToastMessage }) {
     <>
       <div
         onClick={() => imageRef.current.click()}
-        className="w-full border border-stroke flex flex-col items-center justify-center gap-4 bg-surface text-stroke rounded-lg p-10 cursor-pointer"
+        className="w-full md:w-64 border border-stroke flex flex-col items-center justify-center gap-4 bg-surface text-stroke rounded-lg p-8 md:px-5 md:py-3 cursor-pointer"
       >
         <span className="w-36">
-          {imageUrl ? (
+          {form.imageBlobUrl ? (
             <>
               <Image
-                src={imageUrl}
+                src={form.imageBlobUrl}
                 width={200}
                 height={200}
                 alt="uploaded image"
@@ -68,10 +64,10 @@ function DashboardImageForm({ form, setForm, setToastMessage }) {
           )}
         </span>
 
-        {imageUrl ? (
+        {form.imageBlobUrl ? (
           <span
             onClick={handleDeleteImageUrl}
-            className="p-2 border border-stroke hover:border-danger hover:bg-danger hover:text-background rounded-lg flex items-center justify-center gap-1 font-bold custom-transition"
+            className="p-2 border border-stroke hover:border-danger hover:text-danger rounded-lg flex items-center justify-center gap-1 font-bold custom-transition"
           >
             حذف تصویر <Minus />
           </span>

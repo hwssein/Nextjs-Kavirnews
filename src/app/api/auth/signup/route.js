@@ -35,7 +35,6 @@ export async function POST(req) {
       username: `${email.split("@")[0]}_${Date.now()}`,
       email: email,
       password: password,
-      role: "subscriber",
     };
 
     const postUserData = await fetch(`${API_URI}/users`, {

@@ -7,6 +7,7 @@ import PrimaryButton from "../elements/PrimaryButton";
 import Toast from "./Toast";
 
 import { User2, UserPen } from "lucide-react";
+import changeUserLevel from "@/serverAction/changeUserLevel";
 
 function DashboardUserProfileCard({ session }) {
   const [userName, setUserName] = useState("");
@@ -32,12 +33,33 @@ function DashboardUserProfileCard({ session }) {
 
     const res = await changeUserName(userName, session.id);
 
+    if (!userName) return;
+
     if (res.error) {
       setToastMessage(res.error);
       return;
     }
 
-    if (res.message) setToastMessage(res.message);
+    if (res.message) {
+      setToastMessage(res.message);
+      setUserName("");
+    }
+  };
+
+  const handleUserLevel = async (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const userLevelRes = await changeUserLevel();
+
+    if (userLevelRes.error) {
+      setToastMessage(userLevelRes.error);
+      return;
+    }
+
+    if (userLevelRes.message) {
+      setToastMessage(userLevelRes.message);
+    }
   };
 
   return (
@@ -55,7 +77,17 @@ function DashboardUserProfileCard({ session }) {
             <div className="w-full flex flex-col items-start justify-start gap-2">
               <div className="w-full flex items-center justify-start gap-1">
                 <span>کاربر:</span>
-                <span>{session.name}</span>
+                <span className="bg-secondary text-background px-2 rounded-sm">
+                  {session.name} (
+                  {`${
+                    session.role === "author"
+                      ? "نویسنده"
+                      : session.role === "administrator"
+                      ? "مدیر"
+                      : "عضو"
+                  }`}
+                  )
+                </span>
               </div>
 
               <div className="w-full flex items-center justify-start gap-2">
@@ -77,18 +109,24 @@ function DashboardUserProfileCard({ session }) {
             isShowDropdown ? " max-h-32 mt-4" : "max-h-0"
           }`}
         >
-          <form className="w-full flex items-center justify-start gap-2">
-            <input
-              type="text"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              placeholder="نام کاربری جدید خود را  وارد کنید"
-              className="w-full border border-stroke px-2 py-1.5 sm:py-2 rounded-lg"
-            />
-            <span onClick={handleSubmitUserName}>
-              <PrimaryButton text="ذخیره" />
+          <div className="w-full flex flex-col items-start justify-start gap-4">
+            <div className="w-full flex items-center justify-start gap-2">
+              <input
+                type="text"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                placeholder="نام کاربری جدید خود را  وارد کنید"
+                className="w-full border border-stroke px-2 py-1.5 sm:py-2 rounded-lg"
+              />
+              <span onClick={handleSubmitUserName}>
+                <PrimaryButton text="ذخیره" />
+              </span>
+            </div>
+
+            <span onClick={handleUserLevel}>
+              <PrimaryButton text="درخواست ارتقا سطح" />
             </span>
-          </form>
+          </div>
         </div>
       </div>
 
