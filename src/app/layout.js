@@ -3,8 +3,9 @@ import "./globals.css";
 import Layout from "@/components/layouts/Layout";
 
 export const metadata = {
-  title: "خبرگزاری کویرنیوز",
-  description: "بزرگ‌ترین خبرگزاری فیک خاورمیانه، مرجع اصلی خبر‌های ناموثق",
+  title: "خبرگزاری کویرنیوز | KavirNews Agency ",
+  description:
+    "The largest fake news agency in the Middle East, the main source of unreliable news",
 };
 
 export default function RootLayout({ children }) {

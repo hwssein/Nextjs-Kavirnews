@@ -4,6 +4,8 @@ import getSession from "@/utils/getSession";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
+export const dynamic = "force-dynamic";
+
 async function Dashboard() {
   const session = await getSession();
   if (!session || session.error) redirect("/signin");

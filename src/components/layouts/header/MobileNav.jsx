@@ -14,6 +14,7 @@ function MobileNav({ session }) {
     <>
       <div className="w-fit">
         <button
+          aria-label="باز کردن منو"
           onClick={() => setIsNavShow(true)}
           className="p-2 bg-surface rounded-lg cursor-pointer text-icon md:hidden"
         >
@@ -24,6 +25,7 @@ function MobileNav({ session }) {
           <div className="w-full h-screen z-20 bg-background absolute top-0 right-0 p-2 flex flex-col items-start justify-start gap-8">
             <div className="w-full flex items-center justify-between gap-4">
               <button
+                aria-label="بستن منو"
                 onClick={() => setIsNavShow(false)}
                 className="p-2 bg-surface rounded-lg cursor-pointer text-icon"
               >

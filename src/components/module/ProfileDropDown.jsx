@@ -3,9 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, CircleUserRound } from "lucide-react";
 import Link from "next/link";
-import logoutHandler from "@/utils/logoutHandler";
+import { useRouter } from "next/navigation";
 
-function ProfileDropDown({ session }) {
+function ProfileDropDown({ session, setSession }) {
+  const router = useRouter();
+
   const [isShowProfileDropdown, setIsShowProfileDropdown] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -19,6 +21,16 @@ function ProfileDropDown({ session }) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [wrapperRef]);
+
+  const handleLogout = async () => {
+    const res = await fetch("/api/auth/logout");
+    const data = await res.json();
+
+    if (data?.message) {
+      setSession(undefined);
+      location.replace("/");
+    }
+  };
 
   return (
     <div
@@ -55,7 +67,7 @@ function ProfileDropDown({ session }) {
           </Link>
 
           <button
-            onClick={() => logoutHandler()}
+            onClick={handleLogout}
             className="w-full text-right cursor-pointer p-2 text-danger hover:bg-gray-50 custom-transition rounded-b-lg"
           >
             خروج

@@ -60,6 +60,7 @@ function DashboardUserForm() {
     } catch (error) {
       console.log(error);
       setToastMessage("مشکلی در ارتباط با سرور پیش آمده است.");
+      setIsLoading(false);
       return;
     }
   };

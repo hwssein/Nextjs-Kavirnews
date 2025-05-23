@@ -1,19 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useOptimistic,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 import changeUserName from "@/serverAction/changeUserName";
 
 import PrimaryButton from "../elements/PrimaryButton";
 import Toast from "./Toast";
 
-import { User2, UserPen } from "lucide-react";
+import { Loader, User2, UserPen } from "lucide-react";
 import changeUserLevel from "@/serverAction/changeUserLevel";
 
 function DashboardUserProfileCard({ session }) {
-  const [userName, setUserName] = useState("");
+  const [userNameValue, setUserNameValue] = useState("");
   const [isShowDropdown, setIsShowDropdown] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const dropdownRef = useRef(null);
+
+  const [isTransitionPending, startTransition] = useTransition();
+  const [userNameValueOptimistic, setUserNameValueOptimistic] = useOptimistic(
+    session.name,
+    (currentName, newName) => newName
+  );
 
   useEffect(() => {
     const handleClick = (e) => {
@@ -31,24 +43,33 @@ function DashboardUserProfileCard({ session }) {
     event.stopPropagation();
     event.preventDefault();
 
-    const res = await changeUserName(userName, session.id);
+    if (!userNameValue) return;
 
-    if (!userName) return;
+    startTransition(async () => {
+      setUserNameValueOptimistic(userNameValue);
 
-    if (res.error) {
-      setToastMessage(res.error);
-      return;
-    }
+      const res = await changeUserName(userNameValue, session.id);
 
-    if (res.message) {
-      setToastMessage(res.message);
-      setUserName("");
-    }
+      if (res.error) {
+        setToastMessage(res.error);
+        return;
+      }
+
+      if (res.message) {
+        setToastMessage(res.message);
+        setUserNameValue("");
+      }
+    });
   };
 
   const handleUserLevel = async (event) => {
     event.stopPropagation();
     event.preventDefault();
+
+    if (session.role === "author" || session.role === "administrator") {
+      setToastMessage("شما مجاز به تغییر سطح نیستید.");
+      return;
+    }
 
     const userLevelRes = await changeUserLevel();
 
@@ -78,7 +99,7 @@ function DashboardUserProfileCard({ session }) {
               <div className="w-full flex items-center justify-start gap-1">
                 <span>کاربر:</span>
                 <span className="bg-secondary text-background px-2 rounded-sm">
-                  {session.name} (
+                  {userNameValueOptimistic} (
                   {`${
                     session.role === "author"
                       ? "نویسنده"
@@ -113,18 +134,28 @@ function DashboardUserProfileCard({ session }) {
             <div className="w-full flex items-center justify-start gap-2">
               <input
                 type="text"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                value={userNameValue}
+                onChange={(e) => setUserNameValue(e.target.value)}
                 placeholder="نام کاربری جدید خود را  وارد کنید"
                 className="w-full border border-stroke px-2 py-1.5 sm:py-2 rounded-lg"
               />
-              <span onClick={handleSubmitUserName}>
-                <PrimaryButton text="ذخیره" />
-              </span>
+
+              {isTransitionPending ? (
+                <button
+                  disabled
+                  className="w-fit text-nowrap border border-primary bg-primary px-4 py-1.5 sm:py-2 rounded-lg text-white hover:brightness-90 custom-transition cursor-pointer"
+                >
+                  <Loader />
+                </button>
+              ) : (
+                <span onClick={handleSubmitUserName}>
+                  <PrimaryButton text="ذخیره" />
+                </span>
+              )}
             </div>
 
             <span onClick={handleUserLevel}>
-              <PrimaryButton text="درخواست ارتقا سطح" />
+              <PrimaryButton text="ارتقا سطح به نویسنده" />
             </span>
           </div>
         </div>

@@ -3,15 +3,45 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
-import MobileNav from "./MobileNav";
 import PrimaryButton from "@/components/elements/PrimaryButton";
 import SecondaryButton from "@/components/elements/SecondaryButton";
 import SearchInput from "@/components/elements/SearchInput";
-import ProfileDropDown from "@/components/module/ProfileDropDown";
 
-function Header({ session }) {
+const MobileNav = dynamic(
+  () => import("@/components/layouts/header/MobileNav"),
+  { ssr: false }
+);
+const ProfileDropDown = dynamic(
+  () => import("@/components/module/ProfileDropDown"),
+  {
+    ssr: false,
+  }
+);
+
+function Header() {
   const pathname = usePathname();
+  const [session, setSession] = useState(undefined);
+
+  useEffect(() => {
+    if (session === undefined) {
+      fetchSessionData();
+    }
+  }, [session]);
+
+  const fetchSessionData = async () => {
+    const sessionRes = await fetch("/api/auth/verify");
+    const sessionData = await sessionRes.json();
+
+    if (sessionData.error) {
+      setSession(null);
+      return;
+    }
+
+    setSession(sessionData?.userData);
+  };
 
   if (pathname === "/signin" || pathname === "/signup") return null;
 
@@ -21,13 +51,15 @@ function Header({ session }) {
         <div className="w-fit flex items-center justify-start gap-2">
           <MobileNav session={session} />
 
-          <Image
-            src="/images/logo.png"
-            width={110}
-            height={34}
-            alt="logo"
-            priority={true}
-          />
+          <Link href="/">
+            <Image
+              src="/images/logo.png"
+              width={110}
+              height={34}
+              alt="logo"
+              priority={true}
+            />
+          </Link>
         </div>
 
         <div className="w-fit max-w-1/2 flex items-center justify-center gap-2">
@@ -35,9 +67,9 @@ function Header({ session }) {
             <SearchInput />
           </span>
 
-          {session ? (
+          {session === undefined ? null : session ? (
             <>
-              <ProfileDropDown session={session} />
+              <ProfileDropDown session={session} setSession={setSession} />
             </>
           ) : (
             <>
