@@ -1,12 +1,9 @@
 import faFonts from "@/config/fonts";
 import "./globals.css";
 import Layout from "@/components/layouts/Layout";
+import myMetaData from "@/config/metadata";
 
-export const metadata = {
-  title: "خبرگزاری کویرنیوز | KavirNews Agency ",
-  description:
-    "The largest fake news agency in the Middle East, the main source of unreliable news",
-};
+export const metadata = myMetaData;
 
 export default function RootLayout({ children }) {
   return (

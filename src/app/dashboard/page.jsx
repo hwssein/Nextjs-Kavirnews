@@ -1,5 +1,6 @@
 import Loader from "@/components/elements/Loader";
 import DashboardPage from "@/components/templates/DashboardPage";
+import getUserPost from "@/serverAction/getUserPost";
 import getSession from "@/utils/getSession";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
@@ -10,11 +11,13 @@ async function Dashboard() {
   const session = await getSession();
   if (!session || session.error) redirect("/signin");
 
+  const getUserPostData = await getUserPost(session.id);
+
   if (session.id) {
     return (
       <>
         <Suspense fallback={<Loader />}>
-          <DashboardPage session={session} />
+          <DashboardPage session={session} postData={getUserPostData} />
         </Suspense>
       </>
     );
