@@ -4,7 +4,7 @@ function UserPostCard({ title, summary, description, image }) {
   return (
     <>
       <div
-        className="w-full flex items-center justify-start gap-2 border border-stroke hover:border-secondary
+        className="w-full flex items-center justify-start gap-2 border border-stroke hover:border-icon
       custom-transition p-2 rounded-lg shadow cursor-pointer"
       >
         <div className="w-28 h-22 flex items-center justify-center overflow-hidden rounded-md">

@@ -1,74 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useActionState, useRef } from "react";
+
+import uploadPost from "@/serverAction/uploadPost";
 
 import Toast from "./Toast";
 import DashboardImageForm from "../elements/DashboardImageForm";
-import uploadPost from "@/serverAction/uploadPost";
+
 import { Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 function DashboardUserForm() {
-  const [form, setForm] = useState({
-    title: "",
-    category: "",
-    summary: "",
-    description: "",
-    image: "",
-    imageBlobUrl: "",
-  });
+  const router = useRouter();
+
+  const [imageBlobUrl, setImageBlobUrl] = useState("");
   const [toastMessage, setToastMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleFormChange = (event) => {
-    const { name, value } = event.target;
+  const imageRef = useRef(null);
 
-    setForm({ ...form, [name]: value });
-  };
+  const [state, formAction, isPending] = useActionState(uploadPost, {
+    message: "",
+    error: "",
+  });
 
-  const handleSubmitForm = async (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    if (state.message) {
+      setToastMessage(state.message);
 
-    try {
-      setIsLoading(true);
-
-      const uploadPostRes = await uploadPost(form);
-
-      if (uploadPostRes.error) {
-        setToastMessage(uploadPostRes.error);
-        setIsLoading(false);
-        return;
+      if (imageBlobUrl) {
+        URL.revokeObjectURL(imageBlobUrl);
       }
 
-      if (uploadPostRes.message) {
-        setToastMessage(uploadPostRes.message);
-
-        if (form.imageBlobUrl) {
-          URL.revokeObjectURL(form.imageBlobUrl);
-        }
-
-        setForm({
-          title: "",
-          category: "",
-          summary: "",
-          description: "",
-          image: "",
-          imageBlobUrl: "",
-        });
-
-        setIsLoading(false);
-      }
-    } catch (error) {
-      console.log(error);
-      setToastMessage("مشکلی در ارتباط با سرور پیش آمده است.");
-      setIsLoading(false);
-      return;
+      setImageBlobUrl("");
+      imageRef.current.value = null;
+      router.refresh();
+    } else if (state.error) {
+      setToastMessage(state.error);
     }
-  };
+  }, [state, imageBlobUrl]);
 
   return (
     <>
       <form
-        onSubmit={handleSubmitForm}
+        action={formAction}
         className="w-full flex flex-col items-start justify-start gap-4"
       >
         <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-center gap-4">
@@ -80,8 +54,6 @@ function DashboardUserForm() {
                   type="text"
                   id="post-title"
                   name="title"
-                  value={form.title}
-                  onChange={handleFormChange}
                   className="w-full border border-stroke bg-surface px-2 py-1.5 sm:py-2 rounded-lg"
                 />
               </div>
@@ -89,9 +61,9 @@ function DashboardUserForm() {
               <div className="w-full h-[38px] md:h-[42px] bg-surface border border-stroke rounded-lg flex flex-col items-start justify-start gap-2">
                 <select
                   name="category"
-                  value={form.category}
-                  onChange={handleFormChange}
-                  className="w-full px-1 flex flex-col items-start justify-start gap-2 bg-surface rounded-lg "
+                  defaultValue=""
+                  required
+                  className="w-full px-1 flex flex-col items-start justify-start gap-2 bg-surface rounded-lg"
                 >
                   <option value="" disabled hidden>
                     دسته بندی
@@ -110,8 +82,6 @@ function DashboardUserForm() {
               <textarea
                 name="summary"
                 id="post-summary"
-                value={form.summary}
-                onChange={handleFormChange}
                 className="w-full resize-none h-[76px] md:h-[42px] border border-stroke bg-surface px-2 py-1.5 sm:py-2 rounded-lg"
               ></textarea>
             </div>
@@ -121,28 +91,27 @@ function DashboardUserForm() {
               <textarea
                 name="description"
                 id="post-description"
-                value={form.description}
                 rows={5}
                 cols={50}
-                onChange={handleFormChange}
                 className="w-full border border-stroke bg-surface px-2 py-1.5 sm:py-2 rounded-lg"
               ></textarea>
             </div>
           </div>
 
           <DashboardImageForm
-            form={form}
-            setForm={setForm}
+            imageBlobUrl={imageBlobUrl}
+            setImageBlobUrl={setImageBlobUrl}
             setToastMessage={setToastMessage}
+            imageRef={imageRef}
           />
         </div>
 
         <button
           type="submit"
-          disabled={isLoading}
+          disabled={isPending}
           className="w-full md:w-fit flex items-center justify-center text-nowrap border border-primary bg-primary px-4 py-1.5 sm:py-2 rounded-lg text-white hover:brightness-90 custom-transition cursor-pointer"
         >
-          {isLoading ? <Loader /> : "ارسال"}
+          {isPending ? <Loader /> : "ارسال"}
         </button>
       </form>
       <Toast message={toastMessage} onClose={() => setToastMessage("")} />
