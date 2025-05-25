@@ -8,11 +8,8 @@ import Toast from "./Toast";
 import DashboardImageForm from "../elements/DashboardImageForm";
 
 import { Loader } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 function DashboardUserForm() {
-  const router = useRouter();
-
   const [imageBlobUrl, setImageBlobUrl] = useState("");
   const [toastMessage, setToastMessage] = useState("");
 
@@ -27,17 +24,24 @@ function DashboardUserForm() {
     if (state.message) {
       setToastMessage(state.message);
 
-      if (imageBlobUrl) {
-        URL.revokeObjectURL(imageBlobUrl);
+      setImageBlobUrl((prev) => {
+        if (prev) URL.revokeObjectURL(prev);
+        return "";
+      });
+
+      if (imageRef.current) {
+        imageRef.current.value = null;
       }
 
-      setImageBlobUrl("");
-      imageRef.current.value = null;
-      router.refresh();
+      const timeoutId = setTimeout(() => {
+        setToastMessage("");
+      }, 3000);
+
+      return () => clearTimeout(timeoutId);
     } else if (state.error) {
       setToastMessage(state.error);
     }
-  }, [state, imageBlobUrl]);
+  }, [state]);
 
   return (
     <>

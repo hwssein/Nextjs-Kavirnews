@@ -1,3 +1,4 @@
+import UserPostCardButton from "../elements/UserPostCardButton";
 import DashboardUserForm from "../module/DashboardUserForm";
 import DashboardUserProfileCard from "../module/DashboardUserProfileCard";
 import UserPostCard from "../module/UserPostCard";
@@ -22,14 +23,20 @@ function DashboardPage({ session, postData }) {
               </span>
             </div>
           ) : (
-            <div className="w-full flex flex-col items-start justify-start gap-2">
+            <div className="w-full flex flex-col items-start justify-start gap-4">
               {postData.map((item) => (
-                <UserPostCard
+                <div
                   key={item.id}
-                  title={item.title}
-                  summary={item.summary}
-                  image={item.image}
-                />
+                  className="w-full p-2 flex flex-col items-start justify-start gap-2 border border-stroke hover:bg-surface custom-transition rounded-lg shadow"
+                >
+                  <UserPostCard
+                    title={item.title}
+                    summary={item.summary}
+                    image={item.image}
+                  />
+
+                  <UserPostCardButton postId={item.id} />
+                </div>
               ))}
             </div>
           )}

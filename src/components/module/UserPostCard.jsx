@@ -3,10 +3,7 @@ import Image from "next/image";
 function UserPostCard({ title, summary, description, image }) {
   return (
     <>
-      <div
-        className="w-full flex items-center justify-start gap-2 border border-stroke hover:border-icon
-      custom-transition p-2 rounded-lg shadow cursor-pointer"
-      >
+      <div className="w-full flex items-center justify-start gap-2 cursor-pointer">
         <div className="w-28 h-22 flex items-center justify-center overflow-hidden rounded-md">
           <Image
             src={image || "/images/image-unavailable.png"}
@@ -19,7 +16,7 @@ function UserPostCard({ title, summary, description, image }) {
           />
         </div>
 
-        <span className="w-px h-24 block bg-stroke"></span>
+        <span className="w-px h-20 block bg-stroke"></span>
 
         <div className="w-[calc(100%-112px)] flex flex-col items-start justify-start gap-2">
           <h2 className="w-full font-medium truncate">{title}</h2>

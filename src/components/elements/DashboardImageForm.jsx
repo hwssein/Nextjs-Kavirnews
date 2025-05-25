@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Image as ImageIcon, Minus, Plus } from "lucide-react";
+import { useState } from "react";
 
 function DashboardImageForm({
   imageBlobUrl,
@@ -9,16 +10,20 @@ function DashboardImageForm({
   setToastMessage,
   imageRef,
 }) {
+  const [fileInputKey, setFileInputKey] = useState(Date.now());
+
   const handleFormImageChange = (event) => {
     const { files } = event.target;
-    if (!files[0]) return;
+    if (!files || !files[0]) return;
 
-    if (!["image/png", "image/jpeg"].includes(files[0].type)) {
+    const file = files[0];
+
+    if (!["image/png", "image/jpeg"].includes(file.type)) {
       setToastMessage("لطفا فرمت صحیح عکس را وارد کنید.");
       return;
     }
 
-    if (files[0].size > 3 * 1024 * 1024) {
+    if (file.size > 3 * 1024 * 1024) {
       setToastMessage("حداکثر حجم عکس ۳ مگابایت است.");
       return;
     }
@@ -27,25 +32,30 @@ function DashboardImageForm({
       URL.revokeObjectURL(imageBlobUrl);
     }
 
-    const imageObjectUrl = URL.createObjectURL(files[0]);
+    const imageObjectUrl = URL.createObjectURL(file);
     setImageBlobUrl(imageObjectUrl);
+    setToastMessage("");
   };
 
   const handleDeleteImageUrl = (event) => {
     event.stopPropagation();
 
-    URL.revokeObjectURL(imageBlobUrl);
-
-    setImageBlobUrl("");
+    if (imageBlobUrl) {
+      URL.revokeObjectURL(imageBlobUrl);
+      setImageBlobUrl("");
+    }
 
     if (imageRef.current) {
       imageRef.current.value = null;
     }
+
+    setFileInputKey(Date.now());
+    setToastMessage("");
   };
 
   return (
     <div
-      onClick={() => imageRef.current.click()}
+      onClick={() => imageRef.current?.click()}
       className="w-full md:w-64 border border-stroke flex flex-col items-center justify-center gap-4 bg-surface text-stroke rounded-lg p-8 md:px-5 md:py-3 cursor-pointer"
     >
       <span className="w-36">
@@ -75,6 +85,7 @@ function DashboardImageForm({
       )}
 
       <input
+        key={fileInputKey}
         type="file"
         name="image"
         accept="image/png, image/jpeg"
