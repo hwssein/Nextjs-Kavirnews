@@ -3,11 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, CircleUserRound } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 function ProfileDropDown({ session, setSession }) {
-  const router = useRouter();
-
   const [isShowProfileDropdown, setIsShowProfileDropdown] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -23,7 +20,9 @@ function ProfileDropDown({ session, setSession }) {
   }, [wrapperRef]);
 
   const handleLogout = async () => {
-    const res = await fetch("/api/auth/logout");
+    const res = await fetch("/api/auth/logout", {
+      cache: "no-store",
+    });
     const data = await res.json();
 
     if (data?.message) {

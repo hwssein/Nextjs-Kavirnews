@@ -12,6 +12,7 @@ const findExistUser = async (email) => {
           "base64"
         )}`,
       },
+      cache: "no-store",
     });
     const data = await res.json();
 

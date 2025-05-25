@@ -32,7 +32,9 @@ function Header() {
   }, [session]);
 
   const fetchSessionData = async () => {
-    const sessionRes = await fetch("/api/auth/verify");
+    const sessionRes = await fetch("/api/auth/verify", {
+      cache: "no-store",
+    });
     const sessionData = await sessionRes.json();
 
     if (sessionData.error) {

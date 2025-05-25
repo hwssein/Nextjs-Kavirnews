@@ -3,7 +3,10 @@ const getPostCategoryId = async (category) => {
     if (!category) return { error: "لطفا دسته بندی را انتخاب کنید." };
 
     const res = await fetch(
-      `${process.env.API_URI}/categories?slug=${category}`
+      `${process.env.API_URI}/categories?slug=${category}`,
+      {
+        cache: "no-store",
+      }
     );
     const data = await res.json();
 

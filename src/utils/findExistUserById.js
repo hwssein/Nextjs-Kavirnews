@@ -12,6 +12,7 @@ const findExistUserById = async (id) => {
           "base64"
         )}`,
       },
+      cache: "no-store",
     });
     const data = await res.json();
 
