@@ -3,7 +3,7 @@ import Image from "next/image";
 function UserPostCard({ title, summary, description, image }) {
   return (
     <>
-      <div className="w-full flex items-center justify-start gap-2 cursor-pointer">
+      <div className="w-full flex items-center justify-start gap-2">
         <div className="w-28 h-22 flex items-center justify-center overflow-hidden rounded-md">
           <Image
             src={image || "/images/image-unavailable.png"}

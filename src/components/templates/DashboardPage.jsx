@@ -1,3 +1,4 @@
+import Link from "next/link";
 import UserPostCardButton from "../elements/UserPostCardButton";
 import DashboardUserForm from "../module/DashboardUserForm";
 import DashboardUserProfileCard from "../module/DashboardUserProfileCard";
@@ -29,11 +30,13 @@ function DashboardPage({ session, postData }) {
                   key={item.id}
                   className="w-full p-2 flex flex-col items-start justify-start gap-2 border border-stroke hover:bg-surface custom-transition rounded-lg shadow"
                 >
-                  <UserPostCard
-                    title={item.title}
-                    summary={item.summary}
-                    image={item.image}
-                  />
+                  <Link href={`/news/${item.id}`} className="w-full">
+                    <UserPostCard
+                      title={item.title}
+                      summary={item.summary}
+                      image={item.image}
+                    />
+                  </Link>
 
                   <UserPostCardButton postId={item.id} />
                 </div>

@@ -33,7 +33,7 @@ function Header() {
 
   const fetchSessionData = async () => {
     const sessionRes = await fetch("/api/auth/verify", {
-      cache: "no-store",
+      cache: "default",
     });
     const sessionData = await sessionRes.json();
 
