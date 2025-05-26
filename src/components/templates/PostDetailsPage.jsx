@@ -57,16 +57,16 @@ function PostDetailsPage({ data }) {
         <div className="w-full relative px-2 mt-2 flex items-start justify-start gap-2 group">
           <span className="w-fit rounded-lg px-1 py-2 inline-block bg-primary mt-1 group-hover:bg-secondary custom-transition"></span>
 
-          <p className="w-full inline-block text-justify text-icon text-base/relaxed whitespace-pre-wrap">
+          <div className="w-full inline-block text-justify text-icon text-base/relaxed mb-4">
             {data.description.split("\n").map((line, index) => (
               <p
                 key={index}
-                className="mb-4 text-icon text-base leading-loose text-justify"
+                className="mb-2 text-icon text-base leading-loose text-justify whitespace-pre-wrap"
               >
                 {line.trim()}
               </p>
             ))}
-          </p>
+          </div>
         </div>
       </div>
     </>
