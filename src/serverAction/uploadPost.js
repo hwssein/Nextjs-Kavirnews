@@ -15,7 +15,7 @@ const uploadPost = async (prevState, formData) => {
     const form = Object.fromEntries(formData.entries());
 
     if (!form.title || !form.category || !form.summary || !form.description) {
-      return { error: "لطفاً همه فیلدها را پر کنید." };
+      return { error: "لطفاً تمام فیلدها را پر کنید." };
     }
 
     let imageUrl = {};
@@ -43,7 +43,7 @@ const uploadPost = async (prevState, formData) => {
       },
     });
 
-    if (res.status !== 201) {
+    if (!res.ok) {
       return {
         error: "مشکلی در فرایند ایجاد پست پیش آمده، دوباره امتحان کنید.",
       };
