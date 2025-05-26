@@ -1,6 +1,6 @@
 import Loader from "@/components/elements/Loader";
 import DashboardPage from "@/components/templates/DashboardPage";
-import getUserPost from "@/serverAction/getUserPost";
+import getUserPost from "@/serverAction/getUserPosts";
 import getSession from "@/utils/getSession";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
@@ -17,7 +17,7 @@ async function Dashboard() {
     return (
       <>
         <Suspense fallback={<Loader />}>
-          <DashboardPage session={session} postData={getUserPostData} />
+          <DashboardPage session={session} postData={getUserPostData?.data} />
         </Suspense>
       </>
     );

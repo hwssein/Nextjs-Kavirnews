@@ -1,5 +1,7 @@
 "use server";
 
+import getImageSource from "@/utils/getImageSource";
+import getPostCategoryName from "@/utils/getPostCategoryName";
 import { cookies } from "next/headers";
 import striptags from "striptags";
 
@@ -11,7 +13,7 @@ const getPostData = async (postId) => {
     const token = cookie.get("token")?.value;
 
     const res = await fetch(
-      `${process.env.API_URI}/posts/${postId}?&_fields=id,title,content,excerpt,featured_media`,
+      `${process.env.API_URI}/posts/${postId}?_fields=id,title,content,excerpt,categories,featured_media,date`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -23,38 +25,30 @@ const getPostData = async (postId) => {
 
     const data = await res.json();
 
-    if (!data?.featured_media) {
-      return {
-        message: "success",
-        data: {
-          id: data?.id,
-          title: striptags(data?.title.rendered),
-          summary: striptags(data?.excerpt.rendered),
-          description: striptags(data?.content.rendered),
-        },
-      };
+    if (!data?.id) return { error: "پست مورد نظر پیدا نشد." };
+
+    let category = null;
+    if (data?.categories[0]) {
+      category = await getPostCategoryName(data?.categories[0], token);
+      if (!category || category.error) category = null;
     }
 
-    const getImageRes = await fetch(
-      `${process.env.API_URI}/media/${data?.featured_media}?_fields=source_url`,
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-        cache: "force-cache",
-      }
-    );
-
-    const getImageData = await getImageRes.json();
+    let image = null;
+    if (data?.featured_media) {
+      image = await getImageSource(data?.featured_media, token);
+      if (!image || image.error) image = null;
+    }
 
     return {
       message: "success",
       data: {
-        id: data?.id,
-        title: striptags(data?.title.rendered),
-        summary: striptags(data?.excerpt.rendered),
-        description: striptags(data?.content.rendered),
-        image: getImageData?.source_url,
+        id: data.id,
+        title: striptags(data.title.rendered),
+        summary: striptags(data.excerpt.rendered),
+        description: striptags(data.content.rendered),
+        image,
+        category,
+        date: data.date,
       },
     };
   } catch (error) {
