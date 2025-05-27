@@ -2,6 +2,7 @@ import Image from "next/image";
 import ShareNews from "../elements/ShareNews";
 
 function PostDetailsPage({ data }) {
+  console.log(data);
   const convertDate = new Date(data?.date).toLocaleDateString(
     "fa-IR-u-ca-persian",
     {
@@ -42,6 +43,11 @@ function PostDetailsPage({ data }) {
             <div className="w-fit text-icon text-sm flex items-center justify-start gap-2 bg-surface p-2 rounded-lg">
               <span>تاریخ انتشار:</span>
               <span className="text-secondary">{convertDate}</span>
+            </div>
+
+            <div className="w-fit text-icon text-sm flex items-center justify-start gap-2 bg-surface p-2 rounded-lg">
+              <span>نویسنده:</span>
+              <span className="text-secondary">{data?.author.name}</span>
             </div>
 
             <ShareNews />

@@ -13,7 +13,7 @@ const getPostData = async (postId) => {
     const token = cookie.get("token")?.value;
 
     const res = await fetch(
-      `${process.env.API_URI}/posts/${postId}?_fields=id,title,content,excerpt,categories,featured_media,date`,
+      `${process.env.API_URI}/posts/${postId}?_embed&_fields=id,title,content,excerpt,categories,featured_media,date,_embedded.author`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -49,6 +49,10 @@ const getPostData = async (postId) => {
         image,
         category,
         date: data.date,
+        author: {
+          name: data._embedded.author[0].name,
+          id: data._embedded.author[0].id,
+        },
       },
     };
   } catch (error) {

@@ -23,6 +23,10 @@ function UserPostCardButton({ postId }) {
   const handleDeletePost = async (event) => {
     event.stopPropagation();
 
+    const isOk = confirm("از حذف خبر اطمینان دارید؟");
+
+    if (!isOk) return;
+
     setIsLoading(true);
 
     const deleteRes = await deletePost(postId);
