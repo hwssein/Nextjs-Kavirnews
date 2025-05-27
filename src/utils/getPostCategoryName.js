@@ -4,7 +4,7 @@ const getPostCategoryName = async (categoryId, token) => {
       `${process.env.API_URI}/categories/${categoryId}?_fields=id,name,slug`,
       {
         headers: {
-          authorization: `Bearer ${token}`,
+          authorization: token ? `Bearer ${token}` : null,
         },
         cache: "force-cache",
       }

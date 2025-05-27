@@ -4,7 +4,7 @@ const getImageSource = async (imageId, token) => {
       `${process.env.API_URI}/media/${imageId}?_fields=source_url`,
       {
         headers: {
-          authorization: `Bearer ${token}`,
+          authorization: token ? `Bearer ${token}` : null,
         },
         cache: "force-cache",
       }

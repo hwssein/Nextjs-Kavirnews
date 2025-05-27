@@ -2,7 +2,6 @@ import Image from "next/image";
 import ShareNews from "../elements/ShareNews";
 
 function PostDetailsPage({ data }) {
-  console.log(data);
   const convertDate = new Date(data?.date).toLocaleDateString(
     "fa-IR-u-ca-persian",
     {
@@ -15,8 +14,6 @@ function PostDetailsPage({ data }) {
   return (
     <>
       <div className="w-full flex flex-col items-start justify-start gap-2 mt-2">
-        <span className="w-full h-px bg-stroke block"></span>
-
         <div className="w-full px-2 flex items-center justify-start">
           <h1 className="w-full p-2 bg-secondary rounded-lg font-medium text-background text-justify">
             {data.title}
@@ -55,9 +52,9 @@ function PostDetailsPage({ data }) {
         </div>
 
         <div className="w-full px-2 flex items-center justify-start mt-2">
-          <strong className="w-full px-2 py-6 bg-surface rounded-lg font-normal text-base text-justify">
+          <h3 className="w-full px-2 py-6 bg-surface rounded-lg font-normal text-base text-justify">
             {data.summary}
-          </strong>
+          </h3>
         </div>
 
         <div className="w-full relative px-2 mt-2 flex items-start justify-start gap-2 group">

@@ -1,10 +1,12 @@
 import HomePage from "@/components/templates/HomePage";
+import getCategoriesLatestPosts from "@/serverAction/getCategoriesLatestPosts";
 import getPost from "@/serverAction/getPost";
 
 async function Home() {
-  const newsData = await getPost();
+  const allPosts = await getPost();
+  const categoriesPosts = await getCategoriesLatestPosts();
 
-  if (!newsData || newsData.error) {
+  if (!allPosts || allPosts.error) {
     return (
       <>
         <div className="w-full flex items-center justify-center mt-4">
@@ -18,7 +20,7 @@ async function Home() {
 
   return (
     <>
-      <HomePage data={newsData} />
+      <HomePage data={allPosts?.data} categoriesPosts={categoriesPosts?.data} />
     </>
   );
 }

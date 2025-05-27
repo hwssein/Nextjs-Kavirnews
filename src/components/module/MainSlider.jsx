@@ -1,0 +1,89 @@
+"use client";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Mousewheel } from "swiper/modules";
+import "swiper/css";
+import Image from "next/image";
+import Link from "next/link";
+import PrimaryButton from "../elements/PrimaryButton";
+
+function MainSlider({ categoriesPosts }) {
+  return (
+    <>
+      <div className="w-full px-2">
+        <div className="w-full flex items-center justify-start border-b border-stroke mb-2">
+          <span className="py-2 font-semibold text-icon">جدید ترین اخبار</span>
+        </div>
+
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          mousewheel={true}
+          modules={[Autoplay, Mousewheel]}
+          className="w-full px-2"
+        >
+          {categoriesPosts.map((item) => (
+            <SwiperSlide key={item.id} className="w-full">
+              <div className="w-full h-[550px] md:h-[500px] flex flex-col bg-surface p-2 rounded-lg overflow-hidden">
+                <div className="w-full flex items-center justify-between text-sm mb-2 bg-background rounded-md p-1 px-2">
+                  <div className="flex items-center gap-2  text-icon">
+                    <span>دسته بندی:</span>
+                    <span className="text-secondary">{item.category.name}</span>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-icon">
+                    <span>تاریخ انتشار:</span>
+                    <span className="text-secondary">
+                      {new Date(item.date).toLocaleDateString(
+                        "fa-IR-u-ca-persian",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }
+                      )}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="w-full flex-1 flex flex-col md:flex-row items-start justify-start gap-2">
+                  <div className="w-full md:flex-1 max-h-[320px] aspect-[4/3] relative rounded-lg overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover rounded-lg"
+                    />
+                  </div>
+
+                  <div className="w-full flex-1 flex flex-col items-start justify-start gap-2 overflow-hidden">
+                    <h2 className="w-full py-2 font-medium text-base">
+                      {item.title}
+                    </h2>
+
+                    <h3 className="w-full text-icon line-clamp-3 leading-relaxed">
+                      {item.summary}
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="w-full flex items-center justify-end">
+                  <Link href={`/news/${item.id}`}>
+                    <PrimaryButton text="ادامه مطلب" />
+                  </Link>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </>
+  );
+}
+
+export default MainSlider;
