@@ -2,6 +2,7 @@ import SearchInput from "../elements/SearchInput";
 import HomeCategory from "../module/HomeCategory";
 import HomeHeader from "../module/HomeHeader";
 import MainSlider from "../module/MainSlider";
+import NewsTicker from "../module/NewsTicker";
 import RandomNews from "../module/RandomNews";
 
 function HomePage({ allPosts, categoriesPosts }) {
@@ -24,6 +25,8 @@ function HomePage({ allPosts, categoriesPosts }) {
         <MainSlider categoriesPosts={categoriesPosts} />
 
         <RandomNews data={allPosts} />
+
+        <NewsTicker data={allPosts} />
       </div>
     </>
   );
