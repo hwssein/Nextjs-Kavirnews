@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 import PrimaryButton from "@/components/elements/PrimaryButton";
 import SecondaryButton from "@/components/elements/SecondaryButton";
-import SearchInput from "@/components/elements/SearchInput";
 
 const MobileNav = dynamic(
   () => import("@/components/layouts/header/MobileNav"),
@@ -25,11 +24,15 @@ function Header() {
   const pathname = usePathname();
   const [session, setSession] = useState(undefined);
 
+  const [currentPath, setCurrentPath] = useState("/");
+
   useEffect(() => {
     if (session === undefined) {
       fetchSessionData();
     }
-  }, [session]);
+
+    setCurrentPath(pathname);
+  }, [session, pathname]);
 
   const fetchSessionData = async () => {
     const sessionRes = await fetch("/api/auth/verify", {
@@ -51,7 +54,7 @@ function Header() {
     <>
       <div className="w-full flex items-center justify-between gap-4 p-2 relative">
         <div className="w-fit flex items-center justify-start gap-2">
-          <MobileNav session={session} />
+          <MobileNav session={session} currentPath={currentPath} />
 
           <Link href="/">
             <Image
@@ -62,13 +65,47 @@ function Header() {
               priority={true}
             />
           </Link>
+
+          <div className="w-fit px-4 hidden md:flex items-center justify-start gap-4">
+            <Link
+              href="/"
+              className={`w-fit p-1 ${
+                currentPath === "/" ? "text-primary" : "text-icon"
+              } `}
+            >
+              صفحه اصلی
+            </Link>
+
+            <Link
+              href="/news"
+              className={`w-fit p-1 ${
+                currentPath === "/news" ? "text-primary" : "text-icon"
+              } `}
+            >
+              آخرین خبر
+            </Link>
+
+            <Link
+              href="/about-us"
+              className={`w-fit p-1 ${
+                currentPath === "/about-us" ? "text-primary" : "text-icon"
+              } `}
+            >
+              درباره ما
+            </Link>
+
+            <Link
+              href="/contact-us"
+              className={`w-fit p-1 ${
+                currentPath === "/contact-us" ? "text-primary" : "text-icon"
+              } `}
+            >
+              تماس با ما
+            </Link>
+          </div>
         </div>
 
         <div className="w-fit max-w-1/2 flex items-center justify-center gap-2">
-          <span className="hidden md:flex">
-            <SearchInput />
-          </span>
-
           {session === undefined ? null : session ? (
             <>
               <ProfileDropDown session={session} setSession={setSession} />
