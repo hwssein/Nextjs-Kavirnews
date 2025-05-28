@@ -31,17 +31,17 @@ function HomeCategory() {
   ];
 
   return (
-    <div className="w-full flex flex-wrap items-center justify-evenly sm:justify-between gap-y-2 gap-x-4 p-2">
+    <div className="w-full md:w-[40%] lg:w-full flex flex-wrap items-center justify-center sm:justify-between md:justify-start lg:justify-between gap-y-2 gap-x-4 p-2">
       {categories.map((item, index) => (
         <Link
           href={item.slug}
           key={index}
-          className="w-[90px] h-[45px] rounded-lg relative group overflow-hidden"
+          className="w-[80px] h-[40px] rounded-lg relative group overflow-hidden"
         >
           <Image
             src={item.image}
-            width={150}
-            height={75}
+            fill
+            sizes="80px"
             alt={item.title}
             className="w-full h-full rounded-lg object-cover"
           />

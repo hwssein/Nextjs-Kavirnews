@@ -11,8 +11,8 @@ function MainSlider({ categoriesPosts }) {
   return (
     <>
       <div className="w-full px-2">
-        <div className="w-full flex items-center justify-start border-b border-stroke mb-2">
-          <span className="py-2 font-semibold text-icon">جدید ترین اخبار</span>
+        <div className="w-full flex items-center justify-start border-b border-stroke mt-1 mb-2">
+          <span className="py-2 font-semibold text-icon">جدید‌ترین اخبار</span>
         </div>
 
         <Swiper
@@ -27,11 +27,11 @@ function MainSlider({ categoriesPosts }) {
           modules={[Autoplay, Mousewheel]}
           className="w-full px-2"
         >
-          {categoriesPosts.map((item) => (
+          {categoriesPosts.map((item, index) => (
             <SwiperSlide key={item.id} className="w-full">
               <div className="w-full h-[560px] md:h-[450px] xl:h-[500px] flex flex-col items-start justify-start gap-1 md:gap-2 bg-surface p-2 md:p-4 rounded-lg overflow-hidden">
-                <div className="w-full flex items-center justify-between text-sm mb-2 bg-background rounded-md p-1 px-2">
-                  <div className="flex items-center gap-2  text-icon">
+                <div className="w-full flex items-center justify-between text-sm mb-2 bg-background rounded-md p-2">
+                  <div className="flex items-center gap-2 text-icon">
                     <span>دسته بندی:</span>
                     <span className="text-secondary">{item.category.name}</span>
                   </div>
@@ -56,7 +56,9 @@ function MainSlider({ categoriesPosts }) {
                     <Image
                       src={item.image}
                       alt={item.title}
+                      priority={index === 0}
                       fill
+                      sizes="(min-width: 768px) 50vw, 100vw"
                       className="object-cover rounded-lg"
                     />
                   </div>

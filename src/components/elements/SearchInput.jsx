@@ -2,27 +2,32 @@
 
 import React, { useState } from "react";
 
-import { EllipsisVertical } from "lucide-react";
 import { Search } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 function SearchInput() {
+  const router = useRouter();
+
   const [searchValue, setSearchValue] = useState("");
 
   return (
     <>
-      <div className="w-full bg-surface rounded-lg flex items-center justify-start gap-5 px-4 py-1.5 sm:py-2">
-        <EllipsisVertical className="text-icon" />
-
+      <div className="w-full md:w-[60%] lg:w-full flex items-center justify-start gap-2 p-2">
         <input
           type="text"
           name="search"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           placeholder="جستجو ... "
-          className="w-full text-right "
+          className="w-full  h-10 text-right bg-background rounded-lg p-2"
         />
 
-        <Search className="text-icon" />
+        <button
+          onClick={() => router.push(`/news?${searchValue}`)}
+          className="w-fit h-10 px-4 py-2 text-nowrap border border-primary bg-primary rounded-lg text-white hover:brightness-90 custom-transition cursor-pointer"
+        >
+          <Search />
+        </button>
       </div>
     </>
   );

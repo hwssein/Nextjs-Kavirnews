@@ -20,7 +20,10 @@ async function Home() {
 
   return (
     <>
-      <HomePage data={allPosts?.data} categoriesPosts={categoriesPosts?.data} />
+      <HomePage
+        allPosts={allPosts?.data}
+        categoriesPosts={categoriesPosts?.data}
+      />
     </>
   );
 }
