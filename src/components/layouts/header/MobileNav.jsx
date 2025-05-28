@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 import { CircleX } from "lucide-react";
 
-function MobileNav({ session }) {
+function MobileNav({ session, currentPath }) {
   const [isNavShow, setIsNavShow] = useState(false);
 
   return (
@@ -48,6 +48,19 @@ function MobileNav({ session }) {
             </div>
 
             <ul className="w-full flex flex-col items-start justify-start gap-4 p-2">
+              <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
+                <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
+                <Link
+                  href="/"
+                  onClick={() => setIsNavShow(false)}
+                  className={`w-full ${
+                    currentPath === "/" ? "text-primary" : "text-icon"
+                  }`}
+                >
+                  صفحه اصلی
+                </Link>
+              </li>
+
               {session ? (
                 <>
                   <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
@@ -55,7 +68,11 @@ function MobileNav({ session }) {
                     <Link
                       onClick={() => setIsNavShow(false)}
                       href="/dashboard"
-                      className="w-full"
+                      className={`w-full ${
+                        currentPath === "/dashboard"
+                          ? "text-primary"
+                          : "text-icon"
+                      }`}
                     >
                       داشبورد
                     </Link>
@@ -65,14 +82,26 @@ function MobileNav({ session }) {
                 <>
                   <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
                     <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
-                    <Link href="/signup" className="w-full">
+                    <Link
+                      href="/signup"
+                      onClick={() => setIsNavShow(false)}
+                      className={`w-full ${
+                        currentPath === "/signup" ? "text-primary" : "text-icon"
+                      }`}
+                    >
                       ثبت‌ نام
                     </Link>
                   </li>
 
                   <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
                     <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
-                    <Link href="/signin" className="w-full">
+                    <Link
+                      href="/signin"
+                      onClick={() => setIsNavShow(false)}
+                      className={`w-full ${
+                        currentPath === "/signin" ? "text-primary" : "text-icon"
+                      }`}
+                    >
                       ورود
                     </Link>
                   </li>
@@ -81,12 +110,41 @@ function MobileNav({ session }) {
 
               <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
                 <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
-                <span className="w-full">تماس با ما</span>
+                <Link
+                  href="/news"
+                  onClick={() => setIsNavShow(false)}
+                  className={`w-full ${
+                    currentPath === "/news" ? "text-primary" : "text-icon"
+                  }`}
+                >
+                  آخرین خبر
+                </Link>
               </li>
 
               <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
                 <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
-                <span className="w-full">درباره ما</span>
+                <Link
+                  href="/about-us"
+                  onClick={() => setIsNavShow(false)}
+                  className={`w-full ${
+                    currentPath === "/about-us" ? "text-primary" : "text-icon"
+                  }`}
+                >
+                  درباره ما
+                </Link>
+              </li>
+
+              <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
+                <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>
+                <Link
+                  href="/contact-us"
+                  onClick={() => setIsNavShow(false)}
+                  className={`w-full ${
+                    currentPath === "/contact-us" ? "text-primary" : "text-icon"
+                  }`}
+                >
+                  تماس با ما
+                </Link>
               </li>
             </ul>
           </div>
