@@ -4,7 +4,7 @@ import MainSlider from "../module/MainSlider";
 function HomePage({ allPosts, categoriesPosts }) {
   return (
     <>
-      <div className="w-full flex flex-col items-start justify-start gap-4">
+      <div className="w-full flex flex-col items-start justify-start gap-2">
         <HomeCategory />
 
         <MainSlider categoriesPosts={categoriesPosts} />

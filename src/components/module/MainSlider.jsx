@@ -29,7 +29,7 @@ function MainSlider({ categoriesPosts }) {
         >
           {categoriesPosts.map((item) => (
             <SwiperSlide key={item.id} className="w-full">
-              <div className="w-full h-[550px] md:h-[500px] flex flex-col bg-surface p-2 rounded-lg overflow-hidden">
+              <div className="w-full h-[560px] md:h-[450px] xl:h-[500px] flex flex-col items-start justify-start gap-1 md:gap-2 bg-surface p-2 md:p-4 rounded-lg overflow-hidden">
                 <div className="w-full flex items-center justify-between text-sm mb-2 bg-background rounded-md p-1 px-2">
                   <div className="flex items-center gap-2  text-icon">
                     <span>دسته بندی:</span>
@@ -52,7 +52,7 @@ function MainSlider({ categoriesPosts }) {
                 </div>
 
                 <div className="w-full flex-1 flex flex-col md:flex-row items-start justify-start gap-2">
-                  <div className="w-full md:flex-1 max-h-[320px] aspect-[4/3] relative rounded-lg overflow-hidden">
+                  <div className="w-full md:flex-1 max-h-[320px] md:max-h-full md:h-full aspect-[4/3] md:aspect-video relative rounded-lg overflow-hidden">
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -61,21 +61,25 @@ function MainSlider({ categoriesPosts }) {
                     />
                   </div>
 
-                  <div className="w-full flex-1 flex flex-col items-start justify-start gap-2 overflow-hidden">
-                    <h2 className="w-full py-2 font-medium text-base">
-                      {item.title}
-                    </h2>
+                  <div className="w-full flex-1 flex flex-col items-start justify-start md:justify-between md:h-full gap-2">
+                    <div className="w-full flex-1 flex flex-col items-start justify-start gap-2 overflow-hidden">
+                      <h2 className="w-full py-2 font-medium text-base">
+                        {item.title}
+                      </h2>
 
-                    <h3 className="w-full text-icon line-clamp-3 leading-relaxed">
-                      {item.summary}
-                    </h3>
+                      <div className="w-full flx-1 flex items-start justify-start">
+                        <h3 className="w-full text-icon line-clamp-3 md:line-clamp-none leading-relaxed">
+                          {item.summary}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <div className="w-full flex items-center justify-end">
+                      <Link href={`/news/${item.id}`}>
+                        <PrimaryButton text="ادامه مطلب" />
+                      </Link>
+                    </div>
                   </div>
-                </div>
-
-                <div className="w-full flex items-center justify-end">
-                  <Link href={`/news/${item.id}`}>
-                    <PrimaryButton text="ادامه مطلب" />
-                  </Link>
                 </div>
               </div>
             </SwiperSlide>
