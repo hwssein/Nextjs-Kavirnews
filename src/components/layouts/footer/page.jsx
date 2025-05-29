@@ -84,6 +84,7 @@ function Footer() {
                 </div>
 
                 <Link
+                  aria-label="گیت هاب"
                   href="https://github.com/hwssein/Nextjs-Kavirnews"
                   target="_blank"
                   className="w-fit cursor-pointer p-2 rounded-lg text-background flex items-center justify-center bg-gradient-to-r from-[#000000] to-[#1a1a1a]"

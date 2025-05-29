@@ -10,7 +10,7 @@ function HomeHeader() {
             src="/images/header.jpg"
             alt="header"
             fill
-            sizes="100vw"
+            sizes="1440px"
             priority={true}
             className="object-top rounded-lg"
           ></Image>
