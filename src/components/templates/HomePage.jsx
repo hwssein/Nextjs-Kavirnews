@@ -27,6 +27,8 @@ function HomePage({ allPosts, categoriesPosts }) {
         <RandomNews data={allPosts} />
 
         <NewsTicker data={allPosts} />
+
+        <RandomNews data={allPosts} />
       </div>
     </>
   );

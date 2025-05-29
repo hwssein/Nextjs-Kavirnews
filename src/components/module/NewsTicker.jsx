@@ -6,19 +6,27 @@ import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/autoplay";
+import Link from "next/link";
 
 function NewsTicker({ data }) {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     if (Array.isArray(data)) {
-      setNews(data.map((item) => item.title));
+      const dataObj = data?.map((item) => {
+        return {
+          id: item.id,
+          title: item.title,
+        };
+      });
+
+      setNews(dataObj);
     }
   }, [data]);
 
   return (
-    <div className="w-screen bg-primary py-4 relative right-[calc(50%-50vw)] mt-1">
-      <div className="w-full max-w-[1440px] mx-auto overflow-hidden">
+    <div className="w-screen bg-primary py-6 relative right-[calc(50%-50vw)] mt-1">
+      <div className="w-full max-w-[1400px] mx-auto overflow-hidden">
         <Swiper
           modules={[Autoplay, FreeMode]}
           slidesPerView="auto"
@@ -37,14 +45,17 @@ function NewsTicker({ data }) {
           spaceBetween={30}
           className="!overflow-visible"
         >
-          {news.map((item, index) => (
-            <SwiperSlide key={index} className="!w-fit flex items-center px-4">
-              <div className="flex items-center">
+          {news.map((item) => (
+            <SwiperSlide
+              key={item.id}
+              className="!w-fit flex items-center px-2"
+            >
+              <Link href={`/news/${item?.id}`} className="flex items-center">
                 <strong className="text-base font-normal text-background whitespace-nowrap">
-                  {item}
+                  {item?.title}
                 </strong>
                 <div className="w-2 h-2 rounded-full bg-background mx-4" />
-              </div>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

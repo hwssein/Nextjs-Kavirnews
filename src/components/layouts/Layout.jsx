@@ -1,3 +1,4 @@
+import Footer from "./footer/page";
 import Header from "./header/Header";
 
 function Layout({ children }) {
@@ -11,7 +12,9 @@ function Layout({ children }) {
 
       <main>{children}</main>
 
-      <footer></footer>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }
