@@ -66,7 +66,9 @@ function SigninForm({
         <button
           type="submit"
           disabled={isPending}
-          className="w-3/6 flex items-center justify-center text-nowrap border border-primary bg-primary px-4 py-1.5 sm:py-2 rounded-lg text-white hover:brightness-90 custom-transition cursor-pointer"
+          className={`w-3/6 flex items-center justify-center text-nowrap border border-primary bg-primary ${
+            isPending ? "brightness-90" : "brightness-100"
+          } px-4 py-1.5 sm:py-2 rounded-lg text-white hover:brightness-90 custom-transition cursor-pointer`}
         >
           {isPending ? <Loader /> : "ورود"}
         </button>

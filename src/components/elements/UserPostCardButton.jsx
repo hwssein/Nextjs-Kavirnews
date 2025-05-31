@@ -56,7 +56,9 @@ function UserPostCardButton({ postId }) {
         <button
           disabled={isLoading}
           onClick={handleDeletePost}
-          className="w-fit px-2 py-1 bg-danger rounded-lg text-background hover:brightness-90 custom-transition cursor-pointer"
+          className={`w-fit px-2 py-1 bg-danger ${
+            isLoading ? "brightness-90" : "brightness-100"
+          } rounded-lg text-background hover:brightness-90 custom-transition cursor-pointer`}
         >
           {isLoading ? <Loader /> : "حذف"}
         </button>
