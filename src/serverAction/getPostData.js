@@ -17,14 +17,13 @@ const getPostData = async (postId) => {
       {
         headers: {
           "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
+          authorization: token ? `Bearer ${token}` : null,
         },
         cache: "force-cache",
       }
     );
 
     const data = await res.json();
-
     if (!data?.id) return { error: "پست مورد نظر پیدا نشد." };
 
     let category = null;

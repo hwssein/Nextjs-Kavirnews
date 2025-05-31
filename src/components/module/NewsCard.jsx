@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-function RandomNewsCard({ data }) {
+function NewsCard({ data }) {
   return (
     <>
       <Link href={`/news/${data?.id}`} className="w-full">
@@ -29,4 +29,4 @@ function RandomNewsCard({ data }) {
   );
 }
 
-export default RandomNewsCard;
+export default NewsCard;

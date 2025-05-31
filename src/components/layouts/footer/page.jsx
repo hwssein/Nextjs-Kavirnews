@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 function Footer() {
   const pathName = usePathname();
 
-  if (pathName === "signup" || pathName === "/signin") return null;
+  if (pathName === "/signup" || pathName === "/signin") return null;
 
   return (
     <div className="w-screen mt-2 relative bg-surface rounded-t-4xl right-[calc(50%-50vw)]">
@@ -43,7 +43,7 @@ function Footer() {
                     key={index}
                     className="w-fit px-2 py-1 hover:text-primary custom-transition"
                   >
-                    <Link href={`/news/?slug=${item.slug}`}>{item.title}</Link>
+                    <Link href={item.slug}>{item.title}</Link>
                   </li>
                 ))}
               </ul>

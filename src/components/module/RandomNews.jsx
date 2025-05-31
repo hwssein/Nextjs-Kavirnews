@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import RandomNewsCard from "./RandomNewsCard";
+import NewsCard from "./NewsCard";
 
 function RandomNews({ data }) {
   const [randomData, setRandomData] = useState([]);
@@ -15,7 +15,7 @@ function RandomNews({ data }) {
     <>
       <div className="w-full flex flex-col items-start justify-start gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 mt-1">
         {randomData?.map((item) => (
-          <RandomNewsCard key={item.id} data={item} />
+          <NewsCard key={item.id} data={item} />
         ))}
       </div>
     </>

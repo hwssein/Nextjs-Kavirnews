@@ -123,6 +123,8 @@ function Header() {
           )}
         </div>
       </div>
+
+      <span className="w-full h-px bg-stroke block mb-2"></span>
     </>
   );
 }

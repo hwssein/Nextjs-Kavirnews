@@ -7,7 +7,7 @@ const categoriesConstant = [
   {
     title: "اقتصاد",
     image: "/images/economic-category.jpg",
-    slug: "/news?categories=economic",
+    slug: "/news?categories=economics",
   },
   {
     title: "سیاست",
