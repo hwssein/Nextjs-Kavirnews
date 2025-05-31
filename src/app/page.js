@@ -2,6 +2,8 @@ import HomePage from "@/components/templates/HomePage";
 import getCategoriesLatestPosts from "@/serverAction/getCategoriesLatestPosts";
 import getPost from "@/serverAction/getPost";
 
+export const dynamic = "force-dynamic";
+
 async function Home() {
   const allPosts = await getPost();
   const categoriesPosts = await getCategoriesLatestPosts();
