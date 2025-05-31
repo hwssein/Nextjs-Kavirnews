@@ -1,5 +1,4 @@
-import SearchInput from "../elements/SearchInput";
-import HomeCategory from "../module/HomeCategory";
+import FilterElements from "../elements/FilterElements";
 import HomeHeader from "../module/HomeHeader";
 import MainSlider from "../module/MainSlider";
 import NewsTicker from "../module/NewsTicker";
@@ -15,11 +14,7 @@ function HomePage({ allPosts, categoriesPosts }) {
           <div className="w-full flex items-center justify-start border-b border-stroke mb-2">
             <span className="py-2 font-semibold text-icon">جستجوی خبر</span>
           </div>
-          <div className="w-full flex flex-col md:flex-row items-center justify-start md:justify-between gap-2 lg:gap-14 bg-secondary/20 rounded-lg p-1 md:p-2">
-            <HomeCategory />
-
-            <SearchInput />
-          </div>
+          <FilterElements />
         </div>
 
         <MainSlider categoriesPosts={categoriesPosts} />

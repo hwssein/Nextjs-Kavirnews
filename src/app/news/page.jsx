@@ -1,22 +1,24 @@
 import Loader from "@/components/elements/Loader";
 import NewsPage from "@/components/templates/NewsPage";
 import getFilteredPosts from "@/serverAction/getFilteredPosts";
+import getPost from "@/serverAction/getPost";
 import { Suspense } from "react";
 
 async function News({ searchParams }) {
   const searchedParams = await searchParams;
 
-  const filteredPosts = await getFilteredPosts(
-    searchedParams?.categories,
-    searchedParams?.search
-  );
+  let posts = null;
 
-  if (
-    !searchedParams ||
-    Object.keys(searchedParams).length === 0 ||
-    !filteredPosts ||
-    filteredPosts.error
-  ) {
+  if (Object.keys(searchedParams).length !== 0) {
+    posts = await getFilteredPosts(
+      searchedParams?.categories,
+      searchedParams?.search
+    );
+  } else {
+    posts = await getPost();
+  }
+
+  if (!posts || posts.error) {
     return (
       <>
         <div className="w-full flex items-center justify-center mt-4">
@@ -31,7 +33,7 @@ async function News({ searchParams }) {
   return (
     <>
       <Suspense fallback={<Loader />}>
-        <NewsPage data={filteredPosts?.data} filter={searchedParams} />
+        <NewsPage data={posts?.data} filter={searchedParams} />
       </Suspense>
     </>
   );

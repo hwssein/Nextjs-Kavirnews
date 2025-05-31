@@ -15,7 +15,7 @@ const categoriesConstant = [
     slug: "/news?categories=politic",
   },
   {
-    title: "تکنولوژی",
+    title: "فناوری",
     image: "/images/technology-category.jpg",
     slug: "/news?categories=technology",
   },

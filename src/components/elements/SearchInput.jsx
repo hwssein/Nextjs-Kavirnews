@@ -24,14 +24,14 @@ function SearchInput() {
 
   return (
     <>
-      <div className="w-full md:w-[60%] lg:w-full flex items-center justify-start gap-2 p-2">
+      <div className="w-full flex items-center justify-start gap-2 p-2">
         <input
           type="text"
           name="search"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           placeholder="جستجو ... "
-          className="w-full  h-10 text-right bg-background rounded-lg p-2"
+          className="w-full h-10 text-right bg-background rounded-lg p-2"
         />
 
         <button
