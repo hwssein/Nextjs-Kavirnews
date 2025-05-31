@@ -26,7 +26,7 @@ function NewsTicker({ data }) {
 
   return (
     <div className="w-screen bg-primary py-6 relative right-[calc(50%-50vw)] mt-1">
-      <div className="w-full max-w-[1400px] mx-auto overflow-hidden">
+      <div className="w-full max-w-[1420px] mx-auto overflow-hidden">
         <Swiper
           modules={[Autoplay, FreeMode]}
           slidesPerView="auto"

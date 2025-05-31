@@ -15,7 +15,7 @@ function HomePage({ allPosts, categoriesPosts }) {
           <div className="w-full flex items-center justify-start border-b border-stroke mb-2">
             <span className="py-2 font-semibold text-icon">جستجوی خبر</span>
           </div>
-          <div className="w-full flex flex-col md:flex-row items-center justify-start md:justify-between lg:gap-10 gap-2 bg-secondary/20 rounded-lg p-1 md:p-2">
+          <div className="w-full flex flex-col md:flex-row items-center justify-start md:justify-between gap-2 lg:gap-14 bg-secondary/20 rounded-lg p-1 md:p-2">
             <HomeCategory />
 
             <SearchInput />

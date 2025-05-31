@@ -12,8 +12,8 @@ function Footer() {
 
   return (
     <div className="w-screen mt-2 relative bg-surface rounded-t-4xl right-[calc(50%-50vw)]">
-      <div className="w-full max-w-[1440px] mx-auto overflow-hidden py-4 md:py-8 px-6 flex flex-col items-start justify-start gap-8">
-        <div className="w-full flex flex-col md:flex-row items-start justify-start gap-4">
+      <div className="w-full max-w-[1440px] mx-auto overflow-hidden py-8 px-4 2xl:px-2 flex flex-col items-start justify-start gap-8">
+        <div className="w-full flex flex-col md:flex-row items-start justify-start gap-6">
           <div className="w-full flex flex-col items-start justify-start gap-4">
             <div className="w-fit flex items-center justify-start gap-2 group">
               <span className="w-2 h-4 bg-primary rounded-lg group-hover:bg-secondary custom-transition"></span>
@@ -51,7 +51,7 @@ function Footer() {
           </div>
 
           <div className="w-full flex flex-col items-start justify-start gap-2 md:gap-4">
-            <div className="w-full px-4">
+            <div className="w-full px-4 md:pl-0 md:pr-1">
               <div className="w-full bg-background rounded-lg flex items-center justify-between p-2">
                 <input
                   type="email"
