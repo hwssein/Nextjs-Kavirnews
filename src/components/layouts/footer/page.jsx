@@ -17,7 +17,9 @@ function Footer() {
           <div className="w-full flex flex-col items-start justify-start gap-4">
             <div className="w-fit flex items-center justify-start gap-2 group">
               <span className="w-2 h-4 bg-primary rounded-lg group-hover:bg-secondary custom-transition"></span>
-              <span className="w-fit font-semibold text-lg">کویرنیوز</span>
+              <Link href="/" className="w-fit font-semibold text-lg">
+                کویرنیوز
+              </Link>
             </div>
 
             <div className="w-full flex items-start justify-start gap-2 group">
@@ -50,7 +52,7 @@ function Footer() {
             </div>
           </div>
 
-          <div className="w-full flex flex-col items-start justify-start gap-2 md:gap-4">
+          <div className="w-full flex flex-col items-start justify-start gap-4">
             <div className="w-full px-4 md:pl-0 md:pr-1">
               <div className="w-full bg-background rounded-lg flex items-center justify-between p-2">
                 <input

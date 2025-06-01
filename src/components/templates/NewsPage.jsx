@@ -1,5 +1,5 @@
+import FilterDetails from "../elements/FilterDetails";
 import FilterElements from "../elements/FilterElements";
-import RemoveSearchQuery from "../elements/RemoveSearchQuery";
 import NewsCard from "../module/NewsCard";
 
 function NewsPage({ data, filter }) {
@@ -10,30 +10,11 @@ function NewsPage({ data, filter }) {
           <FilterElements />
         </div>
       ) : (
-        <div className="w-full flex items-center justify-start gap-2 mb-2 mt-2 px-2">
-          <span className="py-2 font-semibold text-icon">
-            فیلتر شده بر اساس:
-          </span>
-
-          {filter?.categories && (
-            <span className="w-fit text-secondary">
-              {data[0]?.category.name}
-            </span>
-          )}
-          {filter?.search && (
-            <span className="w-fit text-secondary">{filter?.search}</span>
-          )}
-
-          <span>/</span>
-
-          <span className="py-2 font-semibold text-icon">تعداد نتایج:</span>
-
-          <span className="w-fit text-secondary">{data?.length}</span>
-
-          <span>/</span>
-
-          <RemoveSearchQuery />
-        </div>
+        <FilterDetails
+          category={filter.categories ? data[0]?.category.name : null}
+          search={filter.search ? filter.search : null}
+          length={data?.length}
+        />
       )}
 
       {data?.length === 0 ? (

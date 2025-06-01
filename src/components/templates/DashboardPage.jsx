@@ -3,6 +3,7 @@ import UserPostCardButton from "../elements/UserPostCardButton";
 import DashboardUserForm from "../module/DashboardUserForm";
 import DashboardUserProfileCard from "../module/DashboardUserProfileCard";
 import UserPostCard from "../module/UserPostCard";
+import ShowError from "../module/ShowError";
 
 function DashboardPage({ session, postData }) {
   return (
@@ -10,7 +11,7 @@ function DashboardPage({ session, postData }) {
       <div className="w-full flex flex-col items-start justify-start gap-4 p-2">
         <DashboardUserProfileCard session={session} />
 
-        <DashboardUserForm />
+        <DashboardUserForm role={session?.role} />
 
         <div className="w-full flex flex-col items-start justify-start gap-4 mt-4">
           <div className="w-full flex items-center justify-start border-b border-stroke">
@@ -18,11 +19,7 @@ function DashboardPage({ session, postData }) {
           </div>
 
           {!postData || postData.error || postData.length === 0 ? (
-            <div className="w-full flex items-center justify-center gap-2">
-              <span className="px-4 py-2 rounded-lg text-background bg-secondary">
-                هنوز محتوایی اضافه نکرده اید.
-              </span>
-            </div>
+            <ShowError text="هنوز محتوایی اضافه نکرده‌اید." />
           ) : (
             <div className="w-full flex flex-col items-start justify-start gap-4">
               {postData.map((item) => (

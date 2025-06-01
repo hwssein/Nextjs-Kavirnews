@@ -29,11 +29,11 @@ function EditNewsPage({ data }) {
   useEffect(() => {
     if (data) {
       setForm({
-        id: data.id,
-        title: data.title,
-        category: data.category.slug,
-        summary: data.summary,
-        description: data.description,
+        id: data.id || "",
+        title: data.title || "",
+        category: data.category?.slug || "",
+        summary: data.summary || "",
+        description: data.description || "",
       });
       setImageBlobUrl(data.image);
     }

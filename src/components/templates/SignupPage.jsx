@@ -49,7 +49,10 @@ function SignupPage() {
         return;
       }
 
-      if (data.message) router.replace("/");
+      if (data.message) {
+        setToastMessage("لطفا وارد حساب کاربری خود شوید.");
+        router.replace("/signin");
+      }
     } catch (error) {
       console.log(error);
       setIsPending(false);

@@ -14,6 +14,7 @@ import Toast from "./Toast";
 
 import { Loader, User2, UserPen } from "lucide-react";
 import changeUserLevel from "@/serverAction/changeUserLevel";
+import Link from "next/link";
 
 function DashboardUserProfileCard({ session }) {
   const [userNameValue, setUserNameValue] = useState("");
@@ -154,9 +155,15 @@ function DashboardUserProfileCard({ session }) {
               )}
             </div>
 
-            <span onClick={handleUserLevel}>
-              <PrimaryButton text="ارتقا سطح به نویسنده" />
-            </span>
+            {session?.role === "administrator" ? (
+              <Link href="/admin">
+                <PrimaryButton text="صفحه ادمین" />
+              </Link>
+            ) : (
+              <span onClick={handleUserLevel}>
+                <PrimaryButton text="ارتقا سطح به نویسنده" />
+              </span>
+            )}
           </div>
         </div>
       </div>

@@ -7,6 +7,10 @@ body {
   margin: 0 auto;
 }
 
+input:focus {
+  outline: none;
+}
+
 .loader {
   height: 16px;
   border-radius: 20px;

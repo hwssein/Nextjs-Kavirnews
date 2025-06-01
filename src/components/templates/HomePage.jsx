@@ -1,4 +1,5 @@
 import FilterElements from "../elements/FilterElements";
+import SectionTitle from "../elements/SectionTitle";
 import HomeHeader from "../module/HomeHeader";
 import MainSlider from "../module/MainSlider";
 import NewsTicker from "../module/NewsTicker";
@@ -10,10 +11,9 @@ function HomePage({ allPosts, categoriesPosts }) {
       <div className="w-full flex flex-col items-start justify-start gap-2">
         <HomeHeader />
 
-        <div className="w-full px-2 mt-1">
-          <div className="w-full flex items-center justify-start border-b border-stroke mb-2">
-            <span className="py-2 font-semibold text-icon">جستجوی خبر</span>
-          </div>
+        <div className="w-full px-2">
+          <SectionTitle text={"جستجو‌ی خبر"} />
+
           <FilterElements />
         </div>
 

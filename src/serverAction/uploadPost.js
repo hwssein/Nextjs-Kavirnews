@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import getPostCategoryId from "../utils/getPostCategoryId";
 import getUploadedImageUrl from "../utils/getUploadedImageUrl";
 import { revalidatePath } from "next/cache";
+import getSession from "@/utils/getSession";
 
 const uploadPost = async (prevState, formData) => {
   try {
@@ -11,6 +12,11 @@ const uploadPost = async (prevState, formData) => {
     const token = cookie.get("token")?.value;
 
     if (!token) return { error: "لطفا وارد حساب کاربری خود شوید." };
+
+    const session = await getSession();
+
+    if (session?.role !== "administrator" && session?.role !== "author")
+      return { error: "لطفا سطح کاربری خود را ارتقا دهید." };
 
     const form = Object.fromEntries(formData.entries());
 

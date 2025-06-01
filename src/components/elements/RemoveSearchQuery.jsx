@@ -20,7 +20,7 @@ function RemoveSearchQuery() {
     <>
       <button
         onClick={handleRemoveQueries}
-        className="w-fit flex items-center justify-center text-base gap-1 text-danger cursor-pointer"
+        className="w-fit flex items-center justify-center text-base font-light gap-1 text-danger cursor-pointer py-2"
       >
         <X /> پاک کردن
       </button>

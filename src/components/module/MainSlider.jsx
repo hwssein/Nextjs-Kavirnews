@@ -6,14 +6,13 @@ import "swiper/css";
 import Image from "next/image";
 import Link from "next/link";
 import PrimaryButton from "../elements/PrimaryButton";
+import SectionTitle from "../elements/SectionTitle";
 
 function MainSlider({ categoriesPosts }) {
   return (
     <>
       <div className="w-full px-2">
-        <div className="w-full flex items-center justify-start border-b border-stroke mt-1 mb-2">
-          <span className="py-2 font-semibold text-icon">جدید‌ترین اخبار</span>
-        </div>
+        <SectionTitle text={"جدیدترین اخبار"} />
 
         <Swiper
           spaceBetween={10}
@@ -54,7 +53,7 @@ function MainSlider({ categoriesPosts }) {
                 <div className="w-full flex-1 flex flex-col md:flex-row items-start justify-start gap-2 md:gap-7">
                   <div className="w-full xl:max-w-[38%] md:flex-1 max-h-[320px] md:max-h-full md:h-full aspect-[4/3] md:aspect-video relative rounded-lg overflow-hidden">
                     <Image
-                      src={item.image}
+                      src={item.image || "/images/image-unavailable.png"}
                       alt={item.title}
                       priority={index === 0}
                       fill
@@ -65,7 +64,7 @@ function MainSlider({ categoriesPosts }) {
 
                   <div className="w-full xl:max-w-[63%] flex-1 flex flex-col items-start justify-start md:justify-between md:h-full gap-2">
                     <div className="w-full flex-1 flex flex-col items-start justify-start gap-2 overflow-hidden">
-                      <h2 className="w-full py-2 font-medium text-base">
+                      <h2 className="w-full py-2 font-semibold text-base">
                         {item.title}
                       </h2>
 

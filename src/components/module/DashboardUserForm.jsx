@@ -9,7 +9,7 @@ import DashboardImageForm from "../elements/DashboardImageForm";
 
 import { Loader } from "lucide-react";
 
-function DashboardUserForm() {
+function DashboardUserForm({ userRole }) {
   const [imageBlobUrl, setImageBlobUrl] = useState("");
   const [toastMessage, setToastMessage] = useState("");
 

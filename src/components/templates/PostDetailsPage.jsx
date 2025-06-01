@@ -15,7 +15,7 @@ function PostDetailsPage({ data }) {
     <>
       <div className="w-full flex flex-col items-start justify-start gap-2 mt-2">
         <div className="w-full px-2 flex items-center justify-start">
-          <h1 className="w-full p-2 bg-secondary rounded-lg font-medium text-background text-justify">
+          <h1 className="w-full p-2 sm:py-5 bg-secondary rounded-lg font-semibold text-background text-justify">
             {data.title}
           </h1>
         </div>
