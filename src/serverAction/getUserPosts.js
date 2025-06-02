@@ -13,7 +13,7 @@ const getUserPosts = async (userId) => {
     const token = cookieStore.get("token")?.value;
 
     const res = await fetch(
-      `${process.env.API_URI}/posts?author=${userId}&_fields=id,title,content,excerpt,featured_media,categories`,
+      `${process.env.API_URI}/posts?author=${userId}&_fields=id,title,content,excerpt,featured_media,categories&per_page=100`,
       {
         headers: {
           authorization: `Bearer ${token}`,

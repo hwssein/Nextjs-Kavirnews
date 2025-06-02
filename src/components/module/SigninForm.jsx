@@ -15,9 +15,9 @@ function SigninForm({
     <>
       <form
         onSubmit={handleSubmit}
-        className="w-full flex flex-col items-center justify-start gap-2"
+        className="w-full flex flex-col items-center justify-start gap-3"
       >
-        <div className="w-3/4 px-4 py-2 rounded-lg bg-surface flex items-center justify-start gap-2 text-icon ">
+        <div className="w-3/4 h-[38px] sm:h-[42px] px-4 py-2 rounded-lg bg-surface flex items-center justify-start gap-2 text-icon ">
           <Mail />
           <input
             type="email"
@@ -30,7 +30,7 @@ function SigninForm({
           />
         </div>
 
-        <div className="w-3/4 px-4 py-2 rounded-lg bg-surface flex items-center justify-start gap-2 text-icon">
+        <div className="w-3/4 h-[38px] sm:h-[42px] px-4 py-2 rounded-lg bg-surface flex items-center justify-start gap-2 text-icon">
           <Lock />
           <input
             type={isShowPassword ? "text" : "password"}
