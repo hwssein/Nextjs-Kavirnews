@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, CircleUserRound } from "lucide-react";
 import Link from "next/link";
 
-function ProfileDropDown({ session, setSession }) {
+function ProfileDropDown({ session }) {
   const [isShowProfileDropdown, setIsShowProfileDropdown] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -26,7 +26,6 @@ function ProfileDropDown({ session, setSession }) {
     const data = await res.json();
 
     if (data?.message) {
-      setSession(undefined);
       location.replace("/");
     }
   };

@@ -20,33 +20,14 @@ const ProfileDropDown = dynamic(
   }
 );
 
-function Header() {
+function Header({ session }) {
   const pathname = usePathname();
-  const [session, setSession] = useState(undefined);
 
   const [currentPath, setCurrentPath] = useState("/");
 
   useEffect(() => {
-    if (session === undefined) {
-      fetchSessionData();
-    }
-
     setCurrentPath(pathname);
-  }, [session, pathname]);
-
-  const fetchSessionData = async () => {
-    const sessionRes = await fetch("/api/auth/verify", {
-      cache: "default",
-    });
-    const sessionData = await sessionRes.json();
-
-    if (sessionData.error) {
-      setSession(null);
-      return;
-    }
-
-    setSession(sessionData?.userData);
-  };
+  }, [pathname]);
 
   if (pathname === "/signin" || pathname === "/signup") return null;
 
@@ -106,9 +87,9 @@ function Header() {
         </div>
 
         <div className="w-fit max-w-1/2 flex items-center justify-center gap-2">
-          {session === undefined ? null : session ? (
+          {session?.id ? (
             <>
-              <ProfileDropDown session={session} setSession={setSession} />
+              <ProfileDropDown session={session} />
             </>
           ) : (
             <>

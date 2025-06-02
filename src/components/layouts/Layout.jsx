@@ -1,11 +1,14 @@
+import getSession from "@/utils/getSession";
 import Footer from "./footer/page";
 import Header from "./header/Header";
 
-function Layout({ children }) {
+async function Layout({ children }) {
+  const session = await getSession();
+
   return (
     <>
       <header>
-        <Header />
+        <Header session={session} />
       </header>
 
       <main>{children}</main>

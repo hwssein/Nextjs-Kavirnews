@@ -30,7 +30,7 @@ function NewsTicker({ data }) {
         <Swiper
           modules={[Autoplay, FreeMode]}
           slidesPerView="auto"
-          loop={true}
+          loop={news.length > 3}
           allowTouchMove={false}
           speed={4000}
           autoplay={{
@@ -45,7 +45,7 @@ function NewsTicker({ data }) {
           spaceBetween={30}
           className="!overflow-visible"
         >
-          {news.map((item) => (
+          {news?.map((item) => (
             <SwiperSlide
               key={item.id}
               className="!w-fit flex items-center px-2"

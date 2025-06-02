@@ -1,7 +1,10 @@
 "use server";
 
+import findExistUserById from "@/utils/findExistUserById";
+import verifyToken from "@/utils/verifyToken";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 const changeUserName = async (userName, userId) => {
   try {
@@ -12,21 +15,30 @@ const changeUserName = async (userName, userId) => {
     const cookie = await cookies();
     const token = cookie.get("token")?.value;
 
-    const verifyUserRes = await fetch(
-      `${process.env.BASE_URL}/api/auth/verify`,
-      {
-        method: "POST",
-        body: JSON.stringify(token ? { token } : false),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    if (!token)
+      return NextResponse.json(
+        { error: "لطفا وارد حساب کاربری خود شوید." },
+        { status: 401 }
+      );
 
-    const verifyUserData = await verifyUserRes.json();
-    if (!verifyUserData || verifyUserData.error)
-      return { error: "لطفا وارد حساب کاربری خود شوید." };
+    const verifiedToken = await verifyToken(token);
+    if (!verifiedToken) {
+      return NextResponse.json(
+        { error: "لطفا وارد حساب کاربری خود شودید." },
+        { status: 401 }
+      );
+    }
 
-    if (+verifyUserData.userData.id === +userId) {
-      const res = await fetch(`${API_URI}/users/${userId}`, {
+    const user = await findExistUserById(verifiedToken);
+    if (!user) {
+      return NextResponse.json(
+        { error: "لطفا وارد حساب کاربری خود شوید." },
+        { status: 401 }
+      );
+    }
+
+    if (+user.id === +userId) {
+      const res = await fetch(`${API_URI}/users/${+user.id}`, {
         method: "PUT",
         body: JSON.stringify({ name: userName }),
         headers: {

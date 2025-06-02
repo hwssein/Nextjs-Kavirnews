@@ -61,7 +61,7 @@ function MobileNav({ session, currentPath }) {
                 </Link>
               </li>
 
-              {session ? (
+              {session?.id ? (
                 <>
                   <li className="w-full flex items-center justify-start gap-2 cursor-pointer group">
                     <span className="w-1 h-3 bg-primary inline-block rounded-lg custom-transition group-hover:bg-secondary"></span>

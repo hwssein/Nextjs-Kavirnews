@@ -5,6 +5,8 @@ import getFilteredPosts from "@/serverAction/getFilteredPosts";
 import getPost from "@/serverAction/getPost";
 import { Suspense } from "react";
 
+export const dynamic = "force-dynamic";
+
 async function News({ searchParams }) {
   const searchedParams = await searchParams;
 
