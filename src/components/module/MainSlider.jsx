@@ -50,8 +50,8 @@ function MainSlider({ categoriesPosts }) {
                   </div>
                 </div>
 
-                <div className="w-full flex-1 flex flex-col md:flex-row items-start justify-start gap-2 md:gap-7">
-                  <div className="w-full xl:max-w-[38%] md:flex-1 max-h-[320px] md:max-h-full md:h-full aspect-[4/3] md:aspect-video relative rounded-lg overflow-hidden">
+                <div className="w-full flex-1 flex flex-col md:flex-row items-start justify-start gap-2 md:gap-4">
+                  <div className="w-full xl:max-w-[38.5%] md:flex-1 max-h-[320px] md:max-h-full md:h-full aspect-[4/3] md:aspect-video relative rounded-lg overflow-hidden">
                     <Image
                       src={item.image || "/images/image-unavailable.png"}
                       alt={item.title}

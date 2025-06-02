@@ -48,13 +48,13 @@ function NewsTicker({ data }) {
           {news?.map((item) => (
             <SwiperSlide
               key={item.id}
-              className="!w-fit flex items-center px-2"
+              className="!w-fit flex items-center px-2 !ml-0"
             >
               <Link href={`/news/${item?.id}`} className="flex items-center">
                 <strong className="text-base font-normal text-background whitespace-nowrap">
                   {item?.title}
                 </strong>
-                <div className="w-2 h-2 rounded-full bg-background mx-4" />
+                <div className="w-2 h-2 rounded-full bg-background mr-6 ml-3" />
               </Link>
             </SwiperSlide>
           ))}
