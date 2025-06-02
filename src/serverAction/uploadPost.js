@@ -24,25 +24,29 @@ const uploadPost = async (prevState, formData) => {
       return { error: "لطفاً تمام فیلدها را پر کنید." };
     }
 
+    const myPost = {
+      status: "publish",
+      title: form.title,
+      content: form.description,
+      excerpt: form.summary,
+      featured_media: null,
+      categories: null,
+    };
+
     let imageUrl = {};
     if (form.image && form.image.size > 0) {
       imageUrl = await getUploadedImageUrl(form.image, token);
       if (imageUrl.error) return { error: imageUrl.error };
+      if (imageUrl.id) myPost.featured_media = +imageUrl.id;
     }
 
     const categoryId = await getPostCategoryId(form.category);
     if (categoryId.error) return { error: categoryId.error };
+    myPost.categories = [categoryId];
 
     const res = await fetch(`${process.env.API_URI}/posts`, {
       method: "POST",
-      body: JSON.stringify({
-        status: "publish",
-        categories: [categoryId],
-        title: form.title,
-        content: form.description,
-        excerpt: form.summary,
-        featured_media: imageUrl.id ? +imageUrl.id : undefined,
-      }),
+      body: JSON.stringify(myPost),
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,

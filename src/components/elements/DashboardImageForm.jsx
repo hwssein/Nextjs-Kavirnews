@@ -23,8 +23,8 @@ function DashboardImageForm({
       return;
     }
 
-    if (file.size > 3 * 1024 * 1024) {
-      setToastMessage("حداکثر حجم عکس ۳ مگابایت است.");
+    if (file.size > 1 * 1024 * 1024) {
+      setToastMessage("حداکثر حجم عکس ۱ مگابایت است.");
       return;
     }
 
