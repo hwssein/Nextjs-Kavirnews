@@ -23,7 +23,7 @@ function PostDetailsPage({ data }) {
         <div className="w-full flex flex-col sm:flex-row items-start justify-start gap-4 sm:gap-2">
           <div className="w-full mt-2 px-2 max-w-[640px] sm:max-w-[400px] lg:max-w-[640px] flex items-center justify-center rounded-lg overflow-hidden">
             <Image
-              src={data.image}
+              src={data?.image || "/images/image-unavailable.png"}
               width={640}
               height={400}
               alt={data.title}
