@@ -1,9 +1,9 @@
 import faFonts from "@/config/fonts";
 import "./globals.css";
 import Layout from "@/components/layouts/Layout";
-import myMetaData from "@/config/metadata";
+import { baseMetaData } from "@/config/metadata";
 
-export const metadata = myMetaData;
+export const metadata = baseMetaData;
 
 export default function RootLayout({ children }) {
   return (

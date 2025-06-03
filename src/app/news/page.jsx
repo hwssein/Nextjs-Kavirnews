@@ -1,11 +1,14 @@
 import Loader from "@/components/elements/Loader";
 import ShowError from "@/components/module/ShowError";
 import NewsPage from "@/components/templates/NewsPage";
+import { allNewsMetaData } from "@/config/metadata";
 import getFilteredPosts from "@/serverAction/getFilteredPosts";
 import getPost from "@/serverAction/getPost";
 import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
+
+export const metadata = allNewsMetaData;
 
 async function News({ searchParams }) {
   const searchedParams = await searchParams;
