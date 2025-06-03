@@ -7,7 +7,7 @@ import striptags from "striptags";
 const getPost = async () => {
   try {
     const res = await fetch(
-      `${process.env.API_URI}/posts?_embed&_fields=id,title,content,excerpt,categories,featured_media,date`,
+      `${process.env.API_URI}/posts?_embed&_fields=id,title,content,excerpt,categories,featured_media,date&per_page=100`,
       {
         cache: "no-store",
       }

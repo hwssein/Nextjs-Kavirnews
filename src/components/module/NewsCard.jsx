@@ -4,8 +4,8 @@ import Link from "next/link";
 function NewsCard({ data }) {
   return (
     <>
-      <Link href={`/news/${data?.id}`} className="w-full">
-        <div className="w-full flex flex-col items-start justify-start p-2">
+      <Link href={`/news/${data?.id}`} className="w-full shadow rounded-lg">
+        <div className="w-full flex flex-col items-start justify-start">
           <div className="w-full aspect-[4/3] flex items-center justify-center overflow-hidden rounded-lg">
             <Image
               src={data?.image || "/images/image-unavailable.png"}

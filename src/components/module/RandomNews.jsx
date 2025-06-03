@@ -13,7 +13,7 @@ function RandomNews({ data }) {
 
   return (
     <>
-      <div className="w-full flex flex-col items-start justify-start gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 mt-1">
+      <div className="w-full flex flex-col items-start justify-start gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 mt-1 px-2">
         {randomData?.map((item) => (
           <NewsCard key={item.id} data={item} />
         ))}

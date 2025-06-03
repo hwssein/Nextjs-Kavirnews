@@ -88,8 +88,8 @@ function EditForm({
           />
         </div>
 
-        <input type="hidden" name="oldImage" value={imageBlobUrl} />
-        <input type="hidden" name="id" value={form.id} />
+        <input type="hidden" name="oldImage" value={imageBlobUrl || ""} />
+        <input type="hidden" name="id" value={form.id || ""} />
 
         <button
           type="submit"
