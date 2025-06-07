@@ -36,14 +36,14 @@ input:focus {
 @theme {
   --color-background: #fafafa;
   --color-surface: #f1f1f1;
-  --color-primary: #e02424;
-  --color-secondary: #6366f1;
-  --color-icon: #4a4a4a;
   --color-stroke: #d4d4d4;
-  --color-danger: #dc2626;
+  --color-icon: #4a4a4a;
+  --color-text: #1f1f1f;
+  --color-primary: #6366f1;
+  --color-secondary: #ef4444;
+  --color-danger: #b91c1c;
   --color-success: #059669;
   --color-warning: #d97706;
-  --color-text: #1f1f1f;
 }
 
 @layer base {

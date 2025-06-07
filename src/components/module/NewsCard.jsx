@@ -27,18 +27,16 @@ function NewsCard({ data }) {
       </div>
 
       <div className="flex flex-1 flex-col p-4">
-        <div className="mb-2 flex items-center justify-between text-xs text-gray-500">
-          <span className="font-semibold text-blue-600">
+        <div className="mb-2 flex items-center justify-between text-xs text-icon">
+          <span className="font-semibold text-primary">
             {data?.category?.name || "دسته‌بندی"}
           </span>
           <span>{postDate}</span>
         </div>
 
-        <h2 className="mb-2 text-lg font-bold text-gray-900 line-clamp-2">
-          {data?.title}
-        </h2>
+        <h2 className="mb-2 text-lg font-bold line-clamp-2">{data?.title}</h2>
 
-        <p className="text-sm text-gray-700 line-clamp-3">{data?.summary}</p>
+        <p className="text-sm text-icon line-clamp-3">{data?.summary}</p>
       </div>
     </Link>
   );
