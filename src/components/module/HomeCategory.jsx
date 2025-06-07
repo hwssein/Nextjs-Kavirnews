@@ -1,30 +1,47 @@
 import categoriesConstant from "@/constant/categories";
-import Image from "next/image";
+import { Users, DollarSign, Landmark, Monitor, Dumbbell } from "lucide-react";
 import Link from "next/link";
 
 function HomeCategory() {
+  const icons = {
+    Users,
+    DollarSign,
+    Landmark,
+    Monitor,
+    Dumbbell,
+  };
+
   return (
-    <div className="w-full md:w-[40%] lg:w-full flex flex-wrap items-center justify-center sm:justify-between md:justify-start lg:justify-between gap-y-2 gap-x-4 p-2">
-      {categoriesConstant.map((item, index) => (
-        <Link
-          href={item.slug}
-          key={index}
-          className="w-[80px] h-[40px] rounded-lg relative group overflow-hidden"
-        >
-          <Image
-            src={item.image}
-            fill
-            sizes="80px"
-            alt={item.title}
-            className="w-full h-full rounded-lg object-cover"
-          />
-          <span className="w-full h-full absolute top-0 right-0 flex items-center justify-center rounded-lg backdrop-blur-sm bg-transparent group-hover:bg-primary/30 group-hover:backdrop-blur-none custom-transition">
-            <span className="w-full text-center text-sm text-background">
-              #{item.title}
-            </span>
-          </span>
-        </Link>
-      ))}
+    <div className="w-full p-2 flex flex-col items-center justify-center gap-6">
+      <div className="w-full flex flex-col items-center justify-center gap-2">
+        <span className="w-full text-center text-xl font-semibold">
+          جستجو بر اساس دسته بندی
+        </span>
+        <span className="w-full text-center text-icon font-light">
+          مشاهده‌ آخرین اخبار روز دنیا در هر دسته بندی
+        </span>
+      </div>
+
+      <div className="w-full flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+        {categoriesConstant.map((item, index) => {
+          const Icon = icons[item.icon ?? null];
+
+          return (
+            <Link
+              href={item.slug}
+              key={index}
+              className="w-fit py-3 sm:py-4 px-6 sm:px-8 bg-white rounded-md border border-stroke flex flex-col items-center gap-2 hover:bg-primary custom-transition group"
+            >
+              {Icon && (
+                <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary group-hover:text-white custom-transition" />
+              )}
+              <span className="text-sm group-hover:text-white custom-transition">
+                {item.title}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }

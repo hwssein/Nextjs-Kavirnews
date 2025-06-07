@@ -1,5 +1,6 @@
 import FilterElements from "../elements/FilterElements";
 import SectionTitle from "../elements/SectionTitle";
+import HomeCategory from "../module/HomeCategory";
 import HomeHeader from "../module/HomeHeader";
 import MainSlider from "../module/MainSlider";
 import NewsTicker from "../module/NewsTicker";
@@ -11,11 +12,7 @@ function HomePage({ allPosts, categoriesPosts }) {
       <div className="w-full flex flex-col items-start justify-start gap-4">
         <HomeHeader />
 
-        <div className="w-full px-2">
-          <SectionTitle text={"جستجو‌ی خبر"} />
-
-          <FilterElements />
-        </div>
+        <HomeCategory />
 
         <MainSlider categoriesPosts={categoriesPosts} />
 
