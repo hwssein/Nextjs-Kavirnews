@@ -8,7 +8,7 @@ import RandomNews from "../module/RandomNews";
 function HomePage({ allPosts, categoriesPosts }) {
   return (
     <>
-      <div className="w-full flex flex-col items-start justify-start gap-2">
+      <div className="w-full flex flex-col items-start justify-start gap-4">
         <HomeHeader />
 
         <div className="w-full px-2">

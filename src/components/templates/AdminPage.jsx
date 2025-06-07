@@ -8,7 +8,7 @@ function AdminPage({ data }) {
       <div className="w-full flex flex-col items-start justify-start gap-4 px-2">
         <SectionTitle text={"صفحه ادمین"} />
 
-        <div className="w-full flex flex-col items-start justify-start gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {data?.map((item) => (
             <div
               key={item.id}
