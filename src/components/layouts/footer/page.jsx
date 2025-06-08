@@ -102,7 +102,7 @@ function Footer() {
           <Link
             href="https://github.com/hwssein"
             target="_blank"
-            className="w-full p-4 bg-stroke rounded-lg text-center text-icon"
+            className="w-full p-4 bg-background rounded-lg text-center font-semibold"
           >
             توسعه داده شده با ❤ توسط hwssein
           </Link>

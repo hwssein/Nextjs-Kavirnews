@@ -33,17 +33,18 @@ function Header({ session }) {
 
   return (
     <>
-      <div className="w-full flex items-center justify-between gap-4 p-2 relative">
-        <div className="w-fit flex items-center justify-start gap-2">
+      <div className="w-full flex items-center justify-between gap-4 px-2 py-3 relative">
+        <div className="w-fit flex items-center justify-start gap-2 md:gap-0">
           <MobileNav session={session} currentPath={currentPath} />
 
-          <Link href="/">
+          <Link href="/" className="w-[110px] min-h-8 relative">
             <Image
               src="/images/logo.png"
-              width={110}
-              height={34}
+              sizes="auto"
+              fill
               alt="logo"
               priority={true}
+              className="w-full h-full absolute inset-0"
             />
           </Link>
 
@@ -105,7 +106,7 @@ function Header({ session }) {
         </div>
       </div>
 
-      <span className="w-full h-px bg-stroke block mb-2"></span>
+      <span className="w-full h-px bg-stroke block mb-4"></span>
     </>
   );
 }

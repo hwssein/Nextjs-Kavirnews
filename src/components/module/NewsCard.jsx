@@ -14,7 +14,7 @@ function NewsCard({ data }) {
   return (
     <Link
       href={`/news/${data?.id}`}
-      className="group h-full overflow-hidden rounded-lg bg-white shadow flex flex-col"
+      className="group h-full overflow-hidden rounded-md bg-white shadow flex flex-col"
     >
       <div className="relative w-full aspect-[16/9] overflow-hidden flex-shrink-0">
         <Image

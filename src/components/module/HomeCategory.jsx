@@ -1,6 +1,7 @@
 import categoriesConstant from "@/constant/categories";
 import { Users, DollarSign, Landmark, Monitor, Dumbbell } from "lucide-react";
 import Link from "next/link";
+import HomeSearchInput from "../elements/HomeSearchInput";
 
 function HomeCategory() {
   const icons = {
@@ -42,6 +43,8 @@ function HomeCategory() {
           );
         })}
       </div>
+
+      <HomeSearchInput />
     </div>
   );
 }

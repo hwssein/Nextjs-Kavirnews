@@ -16,7 +16,7 @@ function MobileNav({ session, currentPath }) {
         <button
           aria-label="باز کردن منو"
           onClick={() => setIsNavShow(true)}
-          className="p-2 bg-surface rounded-lg cursor-pointer text-icon md:hidden"
+          className="p-2 rounded-lg cursor-pointer text-primary border border-primary md:hidden"
         >
           <Menu />
         </button>
