@@ -9,7 +9,7 @@ async function Home() {
   const allPosts = await getPost();
   const categoriesPosts = await getCategoriesLatestPosts();
 
-  if (!allPosts || allPosts.error) {
+  if (allPosts?.data.length === 0 || allPosts.error) {
     return (
       <>
         <ShowError />

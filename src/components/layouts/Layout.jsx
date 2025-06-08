@@ -5,8 +5,6 @@ import Header from "./header/Header";
 async function Layout({ children }) {
   const session = await getSession();
 
-  console.log(session);
-
   return (
     <>
       <header>
