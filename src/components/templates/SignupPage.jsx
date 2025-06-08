@@ -63,7 +63,7 @@ function SignupPage() {
     <>
       <div className="w-full h-full inset-0 absolute bg-primary/10 -z-10"></div>
 
-      <div className="w-full max-w-2xl flex flex-col items-center justify-start gap-8 mx-auto p-2">
+      <div className="w-full max-w-2xl flex flex-col items-center justify-start gap-8 mx-auto px-2 py-3">
         <div className="w-full flex items-center justify-start">
           <span
             onClick={() => router.back()}

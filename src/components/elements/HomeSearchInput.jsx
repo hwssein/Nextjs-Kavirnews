@@ -33,7 +33,7 @@ function HomeSearchInput() {
             value={searchValue || ""}
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="جستجو در بین اخبار ..."
-            className="w-[calc(100-20px)] text-sm text-icon bg-transparent outline-none placeholder:text-icon p-2"
+            className="w-[calc(100%-20px)] text-sm text-icon bg-transparent outline-none placeholder:text-icon p-2"
           />
         </div>
 

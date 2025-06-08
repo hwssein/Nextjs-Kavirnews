@@ -16,35 +16,32 @@ function MobileNav({ session, currentPath }) {
         <button
           aria-label="باز کردن منو"
           onClick={() => setIsNavShow(true)}
-          className="p-2 rounded-lg cursor-pointer text-primary border border-primary md:hidden"
+          className="p-1.5 sm:p-2 rounded-lg cursor-pointer text-primary border border-primary md:hidden"
         >
           <Menu />
         </button>
 
         {isNavShow && (
-          <div className="w-full h-screen z-20 bg-background absolute top-0 right-0 p-2 flex flex-col items-start justify-start gap-8">
+          <div className="w-full h-screen z-20 bg-background fixed top-0 right-0 px-2 py-3 flex flex-col items-start justify-start gap-6">
             <div className="w-full flex items-center justify-between gap-4">
               <button
                 aria-label="بستن منو"
                 onClick={() => setIsNavShow(false)}
-                className="p-2 bg-surface rounded-lg cursor-pointer text-icon"
+                className="p-1.5 sm:p-2 rounded-lg cursor-pointer text-primary border border-primary"
               >
                 <CircleX />
               </button>
 
-              <Image
-                src="/images/logo.png"
-                width={110}
-                height={34}
-                alt="logo"
-                loading="lazy"
-              />
-            </div>
-
-            <div className="w-full flex items-center justify-center">
-              <p className="w-4/5 text-center  bg-secondary text-background py-2 px-4 rounded-lg">
-                بروز‌ترین و بزرگترین مرجع رسمی اخبار بین‌الملل
-              </p>
+              <div className="w-[110px] min-h-8 relative">
+                <Image
+                  src="/images/logo.png"
+                  sizes="auto"
+                  fill
+                  alt="logo"
+                  priority={true}
+                  className="w-full h-full absolute inset-0"
+                />
+              </div>
             </div>
 
             <ul className="w-full flex flex-col items-start justify-start gap-4 p-2">
