@@ -56,17 +56,19 @@ function SigninPage() {
 
   return (
     <>
+      <div className="w-full h-full inset-0 absolute -z-10 bg-primary/10"></div>
+
       <div className="w-full max-w-2xl flex flex-col items-center justify-start gap-8 mx-auto p-2">
         <div className="w-full flex items-center justify-start">
           <span
             onClick={() => router.back()}
-            className="p-2 text-icon bg-surface rounded-lg cursor-pointer"
+            className="p-2 text-icon rounded-lg cursor-pointer"
           >
             <ArrowRight />
           </span>
         </div>
 
-        <p className="w-full text-center text-primary font-medium">
+        <p className="w-full text-center text-primary font-semibold text-xl">
           ورود به حساب
         </p>
 

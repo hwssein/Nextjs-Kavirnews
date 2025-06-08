@@ -15,10 +15,10 @@ function SigninForm({
     <>
       <form
         onSubmit={handleSubmit}
-        className="w-full flex flex-col items-center justify-start gap-3"
+        className="w-full flex flex-col items-center justify-start gap-4"
       >
-        <div className="w-3/4 h-[38px] sm:h-[42px] px-4 py-2 rounded-lg bg-surface flex items-center justify-start gap-2 text-icon ">
-          <Mail />
+        <div className="w-3/4 h-[38px] sm:h-[42px] px-4 py-2 rounded-lg bg-white flex items-center justify-start gap-2 text-icon ">
+          <Mail className="text-primary" />
           <input
             type="email"
             name="email"
@@ -26,12 +26,12 @@ function SigninForm({
             onChange={handleChangeValue}
             placeholder="ایمیل"
             required
-            className="w-full"
+            className="w-full placeholder:text-icon"
           />
         </div>
 
-        <div className="w-3/4 h-[38px] sm:h-[42px] px-4 py-2 rounded-lg bg-surface flex items-center justify-start gap-2 text-icon">
-          <Lock />
+        <div className="w-3/4 h-[38px] sm:h-[42px] px-4 py-2 rounded-lg bg-white flex items-center justify-start gap-2 text-icon">
+          <Lock className="text-primary" />
           <input
             type={isShowPassword ? "text" : "password"}
             name="password"
@@ -39,7 +39,7 @@ function SigninForm({
             onChange={handleChangeValue}
             placeholder="رمز عبور"
             required
-            className="w-full"
+            className="w-full placeholder:text-icon"
           />
 
           {isShowPassword ? (
