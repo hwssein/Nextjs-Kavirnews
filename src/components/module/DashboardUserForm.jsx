@@ -7,9 +7,10 @@ import uploadPost from "@/serverAction/uploadPost";
 import Toast from "./Toast";
 import DashboardImageForm from "../elements/DashboardImageForm";
 
-import { Loader } from "lucide-react";
+import { ChevronDown, Loader } from "lucide-react";
+import SectionTitle from "../elements/SectionTitle";
 
-function DashboardUserForm({ userRole }) {
+function DashboardUserForm() {
   const [imageBlobUrl, setImageBlobUrl] = useState("");
   const [toastMessage, setToastMessage] = useState("");
 
@@ -45,29 +46,31 @@ function DashboardUserForm({ userRole }) {
 
   return (
     <>
+      <SectionTitle text="افزودن خبر" />
+
       <form
         action={formAction}
         className="w-full flex flex-col items-start justify-start gap-4"
       >
-        <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-center gap-4">
-          <div className="w-full flex flex-col items-start justify-start gap-4">
-            <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start gap-4">
+        <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-center gap-6">
+          <div className="w-full flex flex-col items-start justify-start gap-6">
+            <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start gap-6">
               <div className="w-full flex flex-col items-start justify-start gap-2">
                 <label htmlFor="post-title">عنوان</label>
                 <input
                   type="text"
                   id="post-title"
                   name="title"
-                  className="w-full border border-stroke bg-surface px-2 py-1.5 sm:py-2 rounded-lg"
+                  className="w-full border border-stroke focus:border-primary custom-transition bg-surface p-2 rounded-lg"
                 />
               </div>
 
-              <div className="w-full h-[38px] md:h-[42px] bg-surface border border-stroke rounded-lg flex flex-col items-start justify-start gap-2">
+              <div className="w-full border border-stroke focus:border-primary custom-transition bg-surface rounded-lg relative">
                 <select
                   name="category"
                   defaultValue=""
                   required
-                  className="w-full px-1 flex flex-col items-start justify-start gap-2 bg-surface rounded-lg"
+                  className="w-full h-[42px] appearance-none p-2"
                 >
                   <option value="" disabled hidden>
                     دسته بندی
@@ -78,6 +81,8 @@ function DashboardUserForm({ userRole }) {
                   <option value="technology">فناوری</option>
                   <option value="sport">ورزش</option>
                 </select>
+
+                <ChevronDown className="w-4 h-4 text-icon absolute left-2 top-3.5" />
               </div>
             </div>
 
@@ -86,7 +91,7 @@ function DashboardUserForm({ userRole }) {
               <textarea
                 name="summary"
                 id="post-summary"
-                className="w-full resize-none h-[76px] md:h-[42px] border border-stroke bg-surface px-2 py-1.5 sm:py-2 rounded-lg"
+                className="w-full resize-none h-32 border border-stroke bg-surface p-2 rounded-lg"
               ></textarea>
             </div>
 
@@ -95,9 +100,7 @@ function DashboardUserForm({ userRole }) {
               <textarea
                 name="description"
                 id="post-description"
-                rows={5}
-                cols={50}
-                className="w-full border border-stroke bg-surface px-2 py-1.5 sm:py-2 rounded-lg"
+                className="w-full h-48 border border-stroke bg-surface p-2 rounded-lg"
               ></textarea>
             </div>
           </div>

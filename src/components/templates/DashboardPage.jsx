@@ -11,9 +11,9 @@ function DashboardPage({ session, postData }) {
       <div className="w-full flex flex-col items-start justify-start gap-4 p-2">
         <DashboardUserProfileCard session={session} />
 
-        <DashboardUserForm role={session?.role} />
+        <DashboardUserForm />
 
-        <div className="w-full flex flex-col items-start justify-start gap-4 mt-4">
+        {/* <div className="w-full flex flex-col items-start justify-start gap-4 mt-4">
           <div className="w-full flex items-center justify-start border-b border-stroke">
             <span className="py-2 font-semibold text-icon">پست‌های من</span>
           </div>
@@ -40,7 +40,7 @@ function DashboardPage({ session, postData }) {
               ))}
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     </>
   );

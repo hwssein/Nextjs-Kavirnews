@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-function SliderHotNews({ allPosts: data }) {
+function MiniNewsCard({ allPosts: data }) {
   const [randomData, setRandomData] = useState([]);
 
   useEffect(() => {
@@ -45,4 +45,4 @@ function SliderHotNews({ allPosts: data }) {
   );
 }
 
-export default SliderHotNews;
+export default MiniNewsCard;

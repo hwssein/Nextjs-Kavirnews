@@ -6,7 +6,7 @@ import "swiper/css";
 
 import SectionTitle from "../elements/SectionTitle";
 import SliderCard from "./SliderCard";
-import SliderHotNews from "./SliderHotNews";
+import MiniNewsCard from "./MiniNewsCard";
 
 function MainSlider({ categoriesPosts, allPosts }) {
   return (
@@ -31,7 +31,7 @@ function MainSlider({ categoriesPosts, allPosts }) {
               <div className="w-full flex items-start justify-between gap-6">
                 <SliderCard post={item} isPriority={index === 0} />
 
-                <SliderHotNews allPosts={allPosts} />
+                <MiniNewsCard allPosts={allPosts} />
               </div>
             </SwiperSlide>
           ))}
