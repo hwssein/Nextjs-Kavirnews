@@ -16,11 +16,13 @@ function ShareNews() {
     <>
       <div
         onClick={handleShare}
-        className="w-fit text-icon text-sm flex items-center justify-start gap-2 bg-surface hover:bg-secondary hover:text-background p-2 rounded-lg custom-transition cursor-pointer"
+        className="w-fit text-icon text-sm flex items-center justify-center gap-2 p-2 cursor-pointer rounded-md hover:bg-primary custom-transition group"
       >
-        <Share2 className="w-4 h-4" />
+        <Share2 className="w-5 h-5 text-primary group-hover:text-background custom-transition" />
 
-        <span>اشتراک گذاری</span>
+        <span className="group-hover:text-background custom-transition">
+          اشتراک گذاری
+        </span>
       </div>
 
       <Toast message={toastMessage} onClose={() => setToastMessage("")} />

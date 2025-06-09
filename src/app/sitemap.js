@@ -1,5 +1,7 @@
 import getPost from "@/serverAction/getPost";
 
+export const dynamic = "force-dynamic";
+
 export default async function sitemap() {
   const BASE_URL = process.env.BASE_URL || "https://kavirnews.vercel.app";
   const lastModified = new Date();

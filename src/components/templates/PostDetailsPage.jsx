@@ -1,8 +1,10 @@
 import Image from "next/image";
 import ShareNews from "../elements/ShareNews";
+import { Calendar, FolderOpen, User2 } from "lucide-react";
+import RandomNews from "../module/RandomNews";
 
-function PostDetailsPage({ data }) {
-  const convertDate = new Date(data?.date).toLocaleDateString(
+function PostDetailsPage({ data: postData, allPosts }) {
+  const convertDate = new Date(postData?.date).toLocaleDateString(
     "fa-IR-u-ca-persian",
     {
       year: "numeric",
@@ -13,55 +15,55 @@ function PostDetailsPage({ data }) {
 
   return (
     <>
-      <div className="w-full flex flex-col items-start justify-start gap-2 mt-2">
-        <div className="w-full px-2 flex items-center justify-start">
-          <h1 className="w-full p-2 sm:py-5 bg-secondary rounded-lg font-semibold text-background text-justify">
-            {data.title}
+      <div className="w-full flex flex-col items-start justify-start gap-8 mt-8 px-2">
+        <div className="w-full flex items-center justify-start">
+          <h1 className="w-full font-bold text-lg lg:text-xl text-primary">
+            {postData.title}
           </h1>
         </div>
 
-        <div className="w-full flex flex-col sm:flex-row items-start justify-start gap-4 sm:gap-2">
-          <div className="w-full mt-2 px-2 max-w-[640px] sm:max-w-[400px] lg:max-w-[640px] flex items-center justify-center rounded-lg overflow-hidden">
+        <div className="w-full flex flex-col items-start justify-start gap-4">
+          <div className="w-full lg:w-[60%] aspect-video rounded-lg overflow-hidden relative">
             <Image
-              src={data?.image || "/images/image-unavailable.png"}
-              width={640}
-              height={400}
-              alt={data.title}
-              className="w-full h-fit rounded-lg"
+              src={postData?.image || "/images/image-unavailable.png"}
+              fill
+              sizes="768px"
+              alt={postData.title}
+              className="w-full h-full rounded-lg inset-0"
             />
           </div>
 
-          <div className="w-full flex flex-wrap sm:flex-col items-center sm:items-start justify-between sm:justify-start gap-4 px-2 sm:mt-2">
-            <div className="w-fit text-icon text-sm flex items-center justify-start gap-2 bg-surface p-2 rounded-lg">
-              <span>دسته بندی:</span>
-              <span className="text-secondary">{data?.category.name}</span>
+          <div className="w-full flex flex-wrap items-center sm:items-start justify-between sm:justify-start gap-4">
+            <div className="w-fit text-icon text-sm flex items-center justify-center gap-2 p-2">
+              <FolderOpen className="w-5 h-5 text-primary" />
+              <span>{postData?.category.name}</span>
             </div>
 
-            <div className="w-fit text-icon text-sm flex items-center justify-start gap-2 bg-surface p-2 rounded-lg">
-              <span>تاریخ انتشار:</span>
-              <span className="text-secondary">{convertDate}</span>
+            <div className="w-fit text-icon text-sm flex items-center justify-center gap-2 p-2">
+              <Calendar className="w-5 h-5 text-primary" />
+              <span>{convertDate}</span>
             </div>
 
-            <div className="w-fit text-icon text-sm flex items-center justify-start gap-2 bg-surface p-2 rounded-lg">
-              <span>نویسنده:</span>
-              <span className="text-secondary">{data?.author.name}</span>
+            <div className="w-fit text-icon text-sm flex items-center justify-center gap-2 p-2">
+              <User2 className="w-5 h-5 text-primary" />
+              <span>{postData?.author.name}</span>
             </div>
 
             <ShareNews />
           </div>
         </div>
 
-        <div className="w-full px-2 flex items-center justify-start mt-2">
-          <h3 className="w-full px-2 py-6 bg-surface rounded-lg font-normal text-base text-justify">
-            {data.summary}
+        <div className="w-full flex items-center justify-start">
+          <h3 className="w-full p-4 sm:p-6 bg-surface rounded-lg font-semibold text-icon text-base">
+            {postData.summary}
           </h3>
         </div>
 
-        <div className="w-full relative px-2 mt-2 flex items-start justify-start gap-2 group">
-          <span className="w-fit rounded-lg px-1 py-2 inline-block bg-primary mt-1 group-hover:bg-secondary custom-transition"></span>
+        <div className="w-full lg:w-[60%] relative flex items-start justify-start gap-2 group">
+          <span className="w-fit rounded-full px-1 py-2 inline-block bg-primary mt-2 group-hover:bg-secondary custom-transition"></span>
 
-          <div className="w-full inline-block text-justify text-icon text-base/relaxed mb-4">
-            {data.description.split("\n").map((line, index) => (
+          <div className="w-full inline-block text-icon text-base/relaxed mb-4">
+            {postData.description.split("\n").map((line, index) => (
               <p
                 key={index}
                 className="mb-2 text-icon text-base leading-loose text-justify whitespace-pre-wrap"
@@ -72,6 +74,8 @@ function PostDetailsPage({ data }) {
           </div>
         </div>
       </div>
+
+      <RandomNews data={allPosts} />
     </>
   );
 }
