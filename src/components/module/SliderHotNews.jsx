@@ -19,6 +19,7 @@ function SliderHotNews({ allPosts: data }) {
           <Link
             key={item.id}
             href={`/news/${item?.id}`}
+            target="_blank"
             className="w-full bg-white flex items-center gap-4 group shadow p-4 rounded-md"
           >
             <div className="w-[200px] aspect-video overflow-hidden relative rounded-md">

@@ -50,7 +50,11 @@ function NewsTicker({ data }) {
               key={item.id}
               className="!w-fit flex items-center px-2 !ml-0"
             >
-              <Link href={`/news/${item?.id}`} className="flex items-center">
+              <Link
+                href={`/news/${item?.id}`}
+                target="_blank"
+                className="flex items-center"
+              >
                 <strong className="text-base font-normal text-background whitespace-nowrap">
                   {item?.title}
                 </strong>

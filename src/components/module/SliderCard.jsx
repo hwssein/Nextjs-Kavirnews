@@ -12,6 +12,7 @@ function SliderCard({ post, isPriority }) {
   return (
     <Link
       href={`/news/${post.id}`}
+      target="_blank"
       className="group relative w-full h-[450px] md:h-[500px] rounded-lg overflow-hidden"
     >
       <Image
