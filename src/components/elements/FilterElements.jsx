@@ -1,8 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import CategorySection from "../module/CategorySection";
-import MobileCategorySection from "./MobileCategorySection";
 import SearchInput from "./SearchInput";
+
+const MobileCategorySection = dynamic(
+  () => import("@/components/elements/MobileCategorySection"),
+  { ssr: false }
+);
 
 function FilterElements() {
   return (

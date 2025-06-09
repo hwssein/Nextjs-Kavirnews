@@ -14,7 +14,7 @@ const MobileNav = dynamic(
   { ssr: false }
 );
 const ProfileDropDown = dynamic(
-  () => import("@/components/module/ProfileDropDown"),
+  () => import("@/components/elements/ProfileDropDown"),
   {
     ssr: false,
   }

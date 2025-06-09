@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FolderOpen, Clock } from "lucide-react";
+import { FolderOpen, Calendar } from "lucide-react";
 
 function SliderCard({ post, isPriority }) {
   const postDate = new Date(post.date).toLocaleDateString("fa-IR", {
@@ -36,7 +36,7 @@ function SliderCard({ post, isPriority }) {
             <span>{post.category.name}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4" />
+            <Calendar className="w-4 h-4" />
             <span>{postDate}</span>
           </div>
         </div>

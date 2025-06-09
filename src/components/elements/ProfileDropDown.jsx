@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, CircleUserRound } from "lucide-react";
 import Link from "next/link";
+
+import { ChevronDown, CircleUserRound } from "lucide-react";
 
 function ProfileDropDown({ session }) {
   const [isShowProfileDropdown, setIsShowProfileDropdown] = useState(false);
@@ -33,20 +34,15 @@ function ProfileDropDown({ session }) {
   return (
     <div
       ref={wrapperRef}
-      className="relative flex flex-col items-center justify-center px-4 py-1.5 sm:py-2 border border-primary rounded-lg hover:bg-gray-50 custom-transition"
+      className="relative flex flex-col items-center justify-center"
     >
       <div
         onClick={() => setIsShowProfileDropdown((prev) => !prev)}
-        dir="ltr"
-        className="w-full max-w-28 flex items-center justify-center gap-2 text-icon cursor-pointer"
+        className="w-full px-4 py-1.5 sm:py-2 max-w-28 flex items-center justify-center gap-2 text-white bg-primary rounded-lg border border-primary hover:brightness-90 custom-transition cursor-pointer"
       >
-        <span className="w-5 h-5 flex items-center justify-center">
-          <CircleUserRound />
-        </span>
+        <CircleUserRound className="w-5 h-5" />
+
         <span className="w-fit truncate">{session?.name}</span>
-        <span className="w-4 h-4 flex items-center justify-center">
-          <ChevronDown />
-        </span>
       </div>
 
       {isShowProfileDropdown && (
