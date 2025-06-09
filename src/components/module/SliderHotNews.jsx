@@ -27,7 +27,7 @@ function SliderHotNews({ allPosts: data }) {
                 fill
                 sizes="200px"
                 alt={item?.title}
-                className="object-cover w-full h-full group-hover:scale-105 custom-transition"
+                className="object-cover w-full h-full group-hover:scale-105 custom-image-transition"
               ></Image>
             </div>
 

@@ -20,7 +20,7 @@ function SliderCard({ post, isPriority }) {
         fill
         priority={isPriority}
         sizes="(min-width: 768px) 80vw, 100vw"
-        className="object-cover w-full h-full custom-transition group-hover:scale-105"
+        className="object-cover w-full h-full custom-image-transition group-hover:scale-105"
       />
 
       <div

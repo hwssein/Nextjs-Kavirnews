@@ -21,7 +21,7 @@ function NewsCard({ data }) {
           src={data?.image || "/images/image-unavailable.png"}
           alt={data?.title || "Default title"}
           fill
-          className="object-cover custom-transition group-hover:scale-105"
+          className="object-cover custom-image-transition group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>

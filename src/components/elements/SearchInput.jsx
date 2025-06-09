@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -24,22 +24,22 @@ function SearchInput() {
 
   return (
     <>
-      <div className="w-full flex items-center justify-start gap-2 p-2">
+      <div className="w-full flex items-center justify-start gap-3">
         <input
           type="text"
           name="search"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="جستجو ... "
-          className="w-full h-10 text-right bg-background rounded-lg p-2"
+          placeholder="جستجو"
+          className="w-full h-10 text-sm text-icon bg-white placeholder:text-icon p-2 border border-stroke rounded-md focus:border-primary"
         />
 
         <button
           aria-label="دکمه جستجو"
           onClick={handleSearch}
-          className="w-fit h-10 px-4 py-2 text-nowrap border border-primary bg-primary rounded-lg text-white hover:brightness-90 custom-transition cursor-pointer"
+          className="w-fit px-4 sm:px-6 py-2 text-nowrap bg-primary rounded-md hover:brightness-90 custom-transition cursor-pointer"
         >
-          <Search />
+          <Search className="w-6 h-6 text-white" />
         </button>
       </div>
     </>
