@@ -9,7 +9,6 @@ function DashboardUserProfileCard({
   session,
   userName,
 }) {
-  console.log(session);
   return (
     <>
       <div className="w-full md:w-[768px] mx-auto flex flex-col items-start justify-start gap-8 bg-surface rounded-lg p-4 sm:p-6">

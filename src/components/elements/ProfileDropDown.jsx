@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-import { ChevronDown, CircleUserRound } from "lucide-react";
+import { CircleUserRound } from "lucide-react";
 
 function ProfileDropDown({ session }) {
   const [isShowProfileDropdown, setIsShowProfileDropdown] = useState(false);

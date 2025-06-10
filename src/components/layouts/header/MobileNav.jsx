@@ -32,14 +32,14 @@ function MobileNav({ session, currentPath }) {
                 <CircleX />
               </button>
 
-              <div className="w-[110px] min-h-8 relative">
+              <div className="w-[110px] max-h-9 aspect-video relative">
                 <Image
                   src="/images/logo.png"
-                  sizes="auto"
+                  sizes="110px"
                   fill
                   alt="logo"
                   priority={true}
-                  className="w-full h-full absolute inset-0"
+                  className="w-full h-full object-contain object-center"
                 />
               </div>
             </div>

@@ -37,14 +37,14 @@ function Header({ session }) {
         <div className="w-fit flex items-center justify-start gap-2 md:gap-0">
           <MobileNav session={session} currentPath={currentPath} />
 
-          <Link href="/" className="w-[110px] min-h-8 relative">
+          <Link href="/" className="w-[110px] max-h-9 aspect-video relative">
             <Image
               src="/images/logo.png"
-              sizes="auto"
+              sizes="110px"
               fill
               alt="logo"
               priority={true}
-              className="w-full h-full absolute inset-0"
+              className="w-full h-full object-contain object-center"
             />
           </Link>
 

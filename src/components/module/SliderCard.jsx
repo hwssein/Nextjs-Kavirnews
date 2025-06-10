@@ -25,7 +25,7 @@ function SliderCard({ post, isPriority }) {
       />
 
       <div
-        className="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/10 to-transparent"
+        className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent"
         aria-hidden="true"
       />
 
