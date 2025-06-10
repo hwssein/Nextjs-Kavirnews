@@ -1,19 +1,15 @@
 "use client";
 
 import { useState, useEffect, useActionState, useRef } from "react";
-
 import uploadPost from "@/serverAction/uploadPost";
 
-import Toast from "./Toast";
 import DashboardImageForm from "../elements/DashboardImageForm";
 
 import { ChevronDown, Loader } from "lucide-react";
 import SectionTitle from "../elements/SectionTitle";
 
-function DashboardUserForm() {
+function DashboardUserForm({ setToastMessage }) {
   const [imageBlobUrl, setImageBlobUrl] = useState("");
-  const [toastMessage, setToastMessage] = useState("");
-
   const imageRef = useRef(null);
 
   const [state, formAction, isPending] = useActionState(uploadPost, {
@@ -52,78 +48,80 @@ function DashboardUserForm() {
         action={formAction}
         className="w-full flex flex-col items-start justify-start gap-4"
       >
-        <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-center gap-6">
-          <div className="w-full flex flex-col items-start justify-start gap-6">
-            <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start gap-6">
-              <div className="w-full flex flex-col items-start justify-start gap-2">
-                <label htmlFor="post-title">عنوان</label>
-                <input
-                  type="text"
-                  id="post-title"
-                  name="title"
-                  className="w-full border border-stroke focus:border-primary custom-transition bg-surface p-2 rounded-lg"
-                />
-              </div>
-
-              <div className="w-full border border-stroke focus:border-primary custom-transition bg-surface rounded-lg relative">
-                <select
-                  name="category"
-                  defaultValue=""
-                  required
-                  className="w-full h-[42px] appearance-none p-2"
-                >
-                  <option value="" disabled hidden>
-                    دسته بندی
-                  </option>
-                  <option value="social">اجتماعی</option>
-                  <option value="economics">اقتصاد</option>
-                  <option value="politic">سیاست</option>
-                  <option value="technology">فناوری</option>
-                  <option value="sport">ورزش</option>
-                </select>
-
-                <ChevronDown className="w-4 h-4 text-icon absolute left-2 top-3.5" />
-              </div>
+        <div className="w-full flex flex-col items-start justify-start gap-6">
+          <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start gap-6">
+            <div className="w-full md:w-[70%] flex flex-col items-start justify-start gap-2">
+              <label htmlFor="post-title">عنوان</label>
+              <input
+                type="text"
+                id="post-title"
+                name="title"
+                className="w-full border border-stroke focus:border-primary custom-transition bg-surface p-2 rounded-lg"
+              />
             </div>
 
-            <div className="w-full flex flex-col items-start justify-start gap-2">
-              <label htmlFor="post-summary">خلاصه مطلب</label>
-              <textarea
-                name="summary"
-                id="post-summary"
-                className="w-full resize-none h-32 border border-stroke bg-surface p-2 rounded-lg"
-              ></textarea>
-            </div>
+            <div className="w-full md:w-[30%] border border-stroke focus:border-primary custom-transition bg-surface rounded-lg relative">
+              <select
+                aria-label="انتخاب دسته بندی"
+                name="category"
+                defaultValue=""
+                required
+                className="w-full h-[42px] appearance-none p-2"
+              >
+                <option value="" disabled hidden>
+                  دسته بندی
+                </option>
+                <option value="social">اجتماعی</option>
+                <option value="economics">اقتصاد</option>
+                <option value="politic">سیاست</option>
+                <option value="technology">فناوری</option>
+                <option value="sport">ورزش</option>
+              </select>
 
-            <div className="w-full flex flex-col items-start justify-start gap-2">
-              <label htmlFor="post-description">توضیحات</label>
-              <textarea
-                name="description"
-                id="post-description"
-                className="w-full h-48 border border-stroke bg-surface p-2 rounded-lg"
-              ></textarea>
+              <ChevronDown className="w-4 h-4 text-icon absolute left-2 top-3.5" />
             </div>
           </div>
 
-          <DashboardImageForm
-            imageBlobUrl={imageBlobUrl}
-            setImageBlobUrl={setImageBlobUrl}
-            setToastMessage={setToastMessage}
-            imageRef={imageRef}
-          />
+          <div className="w-full flex flex-col md:flex-row items-start md:items-stretch justify-start gap-6">
+            <div className="w-full md:w-[70%] flex flex-col items-start justify-start gap-6">
+              <div className="w-full flex flex-col items-start justify-start gap-2">
+                <label htmlFor="post-summary">خلاصه مطلب</label>
+                <textarea
+                  name="summary"
+                  id="post-summary"
+                  className="w-full resize-none h-32 border border-stroke bg-surface p-2 rounded-lg"
+                ></textarea>
+              </div>
+
+              <div className="w-full flex flex-col items-start justify-start gap-2">
+                <label htmlFor="post-description">توضیحات</label>
+                <textarea
+                  name="description"
+                  id="post-description"
+                  className="w-full h-48 border border-stroke bg-surface p-2 rounded-lg"
+                ></textarea>
+              </div>
+            </div>
+
+            <DashboardImageForm
+              imageBlobUrl={imageBlobUrl}
+              setImageBlobUrl={setImageBlobUrl}
+              setToastMessage={setToastMessage}
+              imageRef={imageRef}
+            />
+          </div>
         </div>
 
         <button
           type="submit"
           disabled={isPending}
-          className={`w-full md:w-fit flex items-center justify-center text-nowrap border border-primary bg-primary ${
+          className={`w-full md:w-32 flex items-center justify-center border border-primary bg-primary ${
             isPending ? "brightness-90" : "brightness-100"
-          } px-4 py-1.5 sm:py-2 rounded-lg text-white hover:brightness-90 custom-transition cursor-pointer`}
+          } px-4 py-1.5 md:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer`}
         >
           {isPending ? <Loader /> : "ارسال"}
         </button>
       </form>
-      <Toast message={toastMessage} onClose={() => setToastMessage("")} />
     </>
   );
 }

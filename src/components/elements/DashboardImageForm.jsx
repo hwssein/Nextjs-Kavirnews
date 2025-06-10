@@ -56,20 +56,21 @@ function DashboardImageForm({
   return (
     <div
       onClick={() => imageRef.current?.click()}
-      className="w-full md:w-64 border border-stroke flex flex-col items-center justify-center gap-4 bg-surface text-stroke rounded-lg p-8 md:px-5 md:py-3 cursor-pointer"
+      className="w-full md:w-[30%] md:h-full md:min-h-[376px] md:mt-8 border border-stroke flex flex-col items-center justify-center gap-4 bg-surface text-stroke rounded-lg p-8 cursor-pointer"
     >
-      <span className="w-36">
+      <div className="w-48 sm:w-60 relative aspect-[4/3]">
         {imageBlobUrl ? (
           <Image
             src={imageBlobUrl}
-            width={300}
-            height={200}
+            fill
+            sizes="(max-width: 648px): 200px, 640px"
             alt="uploaded image"
+            className="w-full h-full rounded-md object-cover"
           />
         ) : (
           <ImageIcon className="w-full h-full" />
         )}
-      </span>
+      </div>
 
       {imageBlobUrl ? (
         <span

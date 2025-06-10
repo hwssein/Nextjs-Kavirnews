@@ -38,7 +38,7 @@ function ProfileDropDown({ session }) {
     >
       <div
         onClick={() => setIsShowProfileDropdown((prev) => !prev)}
-        className="w-full px-4 py-1.5 sm:py-2 max-w-28 flex items-center justify-center gap-2 text-white bg-primary rounded-lg border border-primary hover:brightness-90 custom-transition cursor-pointer"
+        className="w-full px-4 py-1.5 sm:py-2 max-w-32 flex items-center justify-center gap-2 text-white bg-primary rounded-lg border border-primary hover:brightness-90 custom-transition cursor-pointer"
       >
         <CircleUserRound className="w-5 h-5" />
 
@@ -46,8 +46,8 @@ function ProfileDropDown({ session }) {
       </div>
 
       {isShowProfileDropdown && (
-        <div className="w-48 md:w-64 z-10 absolute left-0 top-10 sm:top-11 border border-stroke rounded-lg flex flex-col items-start justify-start bg-white shadow">
-          <div className="w-full flex items-center justify-between gap-1 bg-primary rounded-t-lg p-2 text-background">
+        <div className="w-56 md:w-72 z-10 absolute left-0 top-10 sm:top-11 border border-stroke rounded-lg flex flex-col items-start justify-start bg-white shadow">
+          <div className="w-full flex items-center justify-between gap-1 bg-primary rounded-t-lg p-3 text-background">
             <span>سلام 👋</span>
             <span>{session.name}</span>
           </div>
@@ -55,14 +55,14 @@ function ProfileDropDown({ session }) {
           <Link
             href="/dashboard"
             onClick={() => setIsShowProfileDropdown(false)}
-            className="w-full p-2 border-b border-b-stroke hover:bg-gray-50 custom-transition"
+            className="w-full p-3 border-b border-b-stroke hover:bg-gray-50 custom-transition"
           >
             <span className="w-full">داشبورد</span>
           </Link>
 
           <button
             onClick={handleLogout}
-            className="w-full text-right cursor-pointer p-2 text-danger hover:bg-gray-50 custom-transition rounded-b-lg"
+            className="w-full text-right cursor-pointer p-3 text-danger hover:bg-gray-50 custom-transition rounded-b-lg"
           >
             خروج
           </button>

@@ -1,5 +1,5 @@
-import DeletePostBtn from "../elements/DeletePostBtn";
 import SectionTitle from "../elements/SectionTitle";
+import UserPostCardButton from "../elements/UserPostCardButton";
 import NewsCard from "../module/NewsCard";
 
 function AdminPage({ data }) {
@@ -17,7 +17,7 @@ function AdminPage({ data }) {
               <NewsCard data={item} />
 
               <span className="w-fit absolute bottom-4 left-4">
-                <DeletePostBtn postId={item?.id} />
+                <UserPostCardButton postId={item?.id} />
               </span>
             </div>
           ))}

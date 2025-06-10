@@ -23,7 +23,7 @@ function PostDetailsPage({ data: postData, allPosts }) {
         </div>
 
         <div className="w-full flex flex-col items-start justify-start gap-4">
-          <div className="w-full lg:w-[60%] aspect-video rounded-lg overflow-hidden relative">
+          <div className="w-full lg:w-[60%] aspect-[4/3] rounded-lg overflow-hidden relative">
             <Image
               src={postData?.image || "/images/image-unavailable.png"}
               fill

@@ -1,8 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import DashboardImageForm from "../elements/DashboardImageForm";
-
-import { Loader } from "lucide-react";
+import { ChevronDown, Loader } from "lucide-react";
 
 function EditForm({
   form,
@@ -14,15 +14,17 @@ function EditForm({
   setImageBlobUrl,
   imageRef,
 }) {
+  const router = useRouter();
+
   return (
     <>
       <form
         action={formAction}
-        className="w-full flex flex-col items-start justify-start gap-4 mb-4 px-2"
+        className="w-full flex flex-col items-start justify-start gap-4 px-2"
       >
-        <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-center gap-4">
-          <div className="w-full flex flex-col items-start justify-start gap-4">
-            <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start gap-4">
+        <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start gap-6">
+          <div className="w-full md:w-[70%] flex flex-col items-start justify-start gap-6">
+            <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start gap-6">
               <div className="w-full flex flex-col items-start justify-start gap-2">
                 <label htmlFor="post-title">عنوان</label>
                 <input
@@ -31,17 +33,18 @@ function EditForm({
                   name="title"
                   value={form.title}
                   onChange={handleChangeForm}
-                  className="w-full border border-stroke bg-surface px-2 py-1.5 sm:py-2 rounded-lg"
+                  className="w-full border border-stroke focus:border-primary custom-transition bg-surface p-2 rounded-lg"
                 />
               </div>
 
-              <div className="w-full h-[38px] md:h-[42px] bg-surface border border-stroke rounded-lg flex flex-col items-start justify-start gap-2">
+              <div className="w-full md:w-[30%] border border-stroke focus:border-primary custom-transition bg-surface rounded-lg relative">
                 <select
+                  aria-label="انتخاب دسته بندی"
                   name="category"
                   value={form.category}
                   onChange={handleChangeForm}
                   required
-                  className="w-full px-1 flex flex-col items-start justify-start gap-2 bg-surface rounded-lg"
+                  className="w-full h-[42px] appearance-none p-2"
                 >
                   <option value="" disabled hidden>
                     دسته بندی
@@ -52,6 +55,7 @@ function EditForm({
                   <option value="technology">فناوری</option>
                   <option value="sport">ورزش</option>
                 </select>
+                <ChevronDown className="w-4 h-4 text-icon absolute left-2 top-3.5" />
               </div>
             </div>
 
@@ -62,7 +66,7 @@ function EditForm({
                 name="summary"
                 value={form.summary}
                 onChange={handleChangeForm}
-                className="w-full resize-none h-[76px] md:h-[42px] border border-stroke bg-surface px-2 py-1.5 sm:py-2 rounded-lg"
+                className="w-full resize-none h-32 border border-stroke focus:border-primary custom-transition bg-surface p-2 rounded-lg"
               ></textarea>
             </div>
 
@@ -73,9 +77,7 @@ function EditForm({
                 id="post-description"
                 value={form.description}
                 onChange={handleChangeForm}
-                rows={5}
-                cols={50}
-                className="w-full border border-stroke bg-surface px-2 py-1.5 sm:py-2 rounded-lg"
+                className="w-full h-48 border border-stroke focus:border-primary custom-transition bg-surface p-2 rounded-lg"
               ></textarea>
             </div>
           </div>
@@ -91,15 +93,24 @@ function EditForm({
         <input type="hidden" name="oldImage" value={imageBlobUrl || ""} />
         <input type="hidden" name="id" value={form.id || ""} />
 
-        <button
-          type="submit"
-          disabled={isPending}
-          className={`w-full md:w-fit flex items-center justify-center text-nowrap border border-primary bg-primary ${
-            isPending ? "brightness-90" : " brightness-100"
-          } px-4 py-1.5 sm:py-2 rounded-lg text-white hover:brightness-90 custom-transition cursor-pointer`}
-        >
-          {isPending ? <Loader /> : "ویرایش"}
-        </button>
+        <div className="w-full flex items-center justify-between md:justify-start gap-6">
+          <button
+            onClick={() => router.back()}
+            className="w-full md:w-32 border border-secondary bg-secondary hover:brightness-90 custom-transition text-white px-4 py-1.5 md:py-2 rounded-md cursor-pointer"
+          >
+            لغو
+          </button>
+
+          <button
+            type="submit"
+            disabled={isPending}
+            className={`w-full md:w-32 flex items-center justify-center border border-primary bg-primary ${
+              isPending ? "brightness-90" : "brightness-100"
+            } px-4 py-1.5 md:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer`}
+          >
+            {isPending ? <Loader /> : "ویرایش"}
+          </button>
+        </div>
       </form>
     </>
   );

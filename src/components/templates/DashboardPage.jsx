@@ -1,47 +1,63 @@
-import Link from "next/link";
-import UserPostCardButton from "../elements/UserPostCardButton";
-import DashboardUserForm from "../module/DashboardUserForm";
+"use client";
+
+import { useOptimistic, useState } from "react";
+import dynamic from "next/dynamic";
+
 import DashboardUserProfileCard from "../module/DashboardUserProfileCard";
-import UserPostCard from "../module/UserPostCard";
-import ShowError from "../module/ShowError";
+
+import Toast from "../module/Toast";
+import Loader2 from "../elements/Loader2";
+
+const DashboardUserForm = dynamic(
+  () => import("@/components/module/DashboardUserForm"),
+  { ssr: false, loading: () => <Loader2 /> }
+);
+
+const DashboardUserPost = dynamic(
+  () => import("@/components/module/DashboardUserPost"),
+  { ssr: false, loading: () => <Loader2 /> }
+);
+
+const DashboardEditUserProfile = dynamic(
+  () => import("@/components/module/DashboardEditUserProfile"),
+  { ssr: false, loading: () => <Loader2 /> }
+);
 
 function DashboardPage({ session, postData }) {
+  const [activeView, setActiveView] = useState("add-news");
+  const [toastMessage, setToastMessage] = useState("");
+
+  const [userNameValueOptimistic, setUserNameValueOptimistic] = useOptimistic(
+    session.name,
+    (currentName, newName) => newName
+  );
+
   return (
     <>
       <div className="w-full flex flex-col items-start justify-start gap-4 p-2">
-        <DashboardUserProfileCard session={session} />
+        <DashboardUserProfileCard
+          activeView={activeView}
+          setActiveView={setActiveView}
+          session={session}
+          userName={userNameValueOptimistic}
+        />
 
-        <DashboardUserForm />
+        {activeView === "add-news" && (
+          <DashboardUserForm setToastMessage={setToastMessage} />
+        )}
 
-        {/* <div className="w-full flex flex-col items-start justify-start gap-4 mt-4">
-          <div className="w-full flex items-center justify-start border-b border-stroke">
-            <span className="py-2 font-semibold text-icon">پست‌های من</span>
-          </div>
+        {activeView === "my-news" && <DashboardUserPost postData={postData} />}
 
-          {!postData || postData.error || postData.length === 0 ? (
-            <ShowError text="هنوز محتوایی اضافه نکرده‌اید." />
-          ) : (
-            <div className="w-full flex flex-col items-start justify-start gap-4">
-              {postData.map((item) => (
-                <div
-                  key={item.id}
-                  className="w-full p-2 flex flex-col items-start justify-start gap-2 border border-stroke hover:bg-surface custom-transition rounded-lg shadow"
-                >
-                  <Link href={`/news/${item.id}`} className="w-full">
-                    <UserPostCard
-                      title={item.title}
-                      summary={item.summary}
-                      image={item.image}
-                    />
-                  </Link>
-
-                  <UserPostCardButton postId={item.id} />
-                </div>
-              ))}
-            </div>
-          )}
-        </div> */}
+        {activeView === "edit-profile" && (
+          <DashboardEditUserProfile
+            setUserNameValueOptimistic={setUserNameValueOptimistic}
+            userId={session?.id}
+            setToastMessage={setToastMessage}
+          />
+        )}
       </div>
+
+      <Toast message={toastMessage} onClose={() => setToastMessage("")} />
     </>
   );
 }

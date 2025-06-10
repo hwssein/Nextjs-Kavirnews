@@ -17,7 +17,7 @@ function NewsCard({ data }) {
       target="_blank"
       className="group h-full overflow-hidden rounded-md bg-white shadow flex flex-col"
     >
-      <div className="relative w-full aspect-[16/9] overflow-hidden flex-shrink-0">
+      <div className="relative w-full aspect-video sm:aspect-[4/3] overflow-hidden flex-shrink-0">
         <Image
           src={data?.image || "/images/image-unavailable.png"}
           alt={data?.title || "Default title"}

@@ -1,69 +1,15 @@
 "use client";
 
+import { User2 } from "lucide-react";
 import Link from "next/link";
-import { useOptimistic, useState, useTransition } from "react";
 
-import changeUserName from "@/serverAction/changeUserName";
-import changeUserLevel from "@/serverAction/changeUserLevel";
-import PrimaryButton from "../elements/PrimaryButton";
-
-import Toast from "./Toast";
-import { Loader, User2 } from "lucide-react";
-
-function DashboardUserProfileCard({ session }) {
-  const [userNameValue, setUserNameValue] = useState("");
-  const [toastMessage, setToastMessage] = useState("");
-
-  const [isTransitionPending, startTransition] = useTransition();
-  const [userNameValueOptimistic, setUserNameValueOptimistic] = useOptimistic(
-    session.name,
-    (currentName, newName) => newName
-  );
-
-  const handleSubmitUserName = async (event) => {
-    event.stopPropagation();
-    event.preventDefault();
-
-    if (!userNameValue) return;
-
-    startTransition(async () => {
-      setUserNameValueOptimistic(userNameValue);
-
-      const res = await changeUserName(userNameValue, session.id);
-
-      if (res.error) {
-        setToastMessage(res.error);
-        return;
-      }
-
-      if (res.message) {
-        setToastMessage(res.message);
-        setUserNameValue("");
-      }
-    });
-  };
-
-  const handleUserLevel = async (event) => {
-    event.stopPropagation();
-    event.preventDefault();
-
-    if (session.role === "author" || session.role === "administrator") {
-      setToastMessage("شما مجاز به تغییر سطح نیستید.");
-      return;
-    }
-
-    const userLevelRes = await changeUserLevel();
-
-    if (userLevelRes.error) {
-      setToastMessage(userLevelRes.error);
-      return;
-    }
-
-    if (userLevelRes.message) {
-      setToastMessage(userLevelRes.message);
-    }
-  };
-
+function DashboardUserProfileCard({
+  activeView,
+  setActiveView,
+  session,
+  userName,
+}) {
+  console.log(session);
   return (
     <>
       <div className="w-full md:w-[768px] mx-auto flex flex-col items-start justify-start gap-8 bg-surface rounded-lg p-4 sm:p-6">
@@ -80,7 +26,7 @@ function DashboardUserProfileCard({ session }) {
         <div className="w-full flex flex-col items-start justify-start gap-4">
           <div className="w-full flex items-start justify-start gap-2">
             <span className="w-fit text-primary">نام کاربری:</span>
-            <span>{userNameValueOptimistic}</span>
+            <span>{userName}</span>
           </div>
 
           <div className="w-full flex items-start justify-start gap-2">
@@ -95,18 +41,51 @@ function DashboardUserProfileCard({ session }) {
           </div>
         </div>
 
-        <div className="w-full flex items-center justify-between gap-4">
-          <span className="w-32">
-            <PrimaryButton text="ویرایش پروفایل" />
-          </span>
+        <div className="w-full flex flex-wrap items-center justify-center gap-6">
+          <button
+            onClick={() => setActiveView("add-news")}
+            className={`w-32 p-2 border border-primary rounded-md ${
+              activeView === "add-news" ? "bg-primary text-white" : "bg-white"
+            } text-sm md:text-base cursor-pointer hover:brightness-90 custom-transition`}
+          >
+            افزودن خبر
+          </button>
 
-          <span className="w-32">
-            <PrimaryButton text="پست‌های من" />
-          </span>
+          <button
+            onClick={() => setActiveView("my-news")}
+            className={`w-32 p-2 border border-primary rounded-md ${
+              activeView === "my-news" ? "bg-primary text-white" : "bg-white"
+            } text-sm md:text-base cursor-pointer hover:brightness-90 custom-transition`}
+          >
+            خبر‌های من
+          </button>
+
+          <button
+            onClick={() => setActiveView("edit-profile")}
+            className={`w-32 p-2 border border-primary rounded-md ${
+              activeView === "edit-profile"
+                ? "bg-primary text-white"
+                : "bg-white"
+            } text-sm md:text-base cursor-pointer hover:brightness-90 custom-transition`}
+          >
+            ویرایش پروفایل
+          </button>
+
+          {session?.role === "administrator" && (
+            <Link href="/admin" className="w-fit">
+              <button
+                className={`w-32 p-2 border border-primary rounded-md ${
+                  activeView === "edit-profile"
+                    ? "bg-primary text-white"
+                    : "bg-white"
+                } text-sm md:text-base cursor-pointer hover:brightness-90 custom-transition`}
+              >
+                صفحه ادمین
+              </button>
+            </Link>
+          )}
         </div>
       </div>
-
-      <Toast message={toastMessage} onClose={() => setToastMessage("")} />
     </>
   );
 }

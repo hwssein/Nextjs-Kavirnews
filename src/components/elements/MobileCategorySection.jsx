@@ -20,6 +20,7 @@ function MobileCategorySection() {
     <>
       <div className="w-full h-10 flex md:hidden items-center justify-start gap-3">
         <select
+          aria-label="انتخاب دسته بندی"
           name="category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}

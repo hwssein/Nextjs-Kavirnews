@@ -14,13 +14,16 @@ async function Dashboard() {
   const session = await getSession();
   if (!session || session.error) redirect("/signin");
 
-  const getUserPostData = await getUserPost(session.id);
+  if (session?.id) {
+    const getUserPostData = await getUserPost(session.id);
 
-  if (session.id) {
     return (
       <>
         <Suspense fallback={<Loader />}>
-          <DashboardPage session={session} postData={getUserPostData?.data} />
+          <DashboardPage
+            session={session}
+            postData={getUserPostData?.data || []}
+          />
         </Suspense>
       </>
     );

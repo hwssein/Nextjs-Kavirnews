@@ -22,7 +22,7 @@ function UserPostCardButton({ postId }) {
       <div className="w-full flex items-center justify-end gap-4">
         <button
           onClick={handleEditPost}
-          className="w-fit px-2 py-1 bg-secondary rounded-lg text-background hover:brightness-90 custom-transition cursor-pointer"
+          className="w-fit text-sm sm:text-base px-2 py-1 bg-primary rounded-md text-background hover:brightness-90 custom-transition cursor-pointer"
         >
           ویرایش
         </button>
