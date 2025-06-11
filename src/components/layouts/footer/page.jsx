@@ -6,9 +6,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 function Footer() {
-  const pathName = usePathname();
+  const pathname = usePathname();
 
-  if (pathName === "/signup" || pathName === "/signin") return null;
+  const hidePaths = ["/signup", "/signin"];
+  if (hidePaths.includes(pathname) || pathname.startsWith("/dashboard"))
+    return null;
 
   return (
     <div className="w-screen mt-10 relative bg-surface rounded-t-4xl right-[calc(50%-50vw)]">

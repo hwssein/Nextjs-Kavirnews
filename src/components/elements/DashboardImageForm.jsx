@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Image as ImageIcon, Minus, Plus } from "lucide-react";
+import { Minus, Plus, UploadCloud } from "lucide-react";
 import { useState } from "react";
 
 function DashboardImageForm({
@@ -56,9 +56,9 @@ function DashboardImageForm({
   return (
     <div
       onClick={() => imageRef.current?.click()}
-      className="w-full md:w-[30%] md:h-full md:min-h-[376px] md:mt-8 border border-stroke flex flex-col items-center justify-center gap-4 bg-surface text-stroke rounded-lg p-8 cursor-pointer"
+      className="w-full lg:w-[30%] lg:h-full lg:min-h-[392px] lg:mt-8 border border-stroke flex flex-col items-center justify-center gap-4 bg-surface text-stroke rounded-lg p-8 cursor-pointer"
     >
-      <div className="w-48 sm:w-60 relative aspect-[4/3]">
+      <div className="w-48 sm:w-60 lg:w-44 relative aspect-[4/3]">
         {imageBlobUrl ? (
           <Image
             src={imageBlobUrl}
@@ -68,19 +68,19 @@ function DashboardImageForm({
             className="w-full h-full rounded-md object-cover"
           />
         ) : (
-          <ImageIcon className="w-full h-full" />
+          <UploadCloud className="w-full h-full p-6" />
         )}
       </div>
 
       {imageBlobUrl ? (
         <span
           onClick={handleDeleteImageUrl}
-          className="p-2 border border-stroke hover:border-danger hover:text-danger rounded-lg flex items-center justify-center gap-1 font-bold custom-transition"
+          className="px-3 py-2 border border-stroke hover:border-danger hover:text-danger rounded-lg flex items-center justify-center gap-1 font-bold custom-transition"
         >
           حذف تصویر <Minus />
         </span>
       ) : (
-        <span className="p-2 border border-stroke rounded-lg flex items-center justify-center gap-1 font-bold">
+        <span className="px-3 py-2 border border-stroke rounded-lg flex items-center justify-center gap-1 font-bold">
           افزودن تصویر <Plus />
         </span>
       )}

@@ -29,7 +29,9 @@ function Header({ session }) {
     setCurrentPath(pathname);
   }, [pathname]);
 
-  if (pathname === "/signin" || pathname === "/signup") return null;
+  const hidePaths = ["/signup", "/signin"];
+  if (hidePaths.includes(pathname) || pathname.startsWith("/dashboard"))
+    return null;
 
   return (
     <>

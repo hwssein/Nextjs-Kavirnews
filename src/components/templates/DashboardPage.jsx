@@ -3,7 +3,7 @@
 import { useOptimistic, useState } from "react";
 import dynamic from "next/dynamic";
 
-import DashboardUserProfileCard from "../module/DashboardUserProfileCard";
+import DashboardSidebar from "../module/DashboardSidebar";
 
 import Toast from "../module/Toast";
 import Loader2 from "../elements/Loader2";
@@ -34,8 +34,8 @@ function DashboardPage({ session, postData }) {
 
   return (
     <>
-      <div className="w-full flex flex-col items-start justify-start gap-4 p-2">
-        <DashboardUserProfileCard
+      <div className="w-full flex flex-col lg:flex-row items-start justify-start gap-8 p-2">
+        <DashboardSidebar
           activeView={activeView}
           setActiveView={setActiveView}
           session={session}

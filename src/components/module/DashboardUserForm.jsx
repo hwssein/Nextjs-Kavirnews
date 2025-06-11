@@ -42,86 +42,88 @@ function DashboardUserForm({ setToastMessage }) {
 
   return (
     <>
-      <SectionTitle text="افزودن خبر" />
+      <div className="w-full flex flex-col items-start justify-start">
+        <SectionTitle text="افزودن خبر" />
 
-      <form
-        action={formAction}
-        className="w-full flex flex-col items-start justify-start gap-4"
-      >
-        <div className="w-full flex flex-col items-start justify-start gap-6">
-          <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-start gap-6">
-            <div className="w-full md:w-[70%] flex flex-col items-start justify-start gap-2">
-              <label htmlFor="post-title">عنوان</label>
-              <input
-                type="text"
-                id="post-title"
-                name="title"
-                className="w-full border border-stroke focus:border-primary custom-transition bg-surface p-2 rounded-lg"
+        <form
+          action={formAction}
+          className="w-full flex flex-col items-start justify-start gap-4"
+        >
+          <div className="w-full flex flex-col items-start justify-start gap-8">
+            <div className="w-full flex flex-col lg:flex-row items-start lg:items-end justify-start gap-8">
+              <div className="w-full lg:w-[70%] flex flex-col items-start justify-start gap-3">
+                <label htmlFor="post-title">عنوان</label>
+                <input
+                  type="text"
+                  id="post-title"
+                  name="title"
+                  className="w-full border border-stroke focus:border-primary custom-transition bg-surface p-2 rounded-lg"
+                />
+              </div>
+
+              <div className="w-full lg:w-[30%] bg-surface rounded-lg relative">
+                <select
+                  aria-label="انتخاب دسته بندی"
+                  name="category"
+                  defaultValue=""
+                  required
+                  className="w-full h-[42px] appearance-none p-2 border border-stroke focus:border-primary custom-transition rounded-lg"
+                >
+                  <option value="" disabled hidden>
+                    انتخاب دسته‌بندی
+                  </option>
+                  <option value="social">اجتماعی</option>
+                  <option value="economics">اقتصاد</option>
+                  <option value="politic">سیاست</option>
+                  <option value="technology">فناوری</option>
+                  <option value="sport">ورزش</option>
+                </select>
+
+                <ChevronDown className="w-4 h-4 text-icon absolute left-2 top-3.5" />
+              </div>
+            </div>
+
+            <div className="w-full flex flex-col lg:flex-row items-start lg:items-stretch justify-start gap-8">
+              <div className="w-full lg:w-[70%] flex flex-col items-start justify-start gap-8">
+                <div className="w-full flex flex-col items-start justify-start gap-3">
+                  <label htmlFor="post-summary">خلاصه مطلب</label>
+                  <textarea
+                    name="summary"
+                    id="post-summary"
+                    className="w-full resize-none h-32 border border-stroke focus:border-primary custom-transition bg-surface p-2 rounded-lg"
+                  ></textarea>
+                </div>
+
+                <div className="w-full flex flex-col items-start justify-start gap-3">
+                  <label htmlFor="post-description">توضیحات</label>
+                  <textarea
+                    name="description"
+                    id="post-description"
+                    className="w-full h-48 resize-none border border-stroke focus:border-primary custom-transition bg-surface p-2 rounded-lg"
+                  ></textarea>
+                </div>
+              </div>
+
+              <DashboardImageForm
+                imageBlobUrl={imageBlobUrl}
+                setImageBlobUrl={setImageBlobUrl}
+                setToastMessage={setToastMessage}
+                imageRef={imageRef}
               />
             </div>
-
-            <div className="w-full md:w-[30%] border border-stroke focus:border-primary custom-transition bg-surface rounded-lg relative">
-              <select
-                aria-label="انتخاب دسته بندی"
-                name="category"
-                defaultValue=""
-                required
-                className="w-full h-[42px] appearance-none p-2"
-              >
-                <option value="" disabled hidden>
-                  دسته بندی
-                </option>
-                <option value="social">اجتماعی</option>
-                <option value="economics">اقتصاد</option>
-                <option value="politic">سیاست</option>
-                <option value="technology">فناوری</option>
-                <option value="sport">ورزش</option>
-              </select>
-
-              <ChevronDown className="w-4 h-4 text-icon absolute left-2 top-3.5" />
-            </div>
           </div>
 
-          <div className="w-full flex flex-col md:flex-row items-start md:items-stretch justify-start gap-6">
-            <div className="w-full md:w-[70%] flex flex-col items-start justify-start gap-6">
-              <div className="w-full flex flex-col items-start justify-start gap-2">
-                <label htmlFor="post-summary">خلاصه مطلب</label>
-                <textarea
-                  name="summary"
-                  id="post-summary"
-                  className="w-full resize-none h-32 border border-stroke bg-surface p-2 rounded-lg"
-                ></textarea>
-              </div>
-
-              <div className="w-full flex flex-col items-start justify-start gap-2">
-                <label htmlFor="post-description">توضیحات</label>
-                <textarea
-                  name="description"
-                  id="post-description"
-                  className="w-full h-48 border border-stroke bg-surface p-2 rounded-lg"
-                ></textarea>
-              </div>
-            </div>
-
-            <DashboardImageForm
-              imageBlobUrl={imageBlobUrl}
-              setImageBlobUrl={setImageBlobUrl}
-              setToastMessage={setToastMessage}
-              imageRef={imageRef}
-            />
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          disabled={isPending}
-          className={`w-full md:w-32 flex items-center justify-center border border-primary bg-primary ${
-            isPending ? "brightness-90" : "brightness-100"
-          } px-4 py-1.5 md:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer`}
-        >
-          {isPending ? <Loader /> : "ارسال"}
-        </button>
-      </form>
+          <button
+            type="submit"
+            disabled={isPending}
+            className={`w-full lg:w-48 flex items-center justify-center border border-primary bg-primary ${
+              isPending ? "brightness-90" : "brightness-100"
+            } px-4 py-1.5 md:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer`}
+          >
+            {isPending ? <Loader /> : "ارسال"}
+          </button>
+        </form>
+      </div>
     </>
   );
 }

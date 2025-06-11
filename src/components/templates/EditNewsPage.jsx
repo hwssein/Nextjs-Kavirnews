@@ -5,6 +5,7 @@ import EditForm from "../module/EditForm";
 import Toast from "../module/Toast";
 import editPost from "@/serverAction/editPost";
 import { useRouter } from "next/navigation";
+import SectionTitle from "../elements/SectionTitle";
 
 function EditNewsPage({ data }) {
   const router = useRouter();
@@ -80,16 +81,20 @@ function EditNewsPage({ data }) {
 
   return (
     <>
-      <EditForm
-        form={form}
-        handleChangeForm={handleChangeForm}
-        setToastMessage={setToastMessage}
-        formAction={formAction}
-        isPending={isPending}
-        imageBlobUrl={imageBlobUrl}
-        setImageBlobUrl={setImageBlobUrl}
-        imageRef={imageRef}
-      />
+      <div className="w-full flex flex-col items-start justify-start px-2">
+        <SectionTitle text="ویرایش خبر" />
+
+        <EditForm
+          form={form}
+          handleChangeForm={handleChangeForm}
+          setToastMessage={setToastMessage}
+          formAction={formAction}
+          isPending={isPending}
+          imageBlobUrl={imageBlobUrl}
+          setImageBlobUrl={setImageBlobUrl}
+          imageRef={imageRef}
+        />
+      </div>
 
       <Toast message={toastMessage} onClose={() => setToastMessage("")} />
     </>
