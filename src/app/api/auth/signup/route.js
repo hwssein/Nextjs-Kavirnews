@@ -32,7 +32,7 @@ export async function POST(req) {
       );
 
     const userData = {
-      username: `${email.split("@")[0]}_${Date.now()}`,
+      username: `${email.split("@")[0]}_${Date.now().toString().slice(-6)}`,
       email: email,
       password: password,
     };

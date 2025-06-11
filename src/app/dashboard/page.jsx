@@ -12,7 +12,7 @@ export const metadata = dashboardMetaData;
 
 async function Dashboard() {
   const session = await getSession();
-  if (!session || session.error) redirect("/signin");
+  if (!session || session.error) redirect("/");
 
   if (session?.id) {
     const getUserPostData = await getUserPost(session.id);

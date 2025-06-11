@@ -42,7 +42,7 @@ function ProfileDropDown({ session }) {
       >
         <CircleUserRound className="w-5 h-5" />
 
-        <span className="w-fit truncate">{session?.name}</span>
+        <span className="w-[calc(100%-20px)] truncate">{session?.name}</span>
       </div>
 
       {isShowProfileDropdown && (

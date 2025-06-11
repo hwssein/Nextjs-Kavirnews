@@ -5,6 +5,7 @@ import { useState, useTransition } from "react";
 import changeUserName from "@/serverAction/changeUserName";
 import changeUserLevel from "@/serverAction/changeUserLevel";
 import SectionTitle from "../elements/SectionTitle";
+import DeleteUserModal from "../elements/DeleteUserModal";
 
 import { Loader } from "lucide-react";
 
@@ -14,6 +15,7 @@ function DashboardEditUserProfile({
   setToastMessage,
 }) {
   const [userNameValue, setUserNameValue] = useState("");
+  const [activeDeleteModal, setActiveDeleteModal] = useState(false);
 
   const [isUserPending, startUserTransition] = useTransition();
   const [isLevelPending, startLevelTransition] = useTransition();
@@ -85,14 +87,32 @@ function DashboardEditUserProfile({
           </div>
         </div>
 
-        <button
-          onClick={handleUserLevel}
-          className={`w-fit flex items-center justify-center border border-primary bg-primary ${
-            isLevelPending ? "brightness-90" : "brightness-100"
-          } px-4 py-1.5 sm:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer`}
-        >
-          {isLevelPending ? <Loader /> : "تغییر سطح به نویسنده"}
-        </button>
+        <div className="w-full flex flex-col items-start justify-start gap-44">
+          <button
+            onClick={handleUserLevel}
+            className={`w-48 flex items-center justify-center border border-primary bg-primary ${
+              isLevelPending ? "brightness-90" : "brightness-100"
+            } px-4 py-1.5 sm:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer`}
+          >
+            {isLevelPending ? <Loader /> : "تغییر سطح به نویسنده"}
+          </button>
+
+          <button
+            onClick={() => setActiveDeleteModal(true)}
+            className="w-48 flex items-center justify-center border border-danger bg-danger
+            px-4 py-1.5 sm:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer"
+          >
+            حذف حساب کاربری
+          </button>
+        </div>
+
+        {activeDeleteModal && (
+          <DeleteUserModal
+            setActiveModal={setActiveDeleteModal}
+            userId={userId}
+            setToastMessage={setToastMessage}
+          />
+        )}
       </div>
     </>
   );
