@@ -2,6 +2,8 @@ import Image from "next/image";
 import ShareNews from "../elements/ShareNews";
 import { Calendar, FolderOpen, User2 } from "lucide-react";
 import RandomNews from "../module/RandomNews";
+import SectionTitle from "../elements/SectionTitle";
+import ImageNewsCard from "../elements/ImageNewsCard";
 
 function PostDetailsPage({ data: postData, allPosts }) {
   const convertDate = new Date(postData?.date).toLocaleDateString(
@@ -23,14 +25,18 @@ function PostDetailsPage({ data: postData, allPosts }) {
         </div>
 
         <div className="w-full flex flex-col items-start justify-start gap-4">
-          <div className="w-full lg:w-[60%] aspect-[4/3] rounded-lg overflow-hidden relative">
-            <Image
-              src={postData?.image || "/images/image-unavailable.png"}
-              fill
-              sizes="768px"
-              alt={postData.title}
-              className="w-full h-full rounded-lg inset-0"
-            />
+          <div className="w-full lg:w-[50%] aspect-[4/3] rounded-lg overflow-hidden relative">
+            {postData?.image ? (
+              <Image
+                src={postData?.image}
+                fill
+                sizes="768px"
+                alt={postData.title}
+                className="w-full h-full rounded-lg inset-0"
+              />
+            ) : (
+              <ImageNewsCard />
+            )}
           </div>
 
           <div className="w-full flex flex-wrap items-center sm:items-start justify-between sm:justify-start gap-4">
@@ -59,7 +65,7 @@ function PostDetailsPage({ data: postData, allPosts }) {
           </h3>
         </div>
 
-        <div className="w-full lg:w-[60%] relative flex items-start justify-start gap-2 group">
+        <div className="w-full lg:w-[50%] relative flex items-start justify-start gap-2 group">
           <span className="w-fit rounded-full px-1 py-2 inline-block bg-primary mt-2 group-hover:bg-secondary custom-transition"></span>
 
           <div className="w-full inline-block text-icon text-base/relaxed mb-4">
@@ -75,7 +81,13 @@ function PostDetailsPage({ data: postData, allPosts }) {
         </div>
       </div>
 
-      <RandomNews data={allPosts} />
+      <div className="w-full flex flex-col items-start justify-start">
+        <div className="w-full px-2">
+          <SectionTitle text="خبر‌های داغ" />
+        </div>
+
+        <RandomNews data={allPosts} />
+      </div>
     </>
   );
 }

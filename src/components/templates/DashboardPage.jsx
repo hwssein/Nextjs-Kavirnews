@@ -50,6 +50,7 @@ function DashboardPage({ session, postData }) {
 
         {activeView === "edit-profile" && (
           <DashboardEditUserProfile
+            session={session}
             setUserNameValueOptimistic={setUserNameValueOptimistic}
             userId={session?.id}
             setToastMessage={setToastMessage}

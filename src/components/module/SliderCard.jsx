@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FolderOpen, Calendar } from "lucide-react";
+import ImageNewsCard from "../elements/ImageNewsCard";
 
 function SliderCard({ post, isPriority }) {
   const postDate = new Date(post.date).toLocaleDateString("fa-IR", {
@@ -15,14 +16,18 @@ function SliderCard({ post, isPriority }) {
       target="_blank"
       className="group relative w-full h-[450px] md:h-[500px] rounded-lg overflow-hidden"
     >
-      <Image
-        src={post.image || "/images/image-unavailable.png"}
-        alt={post.title}
-        fill
-        priority={isPriority}
-        sizes="(min-width: 768px) 80vw, 100vw"
-        className="object-cover w-full h-full custom-image-transition group-hover:scale-105"
-      />
+      {post?.image ? (
+        <Image
+          src={post.image}
+          alt={post.title}
+          fill
+          priority={isPriority}
+          sizes="(min-width: 768px) 80vw, 100vw"
+          className="object-cover w-full h-full custom-image-transition group-hover:scale-105"
+        />
+      ) : (
+        <ImageNewsCard />
+      )}
 
       <div
         className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent"

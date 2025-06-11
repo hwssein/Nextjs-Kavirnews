@@ -7,7 +7,7 @@ export const metadata = baseMetaData;
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fa" dir="rtl" className={`${faFonts.className}`}>
+    <html lang="fa" translate="no" dir="rtl" className={`${faFonts.className}`}>
       <body className="text-text text-base font-normal">
         <Layout>{children}</Layout>
       </body>

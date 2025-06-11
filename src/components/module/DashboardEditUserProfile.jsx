@@ -10,8 +10,8 @@ import DeleteUserModal from "../elements/DeleteUserModal";
 import { Loader } from "lucide-react";
 
 function DashboardEditUserProfile({
+  session,
   setUserNameValueOptimistic,
-  userId,
   setToastMessage,
 }) {
   const [userNameValue, setUserNameValue] = useState("");
@@ -26,7 +26,7 @@ function DashboardEditUserProfile({
     startUserTransition(async () => {
       setUserNameValueOptimistic(userNameValue);
 
-      const res = await changeUserName(userNameValue, userId);
+      const res = await changeUserName(userNameValue, session?.id);
 
       if (res.error) {
         setToastMessage(res.error);
@@ -41,7 +41,7 @@ function DashboardEditUserProfile({
   };
 
   const handleUserLevel = async () => {
-    if (session.role === "author" || session.role === "administrator") {
+    if (session?.role === "author" || session?.role === "administrator") {
       setToastMessage("شما مجاز به تغییر سطح نیستید.");
       return;
     }
@@ -72,6 +72,8 @@ function DashboardEditUserProfile({
               type="text"
               id="user-name"
               name="userName"
+              value={userNameValue}
+              onChange={(e) => setUserNameValue(e.target.value) || ""}
               className="w-full border border-stroke focus:border-primary custom-transition bg-surface px-2 py-1.5 md:py-2 rounded-lg"
             />
 
@@ -109,7 +111,7 @@ function DashboardEditUserProfile({
         {activeDeleteModal && (
           <DeleteUserModal
             setActiveModal={setActiveDeleteModal}
-            userId={userId}
+            userId={session?.id}
             setToastMessage={setToastMessage}
           />
         )}

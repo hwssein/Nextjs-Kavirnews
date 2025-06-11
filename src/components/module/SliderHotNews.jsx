@@ -7,7 +7,7 @@ function SliderHotNews({ allPosts: data }) {
   const [randomData, setRandomData] = useState([]);
 
   useEffect(() => {
-    const shuffledData = [...data].sort(() => 0.5 - Math.random()).slice(0, 2);
+    const shuffledData = [...data].sort(() => 0.5 - Math.random()).slice(0, 3);
     setRandomData(shuffledData);
   }, []);
 

@@ -17,7 +17,7 @@ function DashboardUserPost({ postData }) {
           {postData.map((item) => (
             <div key={item?.id} className="w-full relative">
               <MiniNewsCard item={item} />
-              <div className="w-fit absolute bottom-2 left-2 z-10">
+              <div className="w-fit absolute bottom-4 left-4 z-10">
                 <UserPostCardButton postId={item?.id} />
               </div>
             </div>

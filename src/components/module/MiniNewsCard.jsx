@@ -1,21 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
+import ImageNewsCard from "../elements/ImageNewsCard";
 
 function MiniNewsCard({ item }) {
   return (
     <Link
       href={`/news/${item?.id}`}
       target="_blank"
-      className="w-full bg-white flex flex-col sm:flex-row items-start sm:items-center gap-4 group shadow p-4 rounded-md"
+      className="w-full bg-white flex flex-col sm:flex-row items-start sm:items-center gap-4 group shadow hover:shadow-lg custom-image-transition p-4 rounded-md"
     >
-      <div className="w-full sm:w-[200px] aspect-video sm:aspect-[4/3] relative overflow-hidden rounded-md shrink-0">
-        <Image
-          src={item?.image}
-          alt={item?.title}
-          fill
-          sizes="(max-width: 640px) 100vw, 200px"
-          className="object-cover group-hover:scale-105 custom-image-transition"
-        />
+      <div className="w-full sm:w-[200px] aspect-video relative overflow-hidden rounded-md shrink-0">
+        {item?.image ? (
+          <Image
+            src={item?.image}
+            alt={item?.title}
+            fill
+            sizes="(max-width: 640px) 100vw, 200px"
+            className="object-cover group-hover:scale-105 custom-image-transition"
+          />
+        ) : (
+          <ImageNewsCard />
+        )}
       </div>
 
       <div className="flex flex-col gap-2 w-full">
