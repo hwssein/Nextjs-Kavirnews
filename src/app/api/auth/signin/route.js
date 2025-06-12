@@ -32,6 +32,7 @@ export async function POST(req) {
       method: "POST",
       body: JSON.stringify({ username: email, password }),
       headers: { "Content-Type": "application/json" },
+      cache: "no-store",
     });
     const verifyUserData = await verifyUserRes.json();
     if (!verifyUserData.token)

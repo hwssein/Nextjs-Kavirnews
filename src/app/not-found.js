@@ -1,6 +1,8 @@
 import { AlertTriangle } from "lucide-react";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 async function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center text-center px-4 py-16">

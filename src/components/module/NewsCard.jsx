@@ -16,7 +16,7 @@ function NewsCard({ data }) {
     <Link
       href={`/news/${data?.id}`}
       target="_blank"
-      className="group h-full overflow-hidden rounded-md bg-white shadow hover:shadow-lg custom-image-transition flex flex-col"
+      className="group w-full h-full overflow-hidden rounded-md bg-white shadow hover:shadow-lg custom-image-transition flex flex-col"
     >
       <div className="relative w-full aspect-video overflow-hidden flex-shrink-0">
         {data?.image ? (
