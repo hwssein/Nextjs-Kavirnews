@@ -14,6 +14,8 @@ const uploadPost = async (prevState, formData) => {
     if (!token) return { error: "لطفا وارد حساب کاربری خود شوید." };
 
     const session = await getSession();
+    if (!session || session.error)
+      return { error: "لطفا وارد حساب کاربری خود شوید." };
 
     if (session?.role !== "administrator" && session?.role !== "author")
       return { error: "لطفا سطح کاربری خود را ارتقا دهید." };

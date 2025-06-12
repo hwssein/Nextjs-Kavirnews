@@ -11,9 +11,6 @@ const deleteUser = async (userId) => {
 
     const cookie = await cookies();
 
-    const token = cookie.get("token")?.value;
-    if (!token) return { error: "لطفا وارد حساب کاربری خود شوید." };
-
     const session = await getSession();
     if (!session || !session.id || session.id !== userId)
       return { error: "لطفا وارد حساب کاربری خود شوید." };

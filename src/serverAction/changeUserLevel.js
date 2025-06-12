@@ -1,9 +1,7 @@
 "use server";
 
-import findExistUserById from "@/utils/findExistUserById";
-import verifyToken from "@/utils/verifyToken";
+import getSession from "@/utils/getSession";
 import { revalidatePath } from "next/cache";
-import { cookies } from "next/headers";
 
 const changeUserLevel = async () => {
   try {
@@ -11,30 +9,9 @@ const changeUserLevel = async () => {
     const API_KEY = process.env.API_KEY;
     const API_USER = process.env.API_USER;
 
-    const cookie = await cookies();
-    const token = cookie.get("token")?.value;
-
-    if (!token)
-      return NextResponse.json(
-        { error: "لطفا وارد حساب کاربری خود شوید." },
-        { status: 401 }
-      );
-
-    const verifiedToken = await verifyToken(token);
-    if (!verifiedToken) {
-      return NextResponse.json(
-        { error: "لطفا وارد حساب کاربری خود شودید." },
-        { status: 401 }
-      );
-    }
-
-    const user = await findExistUserById(verifiedToken);
-    if (!user) {
-      return NextResponse.json(
-        { error: "لطفا وارد حساب کاربری خود شوید." },
-        { status: 401 }
-      );
-    }
+    const user = await getSession();
+    if (!user || user.error)
+      return { error: "لطفا وارد حساب کاربری خود شوید." };
 
     const res = await fetch(`${API_URI}/users/${user?.id}`, {
       method: "PUT",

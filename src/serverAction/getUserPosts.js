@@ -9,8 +9,8 @@ const getUserPosts = async (userId) => {
   try {
     if (!userId) return { error: "شناسه کاربر یافت نشد." };
 
-    const cookieStore = await cookies();
-    const token = cookieStore.get("token")?.value;
+    const cookie = await cookies();
+    const token = cookie.get("token")?.value;
 
     const res = await fetch(
       `${process.env.API_URI}/posts?author=${userId}&_fields=id,title,content,excerpt,featured_media,categories&per_page=100`,

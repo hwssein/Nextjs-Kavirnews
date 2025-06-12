@@ -1,3 +1,5 @@
+import verifyToken from "./verifyToken";
+import findExistUserById from "./findExistUserById";
 import { cookies } from "next/headers";
 
 const getSession = async () => {
@@ -5,19 +7,28 @@ const getSession = async () => {
     const cookie = await cookies();
     const token = cookie.get("token")?.value;
 
-    const res = await fetch(`${process.env.BASE_URL}/api/auth/verify`, {
-      method: "POST",
-      body: JSON.stringify(token ? { token } : false),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await res.json();
+    if (!token) {
+      return null;
+    }
 
-    if (data.error) return { error: data.error };
+    const userId = await verifyToken(token);
 
-    return data.userData;
+    if (!userId) {
+      cookie.delete("token");
+      return null;
+    }
+
+    const user = await findExistUserById(userId);
+
+    if (!user || user.error) {
+      cookie.delete("token");
+      return null;
+    }
+
+    return user;
   } catch (error) {
-    console.log(error);
-    return { error: "مشکلی در ارتباط با سرور پیش آ«ده است." };
+    console.log("Error in getSession:", error);
+    return { error: "مشکلی در ارتباط با سرور پیش آمده است." };
   }
 };
 

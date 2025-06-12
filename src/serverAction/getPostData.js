@@ -19,7 +19,7 @@ const getPostData = async (postId) => {
           "Content-Type": "application/json",
           authorization: token ? `Bearer ${token}` : null,
         },
-        cache: "force-cache",
+        cache: "default",
       }
     );
 
