@@ -14,8 +14,8 @@ async function NewsDetails({ params }) {
 
   if (
     postData?.error ||
-    postData?.data.length === 0 ||
-    allPosts?.data.length === 0
+    postData?.data?.length === 0 ||
+    allPosts?.data?.length === 0
   ) {
     return (
       <>

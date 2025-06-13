@@ -10,9 +10,9 @@ async function Home() {
   const categoriesPosts = await getCategoriesLatestPosts();
 
   if (
-    allPosts?.data.length === 0 ||
+    allPosts?.data?.length === 0 ||
     allPosts.error ||
-    categoriesPosts?.data.length === 0 ||
+    categoriesPosts?.data?.length === 0 ||
     categoriesPosts.error
   ) {
     return (
