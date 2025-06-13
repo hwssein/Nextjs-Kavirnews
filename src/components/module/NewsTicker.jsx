@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
+import { Autoplay, FreeMode, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/autoplay";
@@ -28,11 +28,11 @@ function NewsTicker({ data }) {
     <div className="w-screen bg-primary py-6 relative right-[calc(50%-50vw)] mt-1">
       <div className="w-full max-w-[1420px] mx-auto overflow-hidden">
         <Swiper
-          modules={[Autoplay, FreeMode]}
+          modules={[Autoplay, FreeMode, Mousewheel]}
           slidesPerView="auto"
           loop={news.length > 3}
           allowTouchMove={false}
-          speed={4000}
+          speed={5000}
           autoplay={{
             delay: 0,
             disableOnInteraction: false,
@@ -42,7 +42,10 @@ function NewsTicker({ data }) {
             enabled: true,
             momentum: false,
           }}
+          mousewheel={false}
           spaceBetween={30}
+          observer={true}
+          observeParents={true}
           className="!overflow-visible"
         >
           {news?.map((item) => (

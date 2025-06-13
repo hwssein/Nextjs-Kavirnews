@@ -15,6 +15,7 @@ function MainSlider({ categoriesPosts, allPosts }) {
         <SectionTitle text={"جدیدترین اخبار"} />
 
         <Swiper
+          modules={[Autoplay, Mousewheel]}
           spaceBetween={10}
           slidesPerView={1}
           loop={true}
@@ -22,11 +23,10 @@ function MainSlider({ categoriesPosts, allPosts }) {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          mousewheel={true}
-          modules={[Autoplay, Mousewheel]}
+          mousewheel={false}
           className="w-full px-2"
         >
-          {categoriesPosts.map((item, index) => (
+          {categoriesPosts?.map((item, index) => (
             <SwiperSlide key={item?.id}>
               <div className="w-full flex items-start justify-between gap-6">
                 <SliderCard post={item} isPriority={index === 0} />
