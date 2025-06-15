@@ -34,6 +34,7 @@ function HomeGallery({ data }) {
               <Link
                 key={item?.id}
                 href={`/news/${item?.id}`}
+                target="_blank"
                 className="w-full min-w-24 min-h-24 relative overflow-hidden cursor-pointer group"
               >
                 <Image

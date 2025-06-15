@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import SectionTitle from "../elements/SectionTitle";
 
-function HomeTitleNews({ data }) {
+function PopularNews({ data }) {
   const [topTitle, setTopTitle] = useState([]);
 
   useEffect(() => {
@@ -31,7 +31,8 @@ function HomeTitleNews({ data }) {
             <Link
               key={item?.id}
               href={`/news/${item?.id}`}
-              className="w-full h-full flex items-center justify-start gap-2 hover:text-primary custom-transition cursor-pointer group"
+              target="_blank"
+              className="w-full h-full overflow-hidden flex items-center justify-start gap-2 hover:text-primary custom-transition cursor-pointer group"
             >
               <span className="w-2 h-2 rounded-full bg-primary group-hover:bg-secondary custom-transition"></span>
               <span className="w-full truncate">{item?.title}</span>
@@ -43,4 +44,4 @@ function HomeTitleNews({ data }) {
   );
 }
 
-export default HomeTitleNews;
+export default PopularNews;

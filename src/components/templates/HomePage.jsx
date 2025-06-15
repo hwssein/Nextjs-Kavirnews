@@ -4,10 +4,10 @@ import HomeHeader from "../module/HomeHeader";
 import MainSlider from "../module/MainSlider";
 import NewsTicker from "../module/NewsTicker";
 import RandomNews from "../module/RandomNews";
-import HomeTitleNews from "../module/HomeTitleNews";
+import HomeGallery from "../module/HomeGallery";
+import PopularNews from "../module/PopularNews";
 
 import { ArrowLeft } from "lucide-react";
-import HomeGallery from "../module/HomeGallery";
 
 function HomePage({ allPosts, categoriesPosts }) {
   return (
@@ -22,7 +22,7 @@ function HomePage({ allPosts, categoriesPosts }) {
         <RandomNews data={allPosts} />
 
         <div className="w-full flex flex-col lg:flex-row items-start justify-start gap-6 px-2">
-          <HomeTitleNews data={allPosts} />
+          <PopularNews data={allPosts} />
 
           <HomeGallery data={allPosts} />
         </div>

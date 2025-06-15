@@ -31,7 +31,7 @@ function HomeCategory() {
             <Link
               href={item.slug}
               key={index}
-              className="w-fit py-3 sm:py-4 px-6 sm:px-8 bg-white rounded-md border border-stroke flex flex-col items-center gap-2 hover:bg-primary custom-transition group"
+              className="w-24 py-3 sm:py-4 px-6 sm:px-8 bg-white rounded-md border border-stroke flex flex-col items-center gap-2 hover:bg-primary custom-transition group"
             >
               {Icon && (
                 <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary group-hover:text-white custom-transition" />
