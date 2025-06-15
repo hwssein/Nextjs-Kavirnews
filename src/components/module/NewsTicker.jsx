@@ -1,58 +1,48 @@
 "use client";
 
+import Link from "next/link";
+
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode, Mousewheel } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
+
 import "swiper/css";
-import "swiper/css/free-mode";
 import "swiper/css/autoplay";
-import Link from "next/link";
 
 function NewsTicker({ data }) {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     if (Array.isArray(data)) {
-      const dataObj = data?.map((item) => {
-        return {
-          id: item.id,
-          title: item.title,
-        };
-      });
-
+      const dataObj = data?.map((item) => ({
+        id: item.id,
+        title: item.title,
+      }));
       setNews(dataObj);
     }
   }, [data]);
 
   return (
-    <div className="w-screen bg-primary py-6 relative right-[calc(50%-50vw)] mt-1">
+    <div className="w-screen bg-primary py-6 relative right-[calc(50%-50vw)]">
       <div className="w-full max-w-[1420px] mx-auto overflow-hidden">
         <Swiper
-          modules={[Autoplay, FreeMode, Mousewheel]}
+          className="marquee-swiper"
+          modules={[Autoplay]}
           slidesPerView="auto"
-          loop={news.length > 3}
+          loop={news.length > 4}
           allowTouchMove={false}
-          speed={5000}
+          speed={8000}
           autoplay={{
             delay: 0,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
-          freeMode={{
-            enabled: true,
-            momentum: false,
-          }}
-          mousewheel={false}
           spaceBetween={30}
           observer={true}
           observeParents={true}
-          className="!overflow-visible"
         >
           {news?.map((item) => (
-            <SwiperSlide
-              key={item.id}
-              className="!w-fit flex items-center px-2 !ml-0"
-            >
+            <SwiperSlide key={item.id} className="!w-fit !ml-0">
               <Link
                 href={`/news/${item?.id}`}
                 target="_blank"
@@ -61,7 +51,7 @@ function NewsTicker({ data }) {
                 <strong className="text-base font-normal text-background whitespace-nowrap">
                   {item?.title}
                 </strong>
-                <div className="w-2 h-2 rounded-full bg-background mr-6 ml-3" />
+                <div className="w-2 h-2 rounded-full bg-background mx-8" />
               </Link>
             </SwiperSlide>
           ))}

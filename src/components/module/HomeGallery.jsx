@@ -27,7 +27,10 @@ function HomeGallery({ data }) {
   return (
     <>
       <div className="w-full flex flex-col">
-        <SectionTitle text="گالری تصاویر" />
+        <div className="w-full flex items-center justify-start my-4">
+          <span className="font-bold text-icon">گالری تصاویر</span>
+        </div>
+
         <div className="w-full h-[325px] border border-stroke p-4.5 rounded-md">
           <div className="w-full h-full overflow-hidden grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 rounded-md">
             {topImage.map((item) => (

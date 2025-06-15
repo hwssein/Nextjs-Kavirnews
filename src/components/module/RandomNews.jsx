@@ -13,7 +13,7 @@ function RandomNews({ data }) {
 
   return (
     <>
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-2">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-2">
         {randomData?.map((item) => (
           <NewsCard key={item.id} data={item} />
         ))}

@@ -3,7 +3,7 @@ import RemoveSearchQuery from "./RemoveSearchQuery";
 
 function FilterDetails({ category, search, length }) {
   return (
-    <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-start gap-2">
+    <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-start gap-2 mb-6">
       <div className="w-full sm:w-fit flex items-center justify-start gap-2">
         <span className="font-light text-icon">فیلتر شده بر اساس:</span>
 

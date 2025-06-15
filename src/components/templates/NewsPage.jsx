@@ -7,9 +7,13 @@ import ShowError from "../module/ShowError";
 function NewsPage({ data, filter }) {
   return (
     <>
-      <div className="w-full flex flex-col items-start justify-start gap-4 px-2">
+      <div className="w-full flex flex-col items-start justify-start px-2">
         {Object.keys(filter).length === 0 ? (
-          <FilterElements />
+          <>
+            <FilterElements />
+
+            <SectionTitle text="همه‌ی اخبار" />
+          </>
         ) : (
           <FilterDetails
             category={
@@ -21,8 +25,6 @@ function NewsPage({ data, filter }) {
             length={data?.length}
           />
         )}
-
-        <SectionTitle text="آخرین خبر" />
 
         {data?.length === 0 ? (
           <ShowError text="محتوایی برای نمایش وجود ندارد." />

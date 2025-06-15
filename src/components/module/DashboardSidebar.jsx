@@ -17,7 +17,7 @@ function DashboardSidebar({ activeView, setActiveView, session, userName }) {
 
   return (
     <>
-      <div className="w-full md:w-[768px] lg:w-[320px] lg:mt-6 mx-auto flex flex-col items-start justify-start gap-8 bg-surface rounded-lg p-4 sm:p-6">
+      <div className="w-full md:w-[768px] lg:w-[320px] lg:mt-8 mx-auto flex flex-col items-start justify-start gap-8 bg-surface rounded-lg p-4 sm:p-6">
         <div className="w-full flex flex-col items-center justify-start gap-4">
           <span className="w-fit p-9 shadow-md rounded-full bg-white text-primary border-2 border-primary">
             <User2 className="w-8 h-8" />

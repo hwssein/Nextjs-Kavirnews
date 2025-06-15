@@ -7,7 +7,7 @@ import ShowError from "./ShowError";
 
 function DashboardUserPost({ postData }) {
   return (
-    <div className="w-full flex flex-col items-start justify-start gap-4">
+    <div className="w-full flex flex-col items-start justify-start">
       <SectionTitle text="خبر‌های من" />
 
       {!postData || postData.error || postData.length === 0 ? (

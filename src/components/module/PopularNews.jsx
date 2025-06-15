@@ -24,7 +24,9 @@ function PopularNews({ data }) {
   return (
     <>
       <div className="w-full flex flex-col">
-        <SectionTitle text="پربازدید‌های روز" />
+        <div className="w-full flex items-center justify-start my-4">
+          <span className="font-bold text-icon">پربازدید‌های روز</span>
+        </div>
 
         <div className="w-full h-[325px] grid grid-rows-10 border border-stroke p-4.5 rounded-md overflow-hidden">
           {topTitle?.map((item) => (

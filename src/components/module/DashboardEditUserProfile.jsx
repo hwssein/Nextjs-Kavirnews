@@ -62,50 +62,52 @@ function DashboardEditUserProfile({
 
   return (
     <>
-      <div className="w-full flex flex-col items-start justify-start gap-6">
+      <div className="w-full flex flex-col items-start justify-start">
         <SectionTitle text="ویرایش پروفایل" />
 
-        <div className="w-full md:w-[70%] flex flex-col items-start justify-start gap-2">
-          <label htmlFor="user-name">تغییر نام کاربری</label>
-          <div className="w-full flex items-center justify-start gap-4">
-            <input
-              type="text"
-              id="user-name"
-              name="userName"
-              value={userNameValue}
-              onChange={(e) => setUserNameValue(e.target.value) || ""}
-              className="w-full border border-stroke focus:border-primary custom-transition bg-surface px-2 py-1.5 md:py-2 rounded-lg"
-            />
+        <div className="w-full flex flex-col items-start justify-start gap-6">
+          <div className="w-full md:w-[70%] flex flex-col items-start justify-start gap-2">
+            <label htmlFor="user-name">تغییر نام کاربری</label>
+            <div className="w-full flex items-center justify-start gap-4">
+              <input
+                type="text"
+                id="user-name"
+                name="userName"
+                value={userNameValue}
+                onChange={(e) => setUserNameValue(e.target.value) || ""}
+                className="w-full border border-stroke focus:border-primary custom-transition bg-surface px-2 py-1.5 md:py-2 rounded-lg"
+              />
 
+              <button
+                onClick={handleSubmitUserName}
+                disabled={isUserPending}
+                className={`w-32 flex items-center justify-center border border-primary bg-primary ${
+                  isUserPending ? "brightness-90" : "brightness-100"
+                } px-4 py-1.5 sm:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer`}
+              >
+                {isUserPending ? <Loader /> : "ذخیره"}
+              </button>
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col items-start justify-start gap-44">
             <button
-              onClick={handleSubmitUserName}
-              disabled={isUserPending}
-              className={`w-32 flex items-center justify-center border border-primary bg-primary ${
-                isUserPending ? "brightness-90" : "brightness-100"
+              onClick={handleUserLevel}
+              className={`w-48 flex items-center justify-center border border-primary bg-primary ${
+                isLevelPending ? "brightness-90" : "brightness-100"
               } px-4 py-1.5 sm:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer`}
             >
-              {isUserPending ? <Loader /> : "ذخیره"}
+              {isLevelPending ? <Loader /> : "تغییر سطح به نویسنده"}
+            </button>
+
+            <button
+              onClick={() => setActiveDeleteModal(true)}
+              className="w-48 flex items-center justify-center border border-danger bg-danger
+            px-4 py-1.5 sm:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer"
+            >
+              حذف حساب کاربری
             </button>
           </div>
-        </div>
-
-        <div className="w-full flex flex-col items-start justify-start gap-44">
-          <button
-            onClick={handleUserLevel}
-            className={`w-48 flex items-center justify-center border border-primary bg-primary ${
-              isLevelPending ? "brightness-90" : "brightness-100"
-            } px-4 py-1.5 sm:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer`}
-          >
-            {isLevelPending ? <Loader /> : "تغییر سطح به نویسنده"}
-          </button>
-
-          <button
-            onClick={() => setActiveDeleteModal(true)}
-            className="w-48 flex items-center justify-center border border-danger bg-danger
-            px-4 py-1.5 sm:py-2 rounded-md text-white hover:brightness-90 custom-transition cursor-pointer"
-          >
-            حذف حساب کاربری
-          </button>
         </div>
 
         {activeDeleteModal && (

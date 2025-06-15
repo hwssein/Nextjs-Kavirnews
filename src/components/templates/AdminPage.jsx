@@ -5,7 +5,7 @@ import NewsCard from "../module/NewsCard";
 function AdminPage({ data }) {
   return (
     <>
-      <div className="w-full flex flex-col items-start justify-start gap-4 px-2">
+      <div className="w-full flex flex-col items-start justify-start px-2">
         <SectionTitle text={"صفحه ادمین"} />
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
