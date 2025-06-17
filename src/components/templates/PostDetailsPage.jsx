@@ -32,7 +32,7 @@ function PostDetailsPage({ data: postData, allPosts }) {
                 fill
                 sizes="768px"
                 alt={postData.title}
-                className="w-full h-full rounded-lg inset-0"
+                className="w-full h-full rounded-lg inset-0 object-cover"
               />
             ) : (
               <ImageNewsCard />

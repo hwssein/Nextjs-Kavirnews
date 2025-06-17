@@ -48,10 +48,10 @@ function NewsTicker({ data }) {
                 target="_blank"
                 className="flex items-center"
               >
-                <strong className="text-base font-normal text-background whitespace-nowrap">
+                <strong className="text-base font-normal text-white whitespace-nowrap bg-primary">
                   {item?.title}
                 </strong>
-                <div className="w-2 h-2 rounded-full bg-background mx-8" />
+                <div className="w-2 h-2 rounded-full bg-white mx-8" />
               </Link>
             </SwiperSlide>
           ))}

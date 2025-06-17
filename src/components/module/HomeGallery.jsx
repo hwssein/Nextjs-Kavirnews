@@ -48,7 +48,7 @@ function HomeGallery({ data }) {
                   className="w-full h-full object-cover"
                 ></Image>
 
-                <div className="w-full h-0 group-hover:h-full opacity-0 group-hover:opacity-100 absolute bottom-0 right-0 bg-gradient-to-t from-primary/80 via-primary/30 to-transparent flex flex-col items-start justify-end p-2 custom-image-transition">
+                <div className="w-full h-0 group-hover:h-full opacity-0 group-hover:opacity-100 absolute bottom-0 right-0 bg-gradient-to-t from-primary/70 via-primary/20 to-transparent flex flex-col items-start justify-end p-2 custom-image-transition">
                   <span className="w-full line-clamp-2 text-white text-sm">
                     {item?.title}
                   </span>

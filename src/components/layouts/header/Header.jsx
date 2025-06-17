@@ -54,7 +54,7 @@ function Header({ session }) {
             <Link
               href="/"
               className={`w-fit p-1 ${
-                currentPath === "/" ? "text-primary" : "text-icon"
+                currentPath === "/" ? "text-primary bg-white" : "text-icon"
               } `}
             >
               صفحه اصلی
@@ -63,7 +63,7 @@ function Header({ session }) {
             <Link
               href="/news"
               className={`w-fit p-1 ${
-                currentPath === "/news" ? "text-primary" : "text-icon"
+                currentPath === "/news" ? "text-primary bg-white" : "text-icon"
               } `}
             >
               آخرین خبر
@@ -72,7 +72,9 @@ function Header({ session }) {
             <Link
               href="/about-us"
               className={`w-fit p-1 ${
-                currentPath === "/about-us" ? "text-primary" : "text-icon"
+                currentPath === "/about-us"
+                  ? "text-primary bg-white"
+                  : "text-icon"
               } `}
             >
               درباره ما
@@ -81,7 +83,9 @@ function Header({ session }) {
             <Link
               href="/contact-us"
               className={`w-fit p-1 ${
-                currentPath === "/contact-us" ? "text-primary" : "text-icon"
+                currentPath === "/contact-us"
+                  ? "text-primary bg-white"
+                  : "text-icon"
               } `}
             >
               تماس با ما

@@ -6,14 +6,16 @@ function HomeHeader() {
     <>
       <div className="w-full px-2">
         <div className="w-full h-[320px] relative">
-          <Image
-            src="/images/header.jpg"
-            alt="header"
-            fill
-            sizes="1440px"
-            priority={true}
-            className="object-top rounded-lg"
-          ></Image>
+          <div className="w-full h-full relative aspect-video rounded-md">
+            <Image
+              src="/images/header.jpg"
+              alt="header"
+              fill
+              sizes="1440px"
+              priority={true}
+              className="w-full h-full object-cover rounded-md"
+            ></Image>
+          </div>
 
           <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent to-80%"></div>
 
